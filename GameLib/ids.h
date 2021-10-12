@@ -1,0 +1,22 @@
+/**
+ * @file ids.h
+ * @author Melody Buado
+ *
+ * ID values for menus and other controls
+ */
+
+#ifndef UML_WARS_IDS_H
+#define UML_WARS_IDS_H
+
+/**
+ * Menu id values
+ */
+ enum IDs {
+     /// Variant>Standard menu option
+     IDM_VARIANT_STANDARD,
+
+     /// Variant>Custom menu option
+     IDM_VARIANT_CUSTOM
+ };
+
+#endif //UML_WARS_IDS_H
