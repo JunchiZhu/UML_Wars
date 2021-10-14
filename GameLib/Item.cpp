@@ -64,10 +64,9 @@ void Item::Draw(wxDC *dc)
  * @param game The game this item is a member of
  * @param filename The name of the file to display for this item
  */
-Item::Item(Game *game, const std::wstring &filename) : mGame(game)
+Item::Item(Game *game) : mGame(game)
 {
-    mItemImage = make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
-    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+
 }
 
 
