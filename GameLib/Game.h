@@ -27,7 +27,7 @@ public:
     Game(){}; ///< Constructor
     ~Game(){}; ///< Destructor
 
-    void OnDraw(wxDC *dc){};
+    void Add(std::shared_ptr<Item> item);
 };
 
 #endif //UML_WARS_GAME_H

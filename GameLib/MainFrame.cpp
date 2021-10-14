@@ -6,48 +6,47 @@
 
 #include "pch.h"
 #include "MainFrame.h"
+#include "GameView.h"
 
 /**
  * Initialize the MainFrame window.
  */
 void MainFrame::Initialize()
 {
-    Create(nullptr, wxID_ANY, L"City", wxDefaultPosition,  wxSize( 1000,800 ));
+    Create(nullptr, wxID_ANY, L"UML Wars", wxDefaultPosition,  wxSize( 1000,800 ));
 
     auto sizer = new wxBoxSizer( wxVERTICAL );
 
     // TODO: uncomment after created GameView
-//    mCityView = new CityView();
-//    mCityView->Initialize(this);
+    mGameView = new GameView();
+    mGameView->Initialize(this);
 //
-//    sizer->Add(mCityView,1, wxEXPAND | wxALL );
-//
-//    SetSizer( sizer );
-//    Layout();
-//
-//    CreateStatusBar();
-//
-//    auto menuBar = new wxMenuBar( );
-//
-//    auto fileMenu = new wxMenu();
-//    auto viewMenu = new wxMenu();
-//    auto helpMenu = new wxMenu();
-//
-//    fileMenu->Append(wxID_SAVEAS, "Save &As...\tCtrl-S", L"Save aquarium as...");
-//    fileMenu->Append(wxID_OPEN, "Open &File...\tCtrl-F", L"Open aquarium file...");
-//    fileMenu->Append(wxID_EXIT, "E&xit\tAlt-X", "Quit this program");
-//    helpMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
-//
-//    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
-//    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnAbout, this, wxID_ABOUT);
-//    Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
-//
-//    menuBar->Append(fileMenu, L"&File" );
-//    menuBar->Append(viewMenu, L"&View");
-//    mCityView->AddMenus(this, menuBar, fileMenu, viewMenu);
-//    menuBar->Append(helpMenu, L"&Help");
-//
-//    SetMenuBar( menuBar );
+    sizer->Add(mGameView,1, wxEXPAND | wxALL );
+    SetSizer( sizer );
+    Layout();
+
+    CreateStatusBar();
+
+    auto menuBar = new wxMenuBar( );
+
+    auto fileMenu = new wxMenu();
+    auto variantMenu = new wxMenu();
+    auto helpMenu = new wxMenu();
+
+
+    fileMenu->Append(wxID_EXIT, "E&xit\tAlt-X", "Quit this program");
+    helpMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
+
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnAbout, this, wxID_ABOUT);
+    Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
+
+    menuBar->Append(fileMenu, L"&File" );
+    menuBar->Append(variantMenu, L"&Variant");
+    mGameView->AddMenus(this, menuBar, fileMenu, variantMenu);
+    menuBar->Append(helpMenu, L"&Help");
+
+    SetMenuBar( menuBar );
 }
 
 

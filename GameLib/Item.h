@@ -19,8 +19,6 @@ private:
     double mWidth = 0.0;
     double mHeight = 0.0;
 
-
-
     /// The underlying item image
     std::unique_ptr<wxImage> mItemImage;
 
@@ -64,8 +62,7 @@ public:
  * Draw this item
  * @param dc Device context to draw on
  */
-    void Draw(wxDC *dc);
-
+   virtual void Draw(wxDC *dc);
 
 /**
  * Test to see if we hit this object with a mouse.
@@ -102,7 +99,7 @@ protected:
  * Protected Game item
  *
  */
-    Item(Game *game, const std::wstring &filename);
+    Item(Game *game);
 
 };
 
