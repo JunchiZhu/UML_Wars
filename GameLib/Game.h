@@ -2,6 +2,7 @@
  * @file Game.h
  *
  * @author ybw0014
+ * @author Melody Buado
  *
  * The class that implements our game
  */
