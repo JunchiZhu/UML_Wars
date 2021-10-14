@@ -6,17 +6,28 @@
  * The class that implements our game
  */
 
+#include <wx/xml/xml.h>
+
 #ifndef UML_WARS_GAME_H
 #define UML_WARS_GAME_H
+
+class Item;
 
 class Game {
 private:
 
-public:
-    Game(); ///< Constructor
-    ~Game(); ///< Destructor
+    std::unique_ptr<wxBitmap> mBackground;  ///< Background image to use
 
-    void OnDraw(wxDC *dc);
+    /// All of the items to populate our game
+    std::vector<std::shared_ptr<Item>> mItems;
+
+    void Game::XmlItem(wxXmlNode *node){};
+
+public:
+    Game(){}; ///< Constructor
+    ~Game(){}; ///< Destructor
+
+    void OnDraw(wxDC *dc){};
 };
 
 #endif //UML_WARS_GAME_H
