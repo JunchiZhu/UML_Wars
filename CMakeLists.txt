@@ -32,10 +32,13 @@ add_subdirectory(Tests)
 
 # Copy images into output directory
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/images/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/images/)
+# Copy data into output directory
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/data/)
 
 if(APPLE)
     # When building for MacOS, also copy files into the bundle resources
-    set(RESOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/UML-Wars.app/Contents/Resources)
+    set(RESOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/UML_Wars.app/Contents/Resources)
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/images/ DESTINATION ${RESOURCE_DIR}/images/)
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data/ DESTINATION ${RESOURCE_DIR}/data/)
 endif()
 
