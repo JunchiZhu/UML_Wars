@@ -27,8 +27,6 @@ public:
     Game(){}; ///< Constructor
     ~Game(){}; ///< Destructor
 
-    void OnDraw(wxDC* graphics);
-
     void Add(std::shared_ptr<Item> item);
 };
 
