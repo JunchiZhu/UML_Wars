@@ -2,6 +2,7 @@
  * @file MainFrame.h
  *
  * @author ybw0014
+ * @author Melody Buado
  *
  * The top-level (main) frame of the application
  */

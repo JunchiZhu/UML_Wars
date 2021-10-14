@@ -2,6 +2,7 @@
  * @file Game.cpp
  *
  * @author ybw0014
+ * @author Melody Buado
  */
 
 #include "pch.h"

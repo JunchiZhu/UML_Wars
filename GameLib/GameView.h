@@ -2,6 +2,7 @@
  * @file GameView.h
  *
  * @author ybw0014
+ * @author Melody Buado
  *
  * Implementation of a child window of our program
  */
