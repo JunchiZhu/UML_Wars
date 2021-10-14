@@ -20,8 +20,20 @@ private:
     Game mGame;
 
     void OnPaint(wxPaintEvent& event);
+
+    void OnVariantStandard(wxCommandEvent &event);
+    void OnUpdateVariantStandard(wxUpdateUIEvent &event);
+
+    void OnVariantCustom(wxCommandEvent &event);
+    void OnUpdateVariantCustom(wxUpdateUIEvent &event);
+
+    bool mStandard = false;          ///< Playing the standard variant?
+    bool mCustom = false;           ///< Playing the custom variant?
 public:
     void Initialize(wxFrame *mainFrame);
+
+    void AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu, wxMenu* variantMenu);
+
 };
 
 #endif //UML_WARS_GAMEVIEW_H
