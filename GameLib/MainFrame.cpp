@@ -2,6 +2,7 @@
  * @file MainFrame.cpp
  *
  * @author ybw0014
+ * @author Melody Buado
  */
 
 #include "pch.h"
@@ -20,7 +21,7 @@ void MainFrame::Initialize()
     // TODO: uncomment after created GameView
     mGameView = new GameView();
     mGameView->Initialize(this);
-//
+
     sizer->Add(mGameView,1, wxEXPAND | wxALL );
     SetSizer( sizer );
     Layout();
