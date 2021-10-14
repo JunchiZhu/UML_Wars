@@ -18,7 +18,8 @@
  */
 void GameView::Initialize(wxFrame* mainFrame)
 {
-    Create(mainFrame, wxID_ANY);
+    // create frame for virtual pixels
+    Create(mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE);
 
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
@@ -58,13 +59,21 @@ void GameView::AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu
     mainFrame->Bind(wxEVT_UPDATE_UI, &GameView::OnUpdateVariantCustom, this, IDM_VARIANT_CUSTOM);
 }
 
-
 /**
  * Paint event, draws the window.
  * @param event Paint event object
  */
 void GameView::OnPaint(wxPaintEvent& event)
 {
+    // Compute the time that has elapsed
+    // since the last call to OnPaint.
+    auto newTime = mStopWatch.Time();
+    auto elapsed = (double)(newTime - mTime) * 0.001;
+    mTime = newTime;
+
+    mGame.Update(elapsed);
+
+    // Draw
     wxAutoBufferedPaintDC dc(this);
 
     wxBrush background(*wxWHITE);

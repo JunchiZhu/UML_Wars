@@ -1,19 +1,20 @@
 /**
  * @file Item.cpp
  * @author Matthew Baxter
+ * @author ybw0014
  */
+
 #include "pch.h"
 #include "Item.h"
-#include "Game.h"
 
 using namespace std;
 
 /**
- * Destructor
+ * Constructor
+ * @param game The game this item is a member of
  */
-Item::~Item()
+Item::Item(Game *game) : mGame(game)
 {
-
 }
 
 /**
@@ -58,17 +59,6 @@ void Item::Draw(wxDC *dc)
             int(GetX() - wid / 2),
             int(GetY() - hit / 2));
 }
-
-/**
- * Constructor
- * @param game The game this item is a member of
- * @param filename The name of the file to display for this item
- */
-Item::Item(Game *game) : mGame(game)
-{
-
-}
-
 
 /**
  * Save this item to an XML node
