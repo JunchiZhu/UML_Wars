@@ -7,10 +7,14 @@
  */
 
 #include "pch.h"
+
+#include <algorithm>
+#include <memory>
+#include "wx/graphics.h"
+
 #include "Game.h"
 #include "Item.h"
-#include "wx/graphics.h"
-#include <algorithm>
+#include "Scoreboard.h"
 
 using namespace std;
 
@@ -53,7 +57,10 @@ void Game::OnDraw(wxGraphicsContext *graphics, int width, int height)
     //
     // Draw in virtual pixels on the graphics context
     //
-    // INSERT YOUR DRAWING CODE HERE
+    for (auto item : mItems)
+    {
+        item->Draw(graphics);
+    }
 
     graphics->SetPen( *wxRED_PEN );
     //graphics->SetFont("Comic Sans", "Blue");
