@@ -9,12 +9,10 @@
 #include "pch.h"
 
 #include <algorithm>
-#include <memory>
 #include "wx/graphics.h"
 
 #include "Game.h"
 #include "Item.h"
-#include "Scoreboard.h"
 
 using namespace std;
 

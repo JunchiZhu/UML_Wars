@@ -10,6 +10,8 @@ set(SOURCE_FILES
         Kid.cpp Kid.h
         Scoreboard.cpp Scoreboard.h
         Uml.cpp Uml.h
+        Pen.cpp Pen.h
+        Vector.cpp Vector.h
         UmlLoader.cpp UmlLoader.h
         UmlNode.cpp UmlNode.h)
 
