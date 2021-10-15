@@ -29,7 +29,7 @@ public:
     ///  Copy constructor (disabled)
     Scoreboard(const Scoreboard &) = delete;
 
-    void Draw(std::shared_ptr<wxGraphicsContext> graphics);
+    void Draw(std::shared_ptr<wxGraphicsContext> gc);
 
     /**
      * Get the score of correct

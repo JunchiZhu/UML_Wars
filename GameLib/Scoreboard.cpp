@@ -19,9 +19,16 @@ Scoreboard::Scoreboard(Game* game) : Item(game, L"")
  * Draw the view on a graphics context
  * @param graphics Graphics context to draw on
  */
-void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics)
+void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
-    // TODO: Draw
+    wxFont font(wxSize(0, 20),
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_NORMAL);
+    wxColour fontColor(0, 64, 0);
+    gc->SetFont(font, fontColor);
+
+    // TODO: Draw scores
 }
 
 /**
