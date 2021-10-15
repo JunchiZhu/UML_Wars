@@ -25,7 +25,7 @@ private:
     std::unique_ptr<wxBitmap> mItemBitmap;
 protected:
     /// Constructor
-    Item(Game *game);
+    Item(Game *game, const std::wstring &filename);
 public:
     /// Default constructor (disabled)
     Item() = delete;
