@@ -1,8 +1,8 @@
 /**
  * @file ScoreboardTest.cpp
- * @author Matthew Baxter
+ * @author ybw0014
  *
- * Test file to make sure Item is working
+ * Test scoreboard
  */
 
 #include <pch.h>
@@ -71,6 +71,11 @@ TEST(ScoreboardTest, GettersSetters2){
 TEST(ScoreboardTest, Reset) {
     Game game;
     Scoreboard scoreboard(&game);
+
+    // Test initial values
+    ASSERT_NEAR(0, scoreboard.GetCorrect(), 0.0001);
+    ASSERT_NEAR(0, scoreboard.GetMissed(), 0.0001);
+    ASSERT_NEAR(0, scoreboard.GetUnfair(), 0.0001);
 
     scoreboard.AddCorrect(3);
     scoreboard.AddMissed(6);
