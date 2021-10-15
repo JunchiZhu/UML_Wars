@@ -69,14 +69,21 @@ void GameView::AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu
     mainFrame->Bind(wxEVT_UPDATE_UI, &GameView::OnUpdateVariantCustom, this, IDM_VARIANT_CUSTOM);
 }
 
-
 /**
  * Paint event, draws the window.
  * @param event Paint event object
  */
 void GameView::OnPaint(wxPaintEvent& event)
 {
+    // Compute the time that has elapsed
+    // since the last call to OnPaint.
+    auto newTime = mStopWatch.Time();
+    auto elapsed = (double)(newTime - mTime) * 0.001;
+    mTime = newTime;
 
+    mGame.Update(elapsed);
+
+    // Draw
     // Create a double-buffered display context
     wxAutoBufferedPaintDC dc(this);
 

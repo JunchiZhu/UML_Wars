@@ -59,36 +59,3 @@ void Item::Draw(wxDC *dc)
             int(GetX() - wid / 2),
             int(GetY() - hit / 2));
 }
-
-/**
- * Save this item to an XML node
- * @param node The parent node we are going to be a child of
- * @return wxXmlNode that we saved the item into
- */
-wxXmlNode *Item::XmlSave(wxXmlNode *node)
-{
-    auto itemNode = new wxXmlNode(wxXML_ELEMENT_NODE, L"item");
-    node->AddChild(itemNode);
-
-    itemNode->AddAttribute(L"x", wxString::FromDouble(mWidth));
-    itemNode->AddAttribute(L"y", wxString::FromDouble(mHeight));
-
-    return itemNode;
-}
-
-
-/**
- * Load the attributes for an item node.
- *
- * This is the  base class version that loads the attributes
- * common to all items. Override this to load custom attributes
- * for specific items.
- *
- * @param node The Xml node we are loading the item from
- */
-void Item::XmlLoad(wxXmlNode *node)
-{
-    node->GetAttribute(L"x", L"0").ToDouble(&mWidth);
-    node->GetAttribute(L"y", L"0").ToDouble(&mHeight);
-
-}

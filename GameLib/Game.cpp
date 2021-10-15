@@ -12,19 +12,17 @@
 #include "wx/graphics.h"
 #include <algorithm>
 
-
 using namespace std;
 
-
-
-/**  Add a tile to the city
-* @param tile New tile to add
-*/
-void Game::Add(std::shared_ptr<Item> item)
+/**
+ * Constructor
+ */
+Game::Game()
 {
-    mItems.push_back(item);
+    // Seed the random number generator
+    random_device rd;
+    mRandom.seed(rd());
 }
-
 
 /**
  * Draw the game area
@@ -65,9 +63,17 @@ void Game::OnDraw(wxGraphicsContext *graphics, int width, int height)
     graphics->PopState();
 }
 
+/**
+ * Add an item to our game
+ * @param item New item to add
+ */
+void Game::Add(std::shared_ptr<Item> item)
+{
+    mItems.push_back(item);
+}
 
 /**
-* Handle movement of the mosue over the playing area
+* Handle movement of the mouse over the playing area
 * @param x X location clicked on
 * @param y Y location clicked on
 */
@@ -75,5 +81,16 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
 {
     double oX = (x-mXOffset)/mScale;
     double oY = (y-mYOffset)/mScale;
+}
 
+/**
+ * Handle updates for animation
+ * @param elapsed The time since the last update
+ */
+void Game::Update(double elapsed)
+{
+    for (auto item : mItems)
+    {
+        item->Update(elapsed);
+    }
 }
