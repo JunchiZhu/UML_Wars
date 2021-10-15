@@ -7,7 +7,6 @@
 #include "pch.h"
 #include "Item.h"
 
-
 using namespace std;
 
 /**
@@ -20,7 +19,6 @@ Item::Item(Game *game, const std::wstring &filename) : mGame(game)
     mItemImage = make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
-
 
 /**
  * Test to see if we hit this object with a mouse.
@@ -35,7 +33,7 @@ bool Item::HitTest(int x, int y)
 
     // Make x and y relative to the top-left corner of the bitmap image
     // Subtracting the center makes x, y relative to the image center
-    // Adding half the size makes x, y relative to theimage top corner
+    // Adding half the size makes x, y relative to the image top corner
     double testX = x - GetX() + wid / 2;
     double testY = y - GetY() + hit / 2;
 
@@ -56,7 +54,7 @@ bool Item::HitTest(int x, int y)
  * Draw this item
  * @param dc Device context to draw on
  */
-void Item::Draw(wxGraphicsContext  *gc)
+void Item::Draw(wxGraphicsContext *gc)
 {
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
