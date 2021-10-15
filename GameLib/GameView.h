@@ -35,10 +35,13 @@ private:
     void OnPaint(wxPaintEvent& event);
 
     void OnVariantStandard(wxCommandEvent &event);
+
     void OnUpdateVariantStandard(wxUpdateUIEvent &event);
 
     void OnVariantCustom(wxCommandEvent &event);
+
     void OnUpdateVariantCustom(wxUpdateUIEvent &event);
+
 public:
     void Initialize(wxFrame *mainFrame);
 

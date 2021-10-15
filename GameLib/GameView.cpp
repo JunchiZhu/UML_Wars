@@ -95,10 +95,10 @@ void GameView::OnPaint(wxPaintEvent& event)
     // Create a graphics context
     auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
 
+
     // Tell the game class to draw
     wxRect rect = GetRect();
     mGame.OnDraw(gc.get(), rect.GetWidth(), rect.GetHeight());
-
 
 }
 
