@@ -16,8 +16,12 @@ using namespace std;
  */
 Item::Item(Game *game, const std::wstring &filename) : mGame(game)
 {
-    mItemImage = make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
-    mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+    if (!filename.empty())
+    {
+        // Load image when it is not empty
+        mItemImage = make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
+        mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+    }
 }
 
 /**

@@ -32,35 +32,53 @@ public:
     void Draw(std::shared_ptr<wxGraphicsContext> graphics);
 
     /**
-     * Get the number of correct
-     * @return the number of correct
+     * Get the score of correct
+     * @return the score of correct
      */
-    int GetNumCorrect() const { return mNumCorrect; }
+    int GetCorrect() const { return mNumCorrect; }
 
     /**
-     * Get the number of missed
-     * @return the number of missed
+     * Get the score of missed
+     * @return the score of missed
      */
-    int GetNumMissed() const { return mNumMissed; }
+    int GetMissed() const { return mNumMissed; }
 
     /**
-     * Get the number of unfair
-     * @return the number of unfair
+     * Get the score of unfair
+     * @return the score of unfair
      */
-    int GetNumUnfair() const { return mNumUnfair; }
+    int GetUnfair() const { return mNumUnfair; }
 
     /**
-     * Add the number of correct by 1
+     * Add the score of correct
+     * @param score the score to be added
+     */
+    void AddCorrect(int score) { mNumCorrect += score; }
+
+    /**
+     * Add the score of missed
+     * @param score the score to be added
+     */
+    void AddMissed(int score) { mNumMissed += score; }
+
+    /**
+     * Add the score of unfair
+     * @param score the score to be added
+     */
+    void AddUnfair(int score) { mNumUnfair += score; }
+
+    /**
+     * Add the score of correct by 1
      */
     void AddCorrect() { mNumCorrect++; }
 
     /**
-     * Add the number of missed by 1
+     * Add the score of missed by 1
      */
     void AddMissed() { mNumMissed++; }
 
     /**
-     * Add the number of unfair by 1
+     * Add the score of unfair by 1
      */
     void AddUnfair() { mNumUnfair++; }
 
