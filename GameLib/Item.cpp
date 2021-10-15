@@ -55,11 +55,11 @@ bool Item::HitTest(int x, int y)
  * Draw this item
  * @param dc Device context to draw on
  */
-void Item::Draw(wxDC *dc)
+void Item::Draw(wxGraphicsContext  *gc)
 {
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
-    dc->DrawBitmap(*mItemBitmap,
+    gc->DrawBitmap(*mItemBitmap,
             int(GetX() - wid / 2),
             int(GetY() - hit / 2));
 }

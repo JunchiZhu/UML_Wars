@@ -59,7 +59,7 @@ public:
      * Draw this item
      * @param dc Device context to draw on
      */
-    virtual void Draw(wxDC *dc);
+    virtual void Draw(wxGraphicsContext  *gc);
 
     /**
      * Test to see if we hit this object with a mouse.
