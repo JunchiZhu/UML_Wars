@@ -10,7 +10,7 @@
 #include <Item.h>
 #include <Game.h>
 
-/// Fish filename
+/// ItemMock filename
 const std::wstring HaroldImageName = L"images/harold.png";
 
 /** Mock class for testing the class Item */
@@ -46,31 +46,30 @@ TEST(ItemTest, GettersSetters){
     ASSERT_NEAR(-107, item.GetY(), 0.0001);
 }
 
-
-TEST(ItemMockTest, HitTest) {
-    // Create a fish to test
+TEST(ItemTest, HitTest) {
+    // Create an item to test
     Game game;
-    ItemMock kid(&game);
+    ItemMock item(&game);
 
     // Give it a location
     // Always make the numbers different, in case they are mixed up
-    kid.SetLocation(100, 200);
+    item.SetLocation(100, 200);
 
-    // Center of the kid should be a true
-    ASSERT_TRUE(kid.HitTest(100, 200));
+    // Center of the item should be a true
+    ASSERT_TRUE(item.HitTest(100, 200));
 
-    // Left of the kid
-    ASSERT_FALSE(kid.HitTest(10, 200));
+    // Left of the item
+    ASSERT_FALSE(item.HitTest(10, 200));
 
-    // Right of the kid
-    ASSERT_FALSE(kid.HitTest(200, 200));
+    // Right of the item
+    ASSERT_FALSE(item.HitTest(200, 200));
 
-    // Above the kid
-    ASSERT_FALSE(kid.HitTest(100, 0));
+    // Above the item
+    ASSERT_FALSE(item.HitTest(100, 0));
 
-    // Below the kid
-    ASSERT_FALSE(kid.HitTest(100, 300));
+    // Below the item
+    ASSERT_FALSE(item.HitTest(100, 300));
 
-    // On a kid transparent pixel
-    ASSERT_FALSE(kid.HitTest(100 - 125/2 + 17, 200 - 117/2 + 16));
+    // On a transparent pixel
+    ASSERT_FALSE(item.HitTest(100 - 125/2 + 17, 200 - 117/2 + 16));
 }
