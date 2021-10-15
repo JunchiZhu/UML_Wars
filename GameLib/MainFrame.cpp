@@ -18,7 +18,6 @@ void MainFrame::Initialize()
 
     auto sizer = new wxBoxSizer( wxVERTICAL );
 
-    // TODO: uncomment after created GameView
     mGameView = new GameView();
     mGameView->Initialize(this);
 
@@ -28,7 +27,7 @@ void MainFrame::Initialize()
 
     CreateStatusBar();
 
-    auto menuBar = new wxMenuBar( );
+    auto menuBar = new wxMenuBar();
 
     auto fileMenu = new wxMenu();
     auto variantMenu = new wxMenu();
@@ -77,10 +76,9 @@ void MainFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
  * Handle a close event. Stop the animation and destroy this window.
  * @param event The Close event
  */
- // TODO: uncomment it after created GameView
 void MainFrame::OnClose(wxCloseEvent& event)
 {
-//    mGameView->Stop();
+    // mGameView->Stop();
     Destroy();
 }
 

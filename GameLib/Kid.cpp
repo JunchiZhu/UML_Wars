@@ -6,12 +6,14 @@
 #include "pch.h"
 #include "Kid.h"
 
+const std::wstring HaroldImageName = L"images/harold.png";
+
 /** Constructor
 * @param game The game this is a member of
 */
-Kid::Kid(Game* game) : Item(game)
+Kid::Kid(Game* game) : Item(game, HaroldImageName)
 {
-    mHaroldImage = std::make_shared<wxImage>(L"images/harold.png");
+    mHaroldImage = std::make_shared<wxImage>(HaroldImageName);
 }
 
 /**
