@@ -5,6 +5,7 @@
  */
 
 #include "pch.h"
+#include <memory>
 #include "UmlLoader.h"
 
 /// UML data filename
@@ -46,6 +47,15 @@ void UmlLoader::Load()
 }
 
 /**
+ * Add a node to the nodes collection
+ * @param umlNode the node to be added
+ */
+void UmlLoader::Add(std::shared_ptr<UmlNode> umlNode)
+{
+    mNodes.push_back(umlNode);
+}
+
+/**
  * load nodes under class
  * @param node XML node
  */
@@ -54,8 +64,25 @@ void UmlLoader::LoadClasses(wxXmlNode* node)
     auto child = node->GetChildren();
     for( ; child; child=child->GetNext())
     {
-        auto name = child->GetName();
+        // read from xml
+        auto type = child->GetName().ToStdWstring();
+        auto value = child->GetContent().ToStdWstring();
+        auto bad = child->GetAttribute(L"bad").ToStdWstring();
 
+        // init
+        std::shared_ptr<UmlNode> umlNode;
+
+        // read from d2l
+        if (bad.empty())
+        {
+            umlNode = std::make_shared<UmlNode>(type, value);
+        }
+        else
+        {
+            umlNode = std::make_shared<UmlNode>(type, value, bad);
+        }
+
+        Add(umlNode);
     }
 }
 
@@ -70,5 +97,6 @@ void UmlLoader::LoadInheritances(wxXmlNode* node)
     {
         auto name = child->GetName();
 
+        // TODO: handle inheritance data
     }
 }

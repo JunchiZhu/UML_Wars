@@ -10,6 +10,7 @@
 #define UML_WARS_UMLLOADER_H
 
 #include <vector>
+#include <memory>
 #include "UmlNode.h"
 
 /**
@@ -17,7 +18,10 @@
  */
 class UmlLoader {
 private:
-    std::vector<UmlNode> mNodes;
+    /// the collection of node data read from xml
+    std::vector<std::shared_ptr<UmlNode>> mNodes;
+
+    void Add(std::shared_ptr<UmlNode> umlNode);
 public:
     void Load();
 
