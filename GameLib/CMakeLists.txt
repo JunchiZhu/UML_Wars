@@ -7,7 +7,8 @@ set(SOURCE_FILES
         GameView.cpp GameView.h
         ids.h
         Item.cpp Item.h
-        Kid.cpp Kid.h)
+        Kid.cpp Kid.h
+        Scoreboard.cpp Scoreboard.h)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 
