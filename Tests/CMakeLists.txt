@@ -1,9 +1,10 @@
 project(Tests)
 
 set(TEST_FILES
-    gtest_main.cpp
-    EmptyTest.cpp
-    )
+        gtest_main.cpp
+        EmptyTest.cpp
+        ItemTest.cpp
+        )
 
 # Get Google Tests
 include(FetchContent)
