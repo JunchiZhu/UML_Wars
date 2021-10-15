@@ -20,6 +20,9 @@ private:
     std::vector<UmlNode> mNodes;
 public:
     void Load();
+
+    void LoadClasses(wxXmlNode *node);
+    void LoadInheritances(wxXmlNode *node);
 };
 
 #endif //UML_WARS_UMLLOADER_H
