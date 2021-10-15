@@ -8,6 +8,8 @@ set(SOURCE_FILES
         ids.h
         Item.cpp Item.h
         Kid.cpp Kid.h
+        pen.cpp pen.h
+        vector.cpp vector.h
         Scoreboard.cpp Scoreboard.h
         Uml.cpp Uml.h
         Pen.cpp Pen.h
