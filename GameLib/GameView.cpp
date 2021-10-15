@@ -3,11 +3,13 @@
  *
  * @author ybw0014
  * @author Melody Buado
+ * @author Matthew Baxter
  */
 
 #include "pch.h"
 #include <wx/dcbuffer.h>
 #include "GameView.h"
+#include "Game.h"
 #include "Kid.h"
 #include "Item.h"
 #include "ids.h"
@@ -18,7 +20,16 @@
  */
 void GameView::Initialize(wxFrame* mainFrame)
 {
-    Create(mainFrame, wxID_ANY);
+    Create(mainFrame, wxID_ANY,
+            wxDefaultPosition, wxDefaultSize,
+            wxFULL_REPAINT_ON_RESIZE);
+
+
+    auto Rectangle = mainFrame->GetRect();
+
+    int width = Rectangle.GetWidth();
+
+    int height = Rectangle.GetHeight();
 
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
@@ -65,14 +76,21 @@ void GameView::AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu
  */
 void GameView::OnPaint(wxPaintEvent& event)
 {
+
+    // Create a double-buffered display context
     wxAutoBufferedPaintDC dc(this);
 
-    wxBrush background(*wxWHITE);
+    // Clear the image to black
+    wxBrush background(*wxBLACK);
     dc.SetBackground(background);
     dc.Clear();
 
     // Create a graphics context
-    auto graphics = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
+    auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
+
+    // Tell the game class to draw
+    wxRect rect = GetRect();
+    mGame.OnDraw(gc.get(), rect.GetWidth(), rect.GetHeight());
 
 
 }
