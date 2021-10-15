@@ -8,6 +8,7 @@
 
 #ifndef UML_WARS_ITEM_H
 #define UML_WARS_ITEM_H
+#include <wx/graphics.h>
 
 class Game;
 

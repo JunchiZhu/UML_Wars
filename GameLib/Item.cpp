@@ -7,6 +7,7 @@
 #include "pch.h"
 #include "Item.h"
 
+
 using namespace std;
 
 /**
@@ -60,6 +61,8 @@ void Item::Draw(wxGraphicsContext  *gc)
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
     gc->DrawBitmap(*mItemBitmap,
-            int(GetX() - wid / 2),
-            int(GetY() - hit / 2));
+            double(GetX() - wid / 2),
+            double(GetY() - hit / 2),
+            wid,
+            hit);
 }
