@@ -15,10 +15,22 @@
 /**
  * View class for our game
  */
-class GameView : public wxWindow{
+class GameView : public wxWindow {
 private:
     /// The game
     Game mGame;
+
+    /// The timer that allows for animation
+    wxTimer mTimer;
+
+    /// Stopwatch used to measure elapsed time
+    wxStopWatch mStopWatch;
+
+    /// The last stopwatch time
+    long mTime = 0;
+
+    bool mStandard = false;          ///< Playing the standard variant?
+    bool mCustom = false;           ///< Playing the custom variant?
 
     void OnPaint(wxPaintEvent& event);
 
@@ -27,14 +39,10 @@ private:
 
     void OnVariantCustom(wxCommandEvent &event);
     void OnUpdateVariantCustom(wxUpdateUIEvent &event);
-
-    bool mStandard = false;          ///< Playing the standard variant?
-    bool mCustom = false;           ///< Playing the custom variant?
 public:
     void Initialize(wxFrame *mainFrame);
 
     void AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu, wxMenu* variantMenu);
-
 };
 
 #endif //UML_WARS_GAMEVIEW_H

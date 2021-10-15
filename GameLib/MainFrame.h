@@ -10,7 +10,7 @@
 #ifndef UML_WARS_MAINFRAME_H
 #define UML_WARS_MAINFRAME_H
 
-class GameView;
+#include "GameView.h"
 
 class MainFrame : public wxFrame {
 private:
