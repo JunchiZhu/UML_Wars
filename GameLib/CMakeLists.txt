@@ -8,7 +8,10 @@ set(SOURCE_FILES
         ids.h
         Item.cpp Item.h
         Kid.cpp Kid.h
-        Scoreboard.cpp Scoreboard.h)
+        Scoreboard.cpp Scoreboard.h
+        Uml.cpp Uml.h
+        UmlLoader.cpp UmlLoader.h
+        UmlNode.cpp UmlNode.h)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 
