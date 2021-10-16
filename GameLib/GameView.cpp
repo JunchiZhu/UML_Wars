@@ -137,3 +137,39 @@ void GameView::OnUpdateVariantCustom(wxUpdateUIEvent& event)
 {
     event.Check(mCustom);
 }
+
+/**
+ * Handle the left mouse button down event
+ * @param event
+ */
+void GameView::OnLeftDown(wxMouseEvent &event)
+{
+
+}
+
+/**
+* Handle the left mouse button down event
+* @param event
+*/
+void GameView::OnLeftUp(wxMouseEvent &event)
+{
+    OnMouseMove(event);
+}
+
+/**
+* Handle the mouse move event
+* @param event The Mouse event
+*/
+void GameView::OnMouseMove(wxMouseEvent &event)
+{
+    mGame.OnMouseMove(event.GetX(), event.GetY(), event);
+}
+
+/**
+ * Handle timer events
+ * @param event timer event
+ */
+void GameView::OnTimer(wxTimerEvent& event)
+{
+    Refresh();
+}

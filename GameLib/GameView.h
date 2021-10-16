@@ -34,6 +34,11 @@ private:
 
     void OnPaint(wxPaintEvent& event);
 
+    void OnMouseMove(wxMouseEvent &event);
+    void OnLeftDown(wxMouseEvent &event);
+    void OnLeftUp(wxMouseEvent& event);
+    void OnTimer(wxTimerEvent& event);
+
     void OnVariantStandard(wxCommandEvent &event);
 
     void OnUpdateVariantStandard(wxUpdateUIEvent &event);
