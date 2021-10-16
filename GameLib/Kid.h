@@ -28,8 +28,6 @@ public:
     ///  Copy constructor (disabled)
     Kid(const Kid &) = delete;
 
-    ~Kid();
-
     void Draw(std::shared_ptr<wxGraphicsContext> graphics);
 
 };
