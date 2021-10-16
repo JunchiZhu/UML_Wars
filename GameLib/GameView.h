@@ -37,7 +37,7 @@ private:
     void OnMouseMove(wxMouseEvent &event);
     void OnLeftDown(wxMouseEvent &event);
     void OnLeftUp(wxMouseEvent& event);
-    void OnTimer(wxTimerEvent& event);
+
 
     void OnVariantStandard(wxCommandEvent &event);
 
@@ -46,6 +46,8 @@ private:
     void OnVariantCustom(wxCommandEvent &event);
 
     void OnUpdateVariantCustom(wxUpdateUIEvent &event);
+
+    void OnTimer(wxTimerEvent& event);
 
 public:
     void Initialize(wxFrame *mainFrame);

@@ -21,8 +21,8 @@ void MainFrame::Initialize()
     mGameView = new GameView();
     mGameView->Initialize(this);
 
-    mPlayingArea = new PlayingArea();
-    mPlayingArea->Initialize(this);
+    //mPlayingArea = new PlayingArea();
+    //mPlayingArea->Initialize(this);
 
     sizer->Add(mGameView, 1, wxEXPAND | wxALL );
     SetSizer( sizer );
