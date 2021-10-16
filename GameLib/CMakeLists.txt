@@ -13,7 +13,8 @@ set(SOURCE_FILES
         Pen.cpp Pen.h
         Vector.cpp Vector.h
         UmlLoader.cpp UmlLoader.h
-        UmlNode.cpp UmlNode.h)
+        UmlNode.cpp UmlNode.h
+        PlayingArea.cpp PlayingArea.h)
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
 

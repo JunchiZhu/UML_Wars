@@ -60,11 +60,6 @@ void Game::OnDraw(wxGraphicsContext *graphics, int width, int height)
         item->Draw(graphics);
     }
 
-    graphics->SetPen( *wxRED_PEN );
-    //graphics->SetFont("Comic Sans", "Blue");
-    //graphics->DrawText("Test", 100, 100);
-    graphics->DrawEllipse(100, 100, 100, 100);
-
     graphics->PopState();
 }
 

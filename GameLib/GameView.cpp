@@ -56,10 +56,6 @@ void GameView::Initialize(wxFrame* mainFrame)
  */
 void GameView::AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu, wxMenu* variantMenu)
 {
-    auto landscapingMenu = new wxMenu();
-    auto buildingsMenu = new wxMenu();
-    auto businessesMenu = new wxMenu();
-
     // Options added to the view menu
     variantMenu->Append(IDM_VARIANT_STANDARD, L"&Standard", L"Enable to play standard version", wxITEM_CHECK);
     variantMenu->Append(IDM_VARIANT_CUSTOM, L"&Custom", L"Enable to play custom version", wxITEM_CHECK);
