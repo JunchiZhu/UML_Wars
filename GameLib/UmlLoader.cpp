@@ -7,6 +7,7 @@
 #include "pch.h"
 #include <memory>
 #include "UmlLoader.h"
+#include "UmlNode.h"
 
 /// UML data filename
 const std::wstring DataFilename = L"data/uml.xml";

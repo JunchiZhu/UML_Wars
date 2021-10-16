@@ -11,11 +11,14 @@
 
 #include <vector>
 #include <memory>
-#include "UmlNode.h"
+#include <string>
+#include <wx/xml/xml.h>
+
 
 /**
  * A loader class that loads the uml data from xml
  */
+class UmlNode;
 class UmlLoader {
 private:
     /// the collection of node data read from xml

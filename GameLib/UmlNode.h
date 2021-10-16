@@ -10,7 +10,7 @@
 #define UML_WARS_UMLNODE_H
 
 #include <string>
-
+#include <memory>
 class UmlNode {
 private:
     std::wstring mType; ///< The type of node
