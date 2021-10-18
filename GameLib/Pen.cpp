@@ -32,7 +32,7 @@ void Pen::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 
     int penWid = mPenImage->GetWidth();
     int penHit = mPenImage->GetHeight();
-    graphics->DrawBitmap(mPenBitmap, 250, 100, penWid, penHit);
+    graphics->DrawBitmap(mPenBitmap, 0, 0, penWid, penHit);
 }
 
 

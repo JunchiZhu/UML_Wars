@@ -84,7 +84,7 @@ void GameView::OnPaint(wxPaintEvent& event)
     wxAutoBufferedPaintDC dc(this);
 
     // Clear the image to black
-    wxBrush background(*wxBLACK);
+    wxBrush background(*wxWHITE);
     dc.SetBackground(background);
     dc.Clear();
 

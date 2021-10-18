@@ -21,6 +21,8 @@ using namespace std;
  */
 Game::Game()
 {
+    mBackground = std::make_shared<wxImage>(
+            L"images/background.png", wxBITMAP_TYPE_ANY);
     // Seed the random number generator
     random_device rd;
     mRandom.seed(rd());
@@ -34,6 +36,14 @@ Game::Game()
  */
 void Game::OnDraw(wxGraphicsContext *graphics, int width, int height)
 {
+    /// adding background image
+    if(mBackgroundBitmap.IsNull())
+    {
+        mBackgroundBitmap = graphics->CreateBitmapFromImage(*mBackground);
+    }
+    graphics->DrawBitmap(mBackgroundBitmap, 0, 0, 1000, 800);
+
+
     //
     // Automatic Scaling
     //
