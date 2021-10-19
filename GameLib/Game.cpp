@@ -70,6 +70,16 @@ void Game::OnDraw(wxGraphicsContext *graphics, int width, int height)
         item->Draw(graphics);
     }
 
+    //
+    // Draw filled rectangles
+    wxBrush rectBrush(*wxBLACK);
+    graphics->SetBrush(rectBrush);
+    graphics->SetPen(wxNullGraphicsPen);
+    graphics->DrawRectangle(700, 0, 200000, 1000);
+    graphics->DrawRectangle(-200700, 0, 200000, 1000);
+    graphics->DrawRectangle(-1000, -199999, 20000, 200000);
+    graphics->DrawRectangle(-1000, 999, 2000, 200000);
+
     graphics->PopState();
 }
 

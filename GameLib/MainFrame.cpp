@@ -8,7 +8,6 @@
 #include "pch.h"
 #include "MainFrame.h"
 #include "GameView.h"
-#include "PlayingArea.h"
 
 /**
  * Initialize the MainFrame window.
