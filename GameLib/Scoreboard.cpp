@@ -19,16 +19,23 @@ Scoreboard::Scoreboard(Game* game) : Item(game, L"")
  * Draw the view on a graphics context
  * @param graphics Graphics context to draw on
  */
-void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> gc)
+void Scoreboard::Draw(wxGraphicsContext *graphics)
 {
-    wxFont font(wxSize(0, 20),
+    wxFont font(wxSize(0, 40),
             wxFONTFAMILY_SWISS,
             wxFONTSTYLE_NORMAL,
             wxFONTWEIGHT_NORMAL);
     wxColour fontColor(0, 64, 0);
-    gc->SetFont(font, fontColor);
+    graphics->SetFont(font, fontColor);
 
-    // TODO: Draw scores
+    graphics->DrawText(L"Correct", -500, 100);
+    graphics->DrawText(L"Missed", -100, 100);
+    graphics->DrawText(L"Unfair", 300, 100);
+
+    graphics->DrawText(wxString::Format(wxT("%i"), GetCorrect()), -500, 50);
+    graphics->DrawText(wxString::Format(wxT("%i"), GetMissed()), -100, 50);
+    graphics->DrawText(wxString::Format(wxT("%i"), GetUnfair()), 300, 50);
+
 }
 
 /**
