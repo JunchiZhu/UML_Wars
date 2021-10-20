@@ -10,6 +10,8 @@
 #define UML_WARS_ITEM_H
 #include <wx/graphics.h>
 #include "ItemVisitor.h"
+#include "Vector.h"
+#include <memory>
 
 class Game;
 
@@ -25,6 +27,7 @@ private:
     std::unique_ptr<wxImage> mItemImage;
     /// The bitmap we can display for this item
     std::unique_ptr<wxBitmap> mItemBitmap;
+
 protected:
     /// Constructor
     Item(Game *game, const std::wstring &filename);

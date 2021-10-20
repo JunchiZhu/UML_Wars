@@ -23,16 +23,18 @@ Pen::Pen(Game *game) : Item(game, PenImageName)
  * Draw the view on a graphics context
  * @param graphics Graphics context to draw on
  */
-void Pen::Draw(std::shared_ptr<wxGraphicsContext> graphics)
+void Pen::Draw(wxGraphicsContext *graphics)
 {
     if(mPenBitmap.IsNull())
     {
         mPenBitmap = graphics->CreateBitmapFromImage(*mPenImage);
     }
+    double penWid = mPenImage->GetWidth();
+    double penHit = mPenImage->GetHeight();
 
-    int penWid = mPenImage->GetWidth();
-    int penHit = mPenImage->GetHeight();
-    graphics->DrawBitmap(mPenBitmap, 0, 0, penWid, penHit);
+    graphics->PushState();  // Save the graphics state
+    graphics->Translate(29, 846);
+    graphics->Rotate(mPenAngle);
+    graphics->DrawBitmap(mPenBitmap, -penWid/2, -penHit/2, penWid, penHit);
+    graphics->PopState();   // Restore the graphics state
 }
-
-

@@ -4,6 +4,7 @@
  * @author ybw0014
  * @author Melody Buado
  * @author Matthew Baxter
+ * @author Junchi Zhu
  */
 
 #include "pch.h"
@@ -15,6 +16,7 @@
 #include "Item.h"
 #include "Kid.h"
 #include "KidRotate.h"
+#include "Pen.h"
 
 using namespace std;
 
@@ -31,6 +33,9 @@ Game::Game()
 
     shared_ptr<Item> harold = make_shared<Kid>(this);
     mItems.push_back(harold);
+
+    shared_ptr<Item> pen = make_shared<Pen>(this);
+    mItems.push_back(pen);
 }
 
 /**
@@ -41,12 +46,12 @@ Game::Game()
  */
 void Game::OnDraw(wxGraphicsContext *graphics, int width, int height)
 {
-    /// adding background image
-    if(mBackgroundBitmap.IsNull())
-    {
-        mBackgroundBitmap = graphics->CreateBitmapFromImage(*mBackground);
-    }
-    graphics->DrawBitmap(mBackgroundBitmap, 0, 0, 1000, 800);
+//    /// adding background image
+//    if(mBackgroundBitmap.IsNull())
+//    {
+//        mBackgroundBitmap = graphics->CreateBitmapFromImage(*mBackground);
+//    }
+//    graphics->DrawBitmap(mBackgroundBitmap, 0, 0, 1000, 800);
 
 
     //

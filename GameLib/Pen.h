@@ -18,6 +18,9 @@ private:
 
     /// The pen bitmap
     wxGraphicsBitmap mPenBitmap;
+
+    /// Pen angle
+    double mPenAngle = 1.078;
 public:
 /// Default constructor (disabled)
     Pen() = delete;
@@ -28,15 +31,16 @@ public:
     /// Assignment operator
     void operator=(const Pen &) = delete;
 
-    Pen(Game* game);
+    Pen(Game *game);
 
-    void Draw(std::shared_ptr<wxGraphicsContext> graphics);
+    void Draw(wxGraphicsContext *graphics) override;
 
     /**
     * Accept a visitor
     * @param visitor The visitor we accept
     */
     virtual void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
+
 };
 
 #endif //UML_WARS_PEN_H
