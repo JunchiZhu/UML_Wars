@@ -21,6 +21,7 @@ Scoreboard::Scoreboard(Game* game) : Item(game, L"")
  */
 void Scoreboard::Draw(wxGraphicsContext *graphics)
 {
+    // Set font
     wxFont font(wxSize(0, 40),
             wxFONTFAMILY_SWISS,
             wxFONTSTYLE_NORMAL,
@@ -28,10 +29,12 @@ void Scoreboard::Draw(wxGraphicsContext *graphics)
     wxColour fontColor(0, 64, 0);
     graphics->SetFont(font, fontColor);
 
+    // Draw text
     graphics->DrawText(L"Correct", -500, 100);
     graphics->DrawText(L"Missed", -100, 100);
     graphics->DrawText(L"Unfair", 300, 100);
 
+    // Draw scores
     graphics->DrawText(wxString::Format(wxT("%i"), GetCorrect()), -500, 50);
     graphics->DrawText(wxString::Format(wxT("%i"), GetMissed()), -100, 50);
     graphics->DrawText(wxString::Format(wxT("%i"), GetUnfair()), 300, 50);
