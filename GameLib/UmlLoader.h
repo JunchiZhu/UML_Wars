@@ -24,11 +24,11 @@ private:
     std::vector<std::shared_ptr<UmlNode>> mNodes;
 
     void Add(std::shared_ptr<UmlNode> umlNode);
-public:
-    void Load();
 
     void LoadClasses(wxXmlNode *node);
     void LoadInheritances(wxXmlNode *node);
+public:
+    void Load();
 };
 
 #endif //UML_WARS_UMLLOADER_H

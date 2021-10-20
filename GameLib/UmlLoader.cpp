@@ -73,7 +73,7 @@ void UmlLoader::LoadClasses(wxXmlNode* node)
         // init
         std::shared_ptr<UmlNode> umlNode;
 
-        // read from d2l
+        // empty reason
         if (bad.empty())
         {
             umlNode = std::make_shared<UmlNode>(type, value);
