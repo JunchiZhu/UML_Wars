@@ -20,7 +20,7 @@ Kid::Kid(Game* game) : Item(game, HaroldImageName)
  * Draw the view on a graphics context
  * @param graphics Graphics context to draw on
  */
-void Kid::Draw(std::shared_ptr<wxGraphicsContext> graphics)
+void Kid::Draw(wxGraphicsContext *graphics)
 {
     if(mHaroldBitmap.IsNull())
     {
@@ -29,6 +29,6 @@ void Kid::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 
     int haroldWid = mHaroldImage->GetWidth();
     int haroldHit = mHaroldImage->GetHeight();
-    graphics->DrawBitmap(mHaroldBitmap, 220, 130, haroldWid, haroldHit);
+    graphics->DrawBitmap(mHaroldBitmap, 0, 800, haroldWid, haroldHit);
 
 }

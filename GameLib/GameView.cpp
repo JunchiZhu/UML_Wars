@@ -14,6 +14,8 @@
 #include "Item.h"
 #include "ids.h"
 
+using namespace std;
+
 /**
  * Constructor
  * @param mainFrame Pointer to wxFrame object, the main frame for the application
@@ -91,6 +93,8 @@ void GameView::OnPaint(wxPaintEvent& event)
     // Create a graphics context
     auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
 
+    shared_ptr<Item> harold = make_shared<Kid>(&mGame);
+    mGame.Add(harold);
 
     // Tell the game class to draw
     wxRect rect = GetRect();

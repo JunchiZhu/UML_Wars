@@ -28,7 +28,7 @@ public:
     ///  Copy constructor (disabled)
     Kid(const Kid &) = delete;
 
-    void Draw(std::shared_ptr<wxGraphicsContext> graphics);
+    void Draw(wxGraphicsContext *graphics) override;
 
 };
 
