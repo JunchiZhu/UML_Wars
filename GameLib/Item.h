@@ -9,6 +9,7 @@
 #ifndef UML_WARS_ITEM_H
 #define UML_WARS_ITEM_H
 #include <wx/graphics.h>
+#include "ItemVisitor.h"
 
 class Game;
 
@@ -87,6 +88,12 @@ public:
      * @param elapsed The time since the last update
      */
     virtual void Update(double elapsed) {}
+
+    /**
+     * Accept a visitor
+     * @param visitor The visitor we accept
+     */
+    virtual void Accept(ItemVisitor* visitor) = 0;
 };
 
 #endif //UML_WARS_ITEM_H

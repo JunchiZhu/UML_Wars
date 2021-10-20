@@ -13,6 +13,8 @@
 
 #include "Game.h"
 #include "Item.h"
+#include "Kid.h"
+#include "KidRotate.h"
 
 using namespace std;
 
@@ -26,6 +28,9 @@ Game::Game()
     // Seed the random number generator
     random_device rd;
     mRandom.seed(rd());
+
+    shared_ptr<Item> harold = make_shared<Kid>(this);
+    mItems.push_back(harold);
 }
 
 /**
@@ -101,6 +106,12 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
 {
     double oX = (x-mXOffset)/mScale;
     double oY = (y-mYOffset)/mScale;
+
+    KidRotate visitor;
+    Accept(&visitor);
+    visitor.SetX(oX);
+    visitor.SetY(oY);
+    Accept(&visitor);
 }
 
 /**
@@ -114,3 +125,16 @@ void Game::Update(double elapsed)
         item->Update(elapsed);
     }
 }
+
+/**
+* Accept a visitor for the collection
+* @param visitor The visitor for the collection
+*/
+void Game::Accept(ItemVisitor* visitor)
+{
+    for (auto item : mItems)
+    {
+        item->Accept(visitor);
+    }
+}
+

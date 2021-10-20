@@ -13,6 +13,7 @@
 #include <memory>
 #include <string>
 #include "UmlNode.h"
+#include <wx/xml/xml.h>
 
 /**
  * A loader class that loads the uml data from xml

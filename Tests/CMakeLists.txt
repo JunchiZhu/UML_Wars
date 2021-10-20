@@ -6,7 +6,7 @@ set(TEST_FILES
         ItemTest.cpp
         ScoreboardTest.cpp
         KidTest.cpp
-        UmlNodeTest.cpp)
+        UmlNodeTest.cpp GameTest.cpp)
 
 # Get Google Tests
 include(FetchContent)

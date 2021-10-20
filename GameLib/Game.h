@@ -14,6 +14,7 @@
 #include <memory>
 #include <random>
 #include "Item.h"
+#include "ItemVisitor.h"
 
 class Game {
 private:
@@ -53,6 +54,8 @@ public:
      * @return Pointer to the random number generator
      */
     std::mt19937 &GetRandom() {return mRandom;}
+
+    void Accept(ItemVisitor* visitor);
 };
 
 #endif //UML_WARS_GAME_H
