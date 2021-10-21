@@ -35,6 +35,30 @@ private:
     void LoadInheritances(wxXmlNode *node);
 public:
     void Load();
+
+    /**
+     * Get the number of class names
+     * @return the number of class names
+     */
+    int GetNumNames() const { return mNames.size(); }
+
+    /**
+     * Get the number of class attributes
+     * @return the number of class attributes
+     */
+    int GetNumAttributes() const { return mAttributes.size(); }
+
+    /**
+     * Get the number of class operations
+     * @return the number of class operations
+     */
+    int GetNumOperations() const { return mOperations.size(); }
+
+    /**
+     * Get the number of inheritances
+     * @return the number of inheritances
+     */
+    int GetNumInheritances() const { return mInheritances.size(); }
 };
 
 #endif //UML_WARS_UMLLOADER_H
