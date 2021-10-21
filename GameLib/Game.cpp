@@ -108,7 +108,6 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
     double oY = (y-mYOffset)/mScale;
 
     KidRotate visitor;
-    Accept(&visitor);
     visitor.SetX(oX);
     visitor.SetY(oY);
     Accept(&visitor);
