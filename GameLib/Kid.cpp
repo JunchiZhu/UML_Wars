@@ -36,8 +36,8 @@ void Kid::Draw(wxGraphicsContext *graphics)
     mRotation = atan2(0 - mXMouseCoord, 900 - mYMouseCoord );
     graphics->PushState();  // Save the graphics state
     graphics->Translate(0, 900);
-    graphics->Rotate(mRotation);
-    pen->setAngle();
+    graphics->Rotate(-mRotation);
+    pen->SetAngle();
     pen->Draw(graphics);
     graphics->DrawBitmap(mHaroldBitmap, -haroldWid/2, -haroldHit/2, haroldWid, haroldHit);
     graphics->Rotate(-mRotation);

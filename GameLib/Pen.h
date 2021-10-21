@@ -50,7 +50,7 @@ public:
     */
     virtual void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
 
-    void setAngle() { mPenAngle = 1.078; }
+    void SetAngle() { mPenAngle = 1.078; }
 
 };
 
