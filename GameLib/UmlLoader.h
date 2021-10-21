@@ -12,6 +12,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <wx/xml/xml.h>
 #include "UmlNode.h"
 #include "UmlInheritNode.h"
 
