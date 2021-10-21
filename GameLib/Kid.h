@@ -10,7 +10,6 @@
 
 #include "Item.h"
 #include "Pen.h"
-#include <wx/graphics.h>
 #include "ItemVisitor.h"
 /**
  * Kid class contains methods to manipulate a
