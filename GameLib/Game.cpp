@@ -28,14 +28,14 @@ Game::Game()
     mBackground = std::make_shared<wxImage>(
             L"images/background.png", wxBITMAP_TYPE_ANY);
 
-    mScore = make_unique<Scoreboard>(this);
     // Seed the random number generator
     random_device rd;
     mRandom.seed(rd());
 
-    shared_ptr<Item> harold = make_shared<Kid>(this);
-    mItems.push_back(harold);
+    mScore = make_unique<Scoreboard>(this);
+    mKid = make_unique<Kid>(this);
 
+    // TODO: move this into kid's constructor
     shared_ptr<Item> pen = make_shared<Pen>(this);
     mItems.push_back(pen);
 }
@@ -77,6 +77,11 @@ void Game::OnDraw(wxGraphicsContext *graphics, int width, int height)
     //
     // Draw in virtual pixels on the graphics context
     //
+
+    // Draw scoreboard and kid (and his pen of course)
+    mScore->Draw(graphics);
+    mKid->Draw(graphics);
+
     for (auto item : mItems)
     {
         item->Draw(graphics);
@@ -105,20 +110,21 @@ void Game::Add(std::shared_ptr<Item> item)
 }
 
 /**
-* Handle movement of the mouse over the playing area
-* @param x X location clicked on
-* @param y Y location clicked on
+ * Handle movement of the mouse over the playing area
+ * @param x X location clicked on
+ * @param y Y location clicked on
  * @param event wxMouseEvent event
 */
 void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
 {
-    double oX = (x-mXOffset)/mScale;
-    double oY = (y-mYOffset)/mScale;
+    double oX = (x - mXOffset) / mScale;
+    double oY = (y - mYOffset) / mScale;
 
     KidRotate visitor;
     visitor.SetX(oX);
     visitor.SetY(oY);
-    Accept(&visitor);
+    // TODO: Find a better approach
+    mKid->Accept(&visitor);
 }
 
 /**
