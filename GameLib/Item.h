@@ -8,10 +8,10 @@
 
 #ifndef UML_WARS_ITEM_H
 #define UML_WARS_ITEM_H
-#include <wx/graphics.h>
+
+#include <memory>
 #include "ItemVisitor.h"
 #include "Vector.h"
-#include <memory>
 
 class Game;
 /**

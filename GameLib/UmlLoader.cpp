@@ -14,6 +14,13 @@
 const std::wstring DataFilename = L"data/uml.xml";
 
 /**
+ * Constructor
+ */
+UmlLoader::UmlLoader(Game *game) : mGame(game)
+{
+}
+
+/**
  * Loads uml data from xml
  */
 void UmlLoader::Load()
@@ -138,4 +145,22 @@ void UmlLoader::LoadInheritances(wxXmlNode* node)
 
         Add(umlNode);
     }
+}
+
+/**
+ * Generate a good uml
+ * @return the pointer of a good uml
+ */
+std::shared_ptr<Uml> UmlLoader::GenerateGoodUml()
+{
+    // TODO: generate a good uml
+}
+
+/**
+ * Generate a bad uml
+ * @return the pointer of a bad uml
+ */
+std::shared_ptr<Uml> UmlLoader::GenerateBadUml()
+{
+    // TODO: generate a bad uml
 }

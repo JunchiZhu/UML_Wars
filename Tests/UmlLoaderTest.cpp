@@ -7,14 +7,17 @@
 
 #include <pch.h>
 #include "gtest/gtest.h"
+#include <Game.h>
 #include <UmlLoader.h>
 
 TEST(UmlLoaderTest, Constructer) {
-    UmlLoader loader;
+    Game game;
+    UmlLoader loader(&game);
 }
 
 TEST(UmlLoaderTest, Loader){
-    UmlLoader loader;
+    Game game;
+    UmlLoader loader(&game);
     loader.Load();
 
     // test if loader loads correct number of nodes

@@ -9,7 +9,7 @@
 #define UML_WARS_KID_H
 
 #include "Item.h"
-#include <wx/graphics.h>
+#include "Pen.h"
 #include "ItemVisitor.h"
 /**
  * Kid class contains methods to manipulate a
@@ -22,6 +22,9 @@ private:
 
     /// The item bitmap
     wxGraphicsBitmap mHaroldBitmap;
+
+    ///Harold's Pen
+    std::unique_ptr<Pen>  mPen;
 
     /// The angle of rotation
     double mRotation = 0;

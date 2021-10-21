@@ -8,7 +8,6 @@
 #ifndef UML_WARS_PEN_H
 #define UML_WARS_PEN_H
 #include "Item.h"
-#include <wx/graphics.h>
 #include "ItemVisitor.h"
 #include "Kid.h"
 /**

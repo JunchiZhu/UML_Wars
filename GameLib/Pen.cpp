@@ -3,8 +3,8 @@
  * @author Junchi Zhu
  */
 
-#include "Pen.h"
 #include "pch.h"
+#include "Pen.h"
 #include "Vector.h"
 using namespace std;
 

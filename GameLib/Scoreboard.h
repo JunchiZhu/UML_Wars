@@ -11,7 +11,6 @@
 #define UML_WARS_SCOREBOARD_H
 
 #include "Item.h"
-#include <wx/graphics.h>
 #include "ItemVisitor.h"
 
 /**
