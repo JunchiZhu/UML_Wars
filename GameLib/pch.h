@@ -11,6 +11,6 @@
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
 #include <wx/wx.h>
-#endif
 #include <wx/graphics.h>
+#endif
 #endif //UML_WARS_PCH_H

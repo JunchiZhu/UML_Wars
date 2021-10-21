@@ -15,7 +15,6 @@
 #include "Game.h"
 #include "Item.h"
 #include "Kid.h"
-#include "KidRotate.h"
 #include "Pen.h"
 
 using namespace std;
@@ -124,11 +123,8 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
     double oX = (x - mXOffset) / mScale;
     double oY = (y - mYOffset) / mScale;
 
-    KidRotate visitor;
-    visitor.SetX(oX);
-    visitor.SetY(oY);
-    // TODO: Find a better approach
-    mKid->Accept(&visitor);
+    mKid->SetXMouseCoord(oX);
+    mKid->SetYMouseCoord(oY);
 }
 
 /**

@@ -14,7 +14,6 @@ set(SOURCE_FILES
         Vector.cpp Vector.h
         UmlLoader.cpp UmlLoader.h
         UmlNode.cpp UmlNode.h
-        KidRotate.cpp KidRotate.h
         ItemVisitor.cpp ItemVisitor.h
         UmlInheritNode.cpp UmlInheritNode.h)
 
