@@ -103,6 +103,7 @@ void Game::Add(std::shared_ptr<Item> item)
 * Handle movement of the mouse over the playing area
 * @param x X location clicked on
 * @param y Y location clicked on
+ * @param event wxMouseEvent event
 */
 void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
 {

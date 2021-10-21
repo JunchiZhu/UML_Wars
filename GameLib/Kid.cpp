@@ -5,7 +5,7 @@
 
 #include "pch.h"
 #include "Kid.h"
-
+///Variable for image representing Kid(Harold)
 const std::wstring HaroldImageName = L"images/harold.png";
 
 /** Constructor

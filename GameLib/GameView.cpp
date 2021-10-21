@@ -57,7 +57,7 @@ void GameView::Initialize(wxFrame* mainFrame)
  * @param mainFrame The main frame that owns the menu bar
  * @param menuBar The menu bar to add menus to
  * @param fileMenu The file menu, so we can add to it if we wish
- * @param viewMenu The view menu, so we can add to it if we wish
+ * @param variantMenu The variant menu, so we can add to it if we wish
  */
 void GameView::AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu, wxMenu* variantMenu)
 {

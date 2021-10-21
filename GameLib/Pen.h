@@ -10,7 +10,9 @@
 #include "Item.h"
 #include <wx/graphics.h>
 #include "ItemVisitor.h"
-
+/**
+ * Pen class contains methods to manipulate the pen
+ */
 class Pen : public Item{
 private:
     /// The pen image

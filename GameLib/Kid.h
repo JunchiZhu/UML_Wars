@@ -11,7 +11,10 @@
 #include "Item.h"
 #include <wx/graphics.h>
 #include "ItemVisitor.h"
-
+/**
+ * Kid class contains methods to manipulate a
+ * kid(Harold) object
+ */
 class Kid : public Item {
 private:
     /// The item image

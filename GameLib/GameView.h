@@ -53,9 +53,13 @@ public:
     void Initialize(wxFrame *mainFrame);
 
     void AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu, wxMenu* variantMenu);
-
+    /**
+     * Will call reset on mGame.
+     */
     void ClearGame(){mGame.Reset();}
-
+    /**
+     * Will call wipe on the Scoreboard.
+     */
     void ClearBoard(){mGame.Wipe();}
 };
 

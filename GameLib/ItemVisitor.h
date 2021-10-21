@@ -11,7 +11,10 @@
 class Kid;
 class Pen;
 class Scoreboard;
-
+/**
+ * ItemVisitor will deal with visiting a Kid, pen
+ * or Scoreboard
+ */
 class ItemVisitor {
 private:
 
@@ -27,7 +30,7 @@ public:
     virtual void VisitPen(Pen* pen) {}
 
     /** Visit a Scoreboard object
-     * @param pen  pen we are visiting */
+     * @param scoreboard  scoreboard we are visiting */
     virtual void VisitScoreboard(Scoreboard* scoreboard) {}
 
 
