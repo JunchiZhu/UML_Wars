@@ -53,6 +53,10 @@ public:
     void Initialize(wxFrame *mainFrame);
 
     void AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu, wxMenu* variantMenu);
+
+    void ClearGame(){mGame.Reset();}
+
+    void ClearBoard(){mGame.Wipe();}
 };
 
 #endif //UML_WARS_GAMEVIEW_H

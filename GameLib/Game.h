@@ -14,7 +14,9 @@
 #include <memory>
 #include <random>
 #include "Item.h"
-
+#include "Scoreboard.h"
+#include "Kid.h"
+#include "Pen.h"
 class Game {
 private:
     std::shared_ptr<wxImage> mBackground; ///< Background image to use
@@ -24,6 +26,15 @@ private:
 
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
+
+    ///Our Scoreboard
+    std::unique_ptr<Scoreboard>  mScore;
+
+    ///Our Harold
+    Kid* mKid;
+
+    ///Our Pen
+    Pen* mPen;
 
     /// Random number generator
     std::mt19937 mRandom;
@@ -48,6 +59,20 @@ public:
 
     void Update(double elapsed);
 
+    void Reset(){mItems.clear();}
+
+    void Wipe(){mScore->Reset();}
+
+    std::vector<int> GetScore(){std::vector<int> vect {mScore->GetCorrect(),mScore->GetMissed(),mScore->GetUnfair()};
+    return vect;}
+
+
+    void IncrementCorrect(){mScore->AddCorrect();}
+
+    void IncrementMissed(){mScore->AddMissed();}
+
+    void IncrementUnfair(){mScore->AddUnfair();}
+
     /**
      * Get the random number generator
      * @return Pointer to the random number generator
@@ -56,3 +81,4 @@ public:
 };
 
 #endif //UML_WARS_GAME_H
+
