@@ -25,6 +25,8 @@ Game::Game()
 {
     mBackground = std::make_shared<wxImage>(
             L"images/background.png", wxBITMAP_TYPE_ANY);
+
+    mScore = make_unique<Scoreboard>(this);
     // Seed the random number generator
     random_device rd;
     mRandom.seed(rd());

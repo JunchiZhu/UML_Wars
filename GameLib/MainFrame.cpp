@@ -8,6 +8,8 @@
 #include "pch.h"
 #include "MainFrame.h"
 #include "GameView.h"
+#include "Scoreboard.h"
+#include "ids.h"
 
 /**
  * Initialize the MainFrame window.
@@ -31,19 +33,23 @@ void MainFrame::Initialize()
     auto fileMenu = new wxMenu();
     auto variantMenu = new wxMenu();
     auto helpMenu = new wxMenu();
+    auto restartMenu = new wxMenu();
 
 
     fileMenu->Append(wxID_EXIT, "E&xit\tAlt-X", "Quit this program");
     helpMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
+    restartMenu->Append(IDM_RESTART, "&Restart\tF1", "Restart the game");
 
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnAbout, this, wxID_ABOUT);
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnRestart, this, IDM_RESTART);
     Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
 
     menuBar->Append(fileMenu, L"&File" );
     menuBar->Append(variantMenu, L"&Variant");
     mGameView->AddMenus(this, menuBar, fileMenu, variantMenu);
     menuBar->Append(helpMenu, L"&Help");
+    menuBar->Append(restartMenu, L"&Restart");
 
     SetMenuBar( menuBar );
 }
@@ -79,5 +85,23 @@ void MainFrame::OnClose(wxCloseEvent& event)
 {
     // mGameView->Stop();
     Destroy();
+}
+
+
+/**
+ * Handle a restart-class event. Delete all items except harold and redpen.
+ * Reset score
+ * @param event The Restart event
+ */
+void MainFrame::OnRestart(wxCommandEvent& event)
+{
+
+    mGameView->ClearGame();
+
+
+    mGameView->ClearBoard();
+
+
+
 }
 

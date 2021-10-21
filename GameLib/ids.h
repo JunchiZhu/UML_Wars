@@ -17,7 +17,11 @@
      IDM_VARIANT_STANDARD = wxID_HIGHEST + 1,
 
      /// Variant>Custom menu option
-     IDM_VARIANT_CUSTOM
+     IDM_VARIANT_CUSTOM,
+
+
+     ///
+     IDM_RESTART
  };
 
 #endif //UML_WARS_IDS_H
