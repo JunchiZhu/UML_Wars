@@ -27,9 +27,9 @@ void Kid::Draw(wxGraphicsContext *graphics)
         mHaroldBitmap = graphics->CreateBitmapFromImage(*mHaroldImage);
     }
 
-    mRotation = atan2(0 - mXMouseCoord, 900 - mYMouseCoord );
     int haroldWid = mHaroldImage->GetWidth();
     int haroldHit = mHaroldImage->GetHeight();
+    mRotation = atan2(0 - mXMouseCoord, 900 - mYMouseCoord );
     graphics->PushState();  // Save the graphics state
     graphics->Translate(0, 900);
     graphics->Rotate(-mRotation);
