@@ -10,6 +10,7 @@
 #include "Item.h"
 #include <wx/graphics.h>
 #include "ItemVisitor.h"
+#include "Kid.h"
 
 class Pen : public Item{
 private:
@@ -21,6 +22,10 @@ private:
 
     /// Pen angle
     double mPenAngle = 1.078;
+
+    /// pen Location
+    cse335::Vector mPenPosition;
+
 public:
 /// Default constructor (disabled)
     Pen() = delete;
@@ -40,6 +45,8 @@ public:
     * @param visitor The visitor we accept
     */
     virtual void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
+
+    void setAngle() { mPenAngle = 1.078; }
 
 };
 

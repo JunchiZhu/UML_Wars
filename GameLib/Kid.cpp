@@ -5,6 +5,8 @@
 
 #include "pch.h"
 #include "Kid.h"
+#include "Pen.h"
+using namespace std;
 
 const std::wstring HaroldImageName = L"images/harold.png";
 
@@ -14,6 +16,7 @@ const std::wstring HaroldImageName = L"images/harold.png";
 Kid::Kid(Game* game) : Item(game, HaroldImageName)
 {
     mHaroldImage = std::make_shared<wxImage>(HaroldImageName);
+    pen = make_shared<Pen>(game);
 }
 
 /**
@@ -35,6 +38,8 @@ void Kid::Draw(wxGraphicsContext *graphics)
     graphics->PushState();  // Save the graphics state
     graphics->Translate(0, 900);
     graphics->Rotate(mRotation);
+    pen->setAngle();
+    pen->Draw(graphics);
     graphics->DrawBitmap(mHaroldBitmap, -haroldWid/2, -haroldHit/2, haroldWid, haroldHit);
     graphics->PopState();   // Restore the graphics state
 }

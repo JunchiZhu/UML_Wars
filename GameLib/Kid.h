@@ -1,7 +1,7 @@
 /**
  * @file Kid.h
  * @author Melody Buado
- *
+ * @author Junchi Zhu
  *
  */
 
@@ -28,6 +28,9 @@ private:
 
     /// Y mouse coordinate
     int mYMouseCoord = 0;
+
+    std::shared_ptr<Pen> pen;
+
 
 public:
     Kid(Game *game);

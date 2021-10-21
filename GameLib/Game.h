@@ -56,6 +56,8 @@ public:
     std::mt19937 &GetRandom() {return mRandom;}
 
     void Accept(ItemVisitor* visitor);
+
+    void Shooting();
 };
 
 #endif //UML_WARS_GAME_H
