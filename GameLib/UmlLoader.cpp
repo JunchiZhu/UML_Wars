@@ -8,6 +8,7 @@
 #include <memory>
 #include "UmlLoader.h"
 #include "UmlNode.h"
+#include "UmlInheritNode.h"
 
 /// UML data filename
 const std::wstring DataFilename = L"data/uml.xml";
@@ -53,7 +54,22 @@ void UmlLoader::Load()
  */
 void UmlLoader::Add(std::shared_ptr<UmlNode> umlNode)
 {
-    mNodes.push_back(umlNode);
+    if (umlNode->GetType() == L"name")
+    {
+        mNames.push_back(umlNode);
+    }
+    else if (umlNode->GetType() == L"attribute")
+    {
+        mAttributes.push_back(umlNode);
+    }
+    else if (umlNode->GetType() == L"operation")
+    {
+        mOperations.push_back(umlNode);
+    }
+    else if(umlNode->GetType() == L"inherit")
+    {
+        mInheritances.push_back(umlNode);
+    }
 }
 
 /**
@@ -73,7 +89,7 @@ void UmlLoader::LoadClasses(wxXmlNode* node)
         // init
         std::shared_ptr<UmlNode> umlNode;
 
-        // read from d2l
+        // empty reason
         if (bad.empty())
         {
             umlNode = std::make_shared<UmlNode>(type, value);
@@ -96,8 +112,30 @@ void UmlLoader::LoadInheritances(wxXmlNode* node)
     auto child = node->GetChildren();
     for( ; child; child=child->GetNext())
     {
-        auto name = child->GetName();
+        // read from xml
+        auto type = child->GetName().ToStdWstring();
+        auto value = child->GetAttribute("base").ToStdWstring();
+        auto derived = child->GetAttribute(L"derived").ToStdWstring();
+        auto direction = child->GetAttribute(L"direction").ToStdWstring();
+        auto bad = child->GetAttribute(L"bad").ToStdWstring();
 
-        // TODO: handle inheritance data
+        // init
+        std::shared_ptr<UmlInheritNode> umlNode;
+
+        // call correct constructors
+        if (bad.empty())
+        {
+            umlNode = std::make_shared<UmlInheritNode>(type, value, derived);
+        }
+        else if(direction.empty())
+        {
+            umlNode = std::make_shared<UmlInheritNode>(type, value, derived, bad);
+        }
+        else
+        {
+            umlNode = std::make_shared<UmlInheritNode>(type, value, derived, direction, bad);
+        }
+
+        Add(umlNode);
     }
 }

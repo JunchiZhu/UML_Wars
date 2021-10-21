@@ -11,8 +11,12 @@
 
 #include <string>
 #include <memory>
+
+/**
+ * A class that contains data read from xml
+ */
 class UmlNode {
-private:
+protected:
     std::wstring mType; ///< The type of node
     std::wstring mValue; ///< The value of node
     std::wstring mBadReason; ///< The reason why node is bad, empty when not bad

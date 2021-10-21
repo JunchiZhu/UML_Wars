@@ -16,6 +16,9 @@
 
 using namespace std;
 
+/// Frame duration in milliseconds
+const int FrameDuration = 30;
+
 /**
  * Constructor
  * @param mainFrame Pointer to wxFrame object, the main frame for the application
@@ -41,12 +44,12 @@ void GameView::Initialize(wxFrame* mainFrame)
 //    Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
 //    Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
 //    Bind(wxEVT_LEFT_DCLICK, &GameView::OnLeftDoubleClick, this);
-//    Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
-//    Bind(wxEVT_TIMER, &GameView::OnTimer, this);
-//
-//    mTimer.SetOwner(this);
-//    mTimer.Start(FrameDuration);
-//    mStopWatch.Start();
+    Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
+    Bind(wxEVT_TIMER, &GameView::OnTimer, this);
+
+    mTimer.SetOwner(this);
+    mTimer.Start(FrameDuration);
+    mStopWatch.Start();
 }
 
 /**
@@ -92,9 +95,6 @@ void GameView::OnPaint(wxPaintEvent& event)
 
     // Create a graphics context
     auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
-
-    shared_ptr<Item> harold = make_shared<Kid>(&mGame);
-    mGame.Add(harold);
 
     // Tell the game class to draw
     wxRect rect = GetRect();
@@ -163,6 +163,7 @@ void GameView::OnLeftUp(wxMouseEvent &event)
 void GameView::OnMouseMove(wxMouseEvent &event)
 {
     mGame.OnMouseMove(event.GetX(), event.GetY(), event);
+    Refresh();
 }
 
 /**

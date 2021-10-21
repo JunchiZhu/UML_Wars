@@ -17,6 +17,8 @@
 #include "Scoreboard.h"
 #include "Kid.h"
 #include "Pen.h"
+#include "ItemVisitor.h"
+
 class Game {
 private:
     std::shared_ptr<wxImage> mBackground; ///< Background image to use
@@ -29,12 +31,6 @@ private:
 
     ///Our Scoreboard
     std::unique_ptr<Scoreboard>  mScore;
-
-    ///Our Harold
-    Kid* mKid;
-
-    ///Our Pen
-    Pen* mPen;
 
     /// Random number generator
     std::mt19937 mRandom;
@@ -78,6 +74,8 @@ public:
      * @return Pointer to the random number generator
      */
     std::mt19937 &GetRandom() {return mRandom;}
+
+    void Accept(ItemVisitor* visitor);
 };
 
 #endif //UML_WARS_GAME_H

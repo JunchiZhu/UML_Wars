@@ -9,6 +9,7 @@
 #include "gtest/gtest.h"
 #include <Item.h>
 #include <Game.h>
+#include <ItemVisitor.h>
 
 /// ItemMock filename
 const std::wstring HaroldImageName = L"images/harold.png";
@@ -19,6 +20,12 @@ public:
     ItemMock(Game *game) : Item(game, HaroldImageName) {}
 
     void Draw(wxDC *dc)  {}
+
+    /**
+    * Accept a visitor
+    * @param visitor The visitor we accept
+    * */
+    virtual void Accept(ItemVisitor* visitor) override { }
 
 };
 

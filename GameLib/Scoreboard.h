@@ -2,6 +2,7 @@
  * @file Scoreboard.h
  *
  * @author ybw0014
+ * @author Melody Buado
  *
  * The item that displays score
  */
@@ -11,6 +12,7 @@
 
 #include "Item.h"
 #include <wx/graphics.h>
+#include "ItemVisitor.h"
 
 /**
  * The item that displays score
@@ -29,7 +31,7 @@ public:
     ///  Copy constructor (disabled)
     Scoreboard(const Scoreboard &) = delete;
 
-    void Draw(std::shared_ptr<wxGraphicsContext> gc);
+    void Draw(wxGraphicsContext *graphics) override;
 
     /**
      * Get the score of correct
@@ -83,6 +85,12 @@ public:
     void AddUnfair() { mNumUnfair++; }
 
     void Reset();
+
+    /**
+    * Accept a visitor
+    * @param visitor The visitor we accept
+    */
+    virtual void Accept(ItemVisitor* visitor) override { visitor->VisitScoreboard(this); }
 };
 
 #endif //UML_WARS_SCOREBOARD_H
