@@ -9,6 +9,7 @@
 #define UML_WARS_KID_H
 
 #include "Item.h"
+#include "Pen.h"
 #include <wx/graphics.h>
 #include "ItemVisitor.h"
 /**
@@ -22,6 +23,9 @@ private:
 
     /// The item bitmap
     wxGraphicsBitmap mHaroldBitmap;
+
+    ///Harold's Pen
+    std::unique_ptr<Pen>  mPen;
 
     /// The angle of rotation
     double mRotation = 0;
