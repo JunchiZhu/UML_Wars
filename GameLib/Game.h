@@ -10,7 +10,6 @@
 
 #ifndef UML_WARS_GAME_H
 #define UML_WARS_GAME_H
-
 #include <memory>
 #include <random>
 #include "Item.h"
@@ -95,7 +94,7 @@ public:
 
     void Accept(ItemVisitor* visitor);
 
-    void Shooting();
+    void Shooting(int x, int y, wxMouseEvent& event);
 };
 
 #endif //UML_WARS_GAME_H

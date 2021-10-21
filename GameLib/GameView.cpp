@@ -41,11 +41,11 @@ void GameView::Initialize(wxFrame* mainFrame)
     Bind(wxEVT_PAINT, &GameView::OnPaint, this);
 
     // TODO: Add these events
-//    Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
 //    Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
 //    Bind(wxEVT_LEFT_DCLICK, &GameView::OnLeftDoubleClick, this);
     Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
     Bind(wxEVT_TIMER, &GameView::OnTimer, this);
+    Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -144,7 +144,7 @@ void GameView::OnUpdateVariantCustom(wxUpdateUIEvent& event)
  */
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
-
+    mGame.Shooting(event.GetX(), event.GetY(), event);
 }
 
 /**

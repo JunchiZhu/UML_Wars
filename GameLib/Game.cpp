@@ -145,3 +145,12 @@ void Game::Accept(ItemVisitor* visitor)
     }
 }
 
+/**
+* Shooting pen
+* @param
+*/
+void Game::Shooting(int x, int y, wxMouseEvent& event)
+{
+
+}
+
