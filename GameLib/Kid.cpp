@@ -39,8 +39,8 @@ void Kid::Draw(wxGraphicsContext *graphics)
     graphics->Rotate(mRotation);
     pen->setAngle();
     pen->Draw(graphics);
-    graphics->Rotate(-mRotation);
     graphics->DrawBitmap(mHaroldBitmap, -haroldWid/2, -haroldHit/2, haroldWid, haroldHit);
+    graphics->Rotate(-mRotation);
     graphics->PopState();   // Restore the graphics state
 
 
