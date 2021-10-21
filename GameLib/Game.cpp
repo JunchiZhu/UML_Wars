@@ -32,6 +32,10 @@ Game::Game()
     random_device rd;
     mRandom.seed(rd());
 
+    // load the umls
+    mLoader = make_unique<UmlLoader>(this);
+    mLoader->Load();
+
     mScore = make_unique<Scoreboard>(this);
     mKid = make_unique<Kid>(this);
 

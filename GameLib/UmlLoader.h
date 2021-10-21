@@ -3,7 +3,8 @@
  *
  * @author ybw0014
  *
- * A loader class that loads the uml data from xml
+ * A loader class that loads the uml data from xml,
+ * also capable to generate a uml node
  */
 
 #ifndef UML_WARS_UMLLOADER_H
@@ -13,14 +14,20 @@
 #include <memory>
 #include <string>
 #include <wx/xml/xml.h>
+#include "Uml.h"
 #include "UmlNode.h"
 #include "UmlInheritNode.h"
+
+class Game;
 
 /**
  * A loader class that loads the uml data from xml
  */
 class UmlLoader {
 private:
+    /// The game
+    Game* mGame;
+
     /// the collection of class names
     std::vector<std::shared_ptr<UmlNode>> mNames;
     /// the collection of class attributes
@@ -35,6 +42,18 @@ private:
     void LoadClasses(wxXmlNode *node);
     void LoadInheritances(wxXmlNode *node);
 public:
+    /// Default constructor (disabled)
+    UmlLoader() = delete;
+
+    /// Copy constructor (disabled)
+    UmlLoader(const UmlLoader &) = delete;
+
+    /// Assignment operator
+    void operator=(const UmlLoader &) = delete;
+
+    // Constructor
+    UmlLoader(Game *game);
+
     void Load();
 
     /**
@@ -60,6 +79,9 @@ public:
      * @return the number of inheritances
      */
     int GetNumInheritances() const { return mInheritances.size(); }
+
+    std::shared_ptr<Uml> GenerateGoodUml();
+    std::shared_ptr<Uml> GenerateBadUml();
 };
 
 #endif //UML_WARS_UMLLOADER_H

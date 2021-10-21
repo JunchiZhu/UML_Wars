@@ -18,6 +18,7 @@
 #include "Kid.h"
 #include "Pen.h"
 #include "ItemVisitor.h"
+#include "UmlLoader.h"
 /**
  * Game class that encapsulates everything the game is able to do.
  */
@@ -39,6 +40,9 @@ private:
 
     /// Random number generator
     std::mt19937 mRandom;
+
+    // The uml loader
+    std::unique_ptr<UmlLoader> mLoader;
 
     /// Offset Value for horizontal direction
     double mXOffset = 0.0;
