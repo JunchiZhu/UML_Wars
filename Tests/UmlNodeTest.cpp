@@ -41,4 +41,3 @@ TEST(UmlNodeTest, Getters){
     ASSERT_EQ(badNode2.GetValue(), L"");
     ASSERT_EQ(badNode2.GetBadReason(), L"Missing class name");
 }
-
