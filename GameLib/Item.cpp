@@ -56,7 +56,7 @@ bool Item::HitTest(int x, int y)
 
 /**
  * Draw this item
- * @param dc Device context to draw on
+ * @param gc Graphics context to draw on
  */
 void Item::Draw(wxGraphicsContext* gc)
 {

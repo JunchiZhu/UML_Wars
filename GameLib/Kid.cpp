@@ -8,6 +8,7 @@
 #include "Pen.h"
 using namespace std;
 
+///Variable for image representing Kid(Harold)
 const std::wstring HaroldImageName = L"images/harold.png";
 
 /** Constructor
@@ -30,16 +31,17 @@ void Kid::Draw(wxGraphicsContext *graphics)
         mHaroldBitmap = graphics->CreateBitmapFromImage(*mHaroldImage);
     }
 
-    int haroldX = GetX();
-    int haroldY = GetY();
-    mRotation = atan2(mXMouseCoord - haroldX, mYMouseCoord - haroldY);
     int haroldWid = mHaroldImage->GetWidth();
     int haroldHit = mHaroldImage->GetHeight();
+    mRotation = atan2(0 - mXMouseCoord, 900 - mYMouseCoord );
     graphics->PushState();  // Save the graphics state
     graphics->Translate(0, 900);
     graphics->Rotate(mRotation);
     pen->setAngle();
     pen->Draw(graphics);
+    graphics->Rotate(-mRotation);
     graphics->DrawBitmap(mHaroldBitmap, -haroldWid/2, -haroldHit/2, haroldWid, haroldHit);
     graphics->PopState();   // Restore the graphics state
+
+
 }

@@ -27,6 +27,8 @@ Game::Game()
 {
     mBackground = std::make_shared<wxImage>(
             L"images/background.png", wxBITMAP_TYPE_ANY);
+
+    mScore = make_unique<Scoreboard>(this);
     // Seed the random number generator
     random_device rd;
     mRandom.seed(rd());
@@ -106,6 +108,7 @@ void Game::Add(std::shared_ptr<Item> item)
 * Handle movement of the mouse over the playing area
 * @param x X location clicked on
 * @param y Y location clicked on
+ * @param event wxMouseEvent event
 */
 void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
 {
@@ -113,7 +116,6 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
     double oY = (y-mYOffset)/mScale;
 
     KidRotate visitor;
-    Accept(&visitor);
     visitor.SetX(oX);
     visitor.SetY(oY);
     Accept(&visitor);

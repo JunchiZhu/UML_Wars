@@ -5,7 +5,7 @@ set(TEST_FILES
         EmptyTest.cpp
         ItemTest.cpp
         ScoreboardTest.cpp
-        KidTest.cpp
+        KidTest.cpp RestartTest.cpp
         UmlNodeTest.cpp
         GameTest.cpp
         UmlLoaderTest.cpp)

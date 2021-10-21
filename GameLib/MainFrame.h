@@ -11,7 +11,10 @@
 #define UML_WARS_MAINFRAME_H
 
 #include "GameView.h"
-
+/**
+ * MainFrame controls all the functions of buttons on
+ * the window
+ */
 class MainFrame : public wxFrame {
 private:
     /// View class for our game
@@ -20,6 +23,7 @@ private:
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent&);
     void OnClose(wxCloseEvent &event);
+    void OnRestart(wxCommandEvent& event);
 
 public:
     void Initialize();

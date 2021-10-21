@@ -14,7 +14,9 @@
 #include <memory>
 
 class Game;
-
+/**
+ * Item class that is able to manipulate all items in the Game
+ */
 class Item {
 private:
     /// The game this item is contained in
@@ -62,7 +64,7 @@ public:
 
     /**
      * Draw this item
-     * @param dc Device context to draw on
+     * @param gc Graphics context to draw on
      */
     virtual void Draw(wxGraphicsContext *gc);
 

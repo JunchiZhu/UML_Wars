@@ -14,8 +14,13 @@
 #include <memory>
 #include <random>
 #include "Item.h"
+#include "Scoreboard.h"
+#include "Kid.h"
+#include "Pen.h"
 #include "ItemVisitor.h"
-
+/**
+ * Game class that encapsulates everything the game is able to do.
+ */
 class Game {
 private:
     std::shared_ptr<wxImage> mBackground; ///< Background image to use
@@ -26,11 +31,16 @@ private:
     /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
 
+    ///Our Scoreboard
+    std::unique_ptr<Scoreboard>  mScore;
+
     /// Random number generator
     std::mt19937 mRandom;
-
+    ///Offset Value for horizontal direction
     double mXOffset = 0.0;
+    ///Offset Value for vertical direction
     double mYOffset = 0.0;
+    ///Scale value
     double mScale = 0.0;
 public:
     /// Game area in virtual pixels
@@ -45,9 +55,37 @@ public:
 
     void Add(std::shared_ptr<Item> item);
 
+
     void OnMouseMove(int x, int y, wxMouseEvent& event);
 
     void Update(double elapsed);
+    /**
+     * Reset will clear the mItems vector
+     */
+    void Reset(){mItems.clear();}
+    /**
+     * Wipe will Reset the Scoreboard to Zero.
+     */
+    void Wipe(){mScore->Reset();}
+    /**
+     * GetScore returns a vector container of Correct, Missed, and Unfair
+     * @return std::vector<int> vect container with data
+     */
+    std::vector<int> GetScore(){std::vector<int> vect {mScore->GetCorrect(),mScore->GetMissed(),mScore->GetUnfair()};
+    return vect;}
+
+    /**
+     * Method to increase the Correct score; for testing
+     */
+    void IncrementCorrect(){mScore->AddCorrect();}
+    /**
+     * Method to increase the Missed score; for testing
+     */
+    void IncrementMissed(){mScore->AddMissed();}
+    /**
+     * Method to increase the Unfair score; for testing
+     */
+    void IncrementUnfair(){mScore->AddUnfair();}
 
     /**
      * Get the random number generator
@@ -61,3 +99,4 @@ public:
 };
 
 #endif //UML_WARS_GAME_H
+
