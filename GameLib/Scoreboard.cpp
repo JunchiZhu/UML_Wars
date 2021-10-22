@@ -19,7 +19,7 @@ Scoreboard::Scoreboard(Game* game) : Item(game, L"")
  * Draw the view on a graphics context
  * @param graphics Graphics context to draw on
  */
-void Scoreboard::Draw(wxGraphicsContext *graphics)
+void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     // Set font
     wxFont font(wxSize(0, 40),

@@ -59,7 +59,7 @@ public:
 
     Game(); ///< Constructor
 
-    void OnDraw(wxGraphicsContext *graphics, int width, int height);
+    void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     void Add(std::shared_ptr<Item> item);
 

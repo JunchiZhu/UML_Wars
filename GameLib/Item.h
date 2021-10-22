@@ -66,7 +66,7 @@ public:
      * Draw this item
      * @param gc Graphics context to draw on
      */
-    virtual void Draw(wxGraphicsContext *gc);
+    virtual void Draw(std::shared_ptr<wxGraphicsContext> gc);
 
     /**
      * Test to see if we hit this object with a mouse.

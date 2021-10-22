@@ -37,7 +37,7 @@ Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, st
  * Draw the view on a graphics context
  * @param graphics Graphics context to draw on
  */
-void Uml::Draw(wxGraphicsContext* graphics)
+void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
 
 }

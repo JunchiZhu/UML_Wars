@@ -98,7 +98,7 @@ void GameView::OnPaint(wxPaintEvent& event)
 
     // Tell the game class to draw
     wxRect rect = GetRect();
-    mGame.OnDraw(gc.get(), rect.GetWidth(), rect.GetHeight());
+    mGame.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
 
 }
 

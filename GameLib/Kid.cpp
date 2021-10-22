@@ -24,7 +24,7 @@ Kid::Kid(Game* game) : Item(game, HaroldImageName)
  * Draw the view on a graphics context
  * @param graphics Graphics context to draw on
  */
-void Kid::Draw(wxGraphicsContext *graphics)
+void Kid::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     if(mHaroldBitmap.IsNull())
     {
