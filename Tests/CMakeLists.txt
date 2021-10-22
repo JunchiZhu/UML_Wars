@@ -8,7 +8,9 @@ set(TEST_FILES
         KidTest.cpp RestartTest.cpp
         UmlNodeTest.cpp
         GameTest.cpp
-        UmlLoaderTest.cpp PenTest.cpp)
+        UmlLoaderTest.cpp
+        PenTest.cpp
+        UmlTest.cpp)
 
 # Get Google Tests
 include(FetchContent)
