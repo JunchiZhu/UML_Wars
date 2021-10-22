@@ -106,6 +106,9 @@ public:
 
     void Accept(ItemVisitor* visitor);
 
+
+    bool IsEmpty();
+
     void Shooting(int x, int y, wxMouseEvent& event);
 };
 

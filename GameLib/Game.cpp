@@ -152,6 +152,24 @@ void Game::Accept(ItemVisitor* visitor)
 }
 
 /**
+ * Function to check if the game items is empty or not.
+ * @return boolean true if empty; false otherwise
+ */
+
+bool Game:: IsEmpty()
+{
+    if (mItems.size()==0) {
+        return true;
+    }
+
+    else {
+        return false;
+
+    }
+
+}
+
+/**
 * Shooting pen
 * @param
 */

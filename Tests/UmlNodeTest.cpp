@@ -41,3 +41,20 @@ TEST(UmlNodeTest, Getters){
     ASSERT_EQ(badNode2.GetValue(), L"");
     ASSERT_EQ(badNode2.GetBadReason(), L"Missing class name");
 }
+
+TEST(UmlNodeTest, IsBad){
+
+    UmlNode goodNode1(L"name", L"Picture");
+    UmlNode goodNode2(L"attribute", L"age: int");
+    UmlNode goodNode3(L"operation", L"Save(filename: string)");
+
+    ASSERT_FALSE(goodNode1.IsBad());
+    ASSERT_FALSE(goodNode2.IsBad());
+    ASSERT_FALSE(goodNode3.IsBad());
+
+    UmlNode badNode1(L"name", L"cofefe", L"Missing type");
+    UmlNode badNode2(L"name", L"", L"Missing class name");
+
+    ASSERT_TRUE(badNode1.IsBad());
+    ASSERT_TRUE(badNode2.IsBad());
+}

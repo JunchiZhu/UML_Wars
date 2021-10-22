@@ -25,11 +25,24 @@ private:
     /// The reason why uml is bad, empty if the uml is good
     std::wstring mBadReason;
 public:
-    // Constructor
+    // Constructors
+    Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations);
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations,
             std::wstring badReason);
 
-    void Draw(wxGraphicsContext *graphics);
+    void Draw(wxGraphicsContext *graphics) override;
+
+    /**
+     * Identify if uml is bad
+     * @return if this uml is bad
+     */
+    bool IsBad() { return !mBadReason.empty(); }
+
+    /**
+     * Accept a visitor
+     * @param visitor The visitor we accept
+     */
+    void Accept(ItemVisitor* visitor) override { visitor->VisitUml(this); }
 };
 
 #endif //UML_WARS_UML_H

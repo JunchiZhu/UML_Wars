@@ -7,6 +7,7 @@
 
 #ifndef UML_WARS_PEN_H
 #define UML_WARS_PEN_H
+
 #include "Item.h"
 #include "ItemVisitor.h"
 #include "Kid.h"
@@ -47,7 +48,7 @@ public:
     * Accept a visitor
     * @param visitor The visitor we accept
     */
-    virtual void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
+    void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
 
     void SetAngle() { mPenAngle = 1.078;}
 

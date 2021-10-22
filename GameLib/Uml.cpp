@@ -8,7 +8,19 @@
 #include "Uml.h"
 
 /**
- * Constructor
+ * Basic constructor
+ * @param game the game
+ * @param name the uml class name
+ * @param attributes the uml class attributes
+ * @param operations the uml class operations
+ */
+Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations)
+        : Item(game, L""), mName(name), mAttributes(attributes), mOperations(operations)
+{
+}
+
+/**
+ * Bad uml constructor
  * @param game the game
  * @param name the uml class name
  * @param attributes the uml class attributes
@@ -16,7 +28,16 @@
  * @param badReason the reason why this uml is bad
  */
 Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations,
-        std::wstring badReason) : Item(game, L""), mName(name), mAttributes(attributes),
-        mOperations(operations), mBadReason(badReason)
+        std::wstring badReason) : Uml(game, name, attributes, operations)
 {
+    mBadReason = badReason;
+}
+
+/**
+ * Draw the view on a graphics context
+ * @param graphics Graphics context to draw on
+ */
+void Uml::Draw(wxGraphicsContext* graphics)
+{
+
 }
