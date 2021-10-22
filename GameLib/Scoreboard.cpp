@@ -3,7 +3,7 @@
  *
  * @author ybw0014
  */
-#include <wx/graphics.h>
+
 #include "pch.h"
 #include "Scoreboard.h"
 

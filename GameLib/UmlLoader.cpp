@@ -4,7 +4,6 @@
  * @author ybw0014
  */
 #include "pch.h"
-#include <wx/graphics.h>
 #include <memory>
 #include "UmlLoader.h"
 #include "UmlNode.h"
