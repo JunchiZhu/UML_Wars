@@ -3,8 +3,8 @@
  *
  * @author ybw0014
  */
-
 #include "pch.h"
+#include <wx/graphics.h>
 #include <memory>
 #include "UmlLoader.h"
 #include "UmlNode.h"
@@ -154,6 +154,8 @@ void UmlLoader::LoadInheritances(wxXmlNode* node)
 std::shared_ptr<Uml> UmlLoader::GenerateGoodUml()
 {
     // TODO: generate a good uml
+    std::shared_ptr<Uml> u;
+    return u;
 }
 
 /**
@@ -163,4 +165,6 @@ std::shared_ptr<Uml> UmlLoader::GenerateGoodUml()
 std::shared_ptr<Uml> UmlLoader::GenerateBadUml()
 {
     // TODO: generate a bad uml
+    std::shared_ptr<Uml> u;
+    return u;
 }

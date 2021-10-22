@@ -107,6 +107,9 @@ public:
 
     void Accept(ItemVisitor* visitor);
 
+
+    bool IsEmpty();
+
     void Shooting();
 };
 
