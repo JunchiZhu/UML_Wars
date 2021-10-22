@@ -89,7 +89,7 @@ public:
     * Accept a visitor
     * @param visitor The visitor we accept
     */
-    virtual void Accept(ItemVisitor* visitor) override { visitor->VisitScoreboard(this); }
+    void Accept(ItemVisitor* visitor) override { visitor->VisitScoreboard(this); }
 };
 
 #endif //UML_WARS_SCOREBOARD_H

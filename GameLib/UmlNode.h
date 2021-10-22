@@ -29,7 +29,7 @@ public:
      * Identify if node is bad
      * @return if this node is bad
      */
-    bool IsBad() { return mBadReason.empty(); }
+    bool IsBad() { return !mBadReason.empty(); }
 
     /**
      * Get the type of node
