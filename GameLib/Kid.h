@@ -53,7 +53,7 @@ public:
     * Accept a visitor
     * @param visitor The visitor we accept
     */
-    virtual void Accept(ItemVisitor* visitor) override { visitor->VisitKid(this); }
+    void Accept(ItemVisitor* visitor) override { visitor->VisitKid(this); }
 
     /**
     * Set the X mouse coordinate

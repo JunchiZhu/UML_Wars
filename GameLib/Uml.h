@@ -25,13 +25,13 @@ private:
     /// The reason why uml is bad, empty if the uml is good
     std::wstring mBadReason;
 public:
-    // Constructor
+    /// Constructor
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations,
             std::wstring badReason);
 
-    void Draw(wxGraphicsContext *graphics);
+    void Draw(wxGraphicsContext *graphics) override;
 
-    void Accept(ItemVisitor* visitor) override {}
+    void Accept(ItemVisitor* visitor) override { visitor->VisitUml(this); }
 };
 
 #endif //UML_WARS_UML_H

@@ -47,7 +47,7 @@ public:
     * Accept a visitor
     * @param visitor The visitor we accept
     */
-    virtual void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
+    void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
 
     void SetAngle() { mPenAngle = 1.078; }
 
