@@ -30,6 +30,8 @@ public:
             std::wstring badReason);
 
     void Draw(wxGraphicsContext *graphics);
+
+    void Accept(ItemVisitor* visitor) override {}
 };
 
 #endif //UML_WARS_UML_H
