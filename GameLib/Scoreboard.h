@@ -30,7 +30,7 @@ public:
     ///  Copy constructor (disabled)
     Scoreboard(const Scoreboard &) = delete;
 
-    void Draw(wxGraphicsContext *graphics) override;
+    void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
 
     /**
      * Get the score of correct

@@ -35,12 +35,12 @@ private:
     std::unique_ptr<Scoreboard> mScore;
 
     /// The kid (Harold)
-    std::shared_ptr<Kid> mKid;
+    std::unique_ptr<Kid> mKid;
 
     /// Random number generator
     std::mt19937 mRandom;
 
-    // The uml loader
+    /// The uml loader
     std::unique_ptr<UmlLoader> mLoader;
 
     /// Offset Value for horizontal direction
@@ -59,7 +59,7 @@ public:
 
     Game(); ///< Constructor
 
-    void OnDraw(wxGraphicsContext *graphics, int width, int height);
+    void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
 
     void Add(std::shared_ptr<Item> item);
 
@@ -108,10 +108,16 @@ public:
     void Accept(ItemVisitor* visitor);
     bool IsEmpty();
 
+
+    /**
+     * Function to shoot the pen.
+     *
+     */
+    void Shooting();
     void ThrowPen(double x, double y);
 
-    void SetKid(std::shared_ptr<Kid> kid){mKid = kid;}
-    std::shared_ptr<Kid> GetKid(){return mKid;}
+//    void SetKid(std::shared_ptr<Kid> kid){mKid = kid;}
+//    std::shared_ptr<Kid> GetKid(){return mKid;}
 
 };
 

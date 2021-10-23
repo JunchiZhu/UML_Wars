@@ -45,7 +45,7 @@ Game::Game()
  * @param width Width of the client window
  * @param height Height of the client window
  */
-void Game::OnDraw(wxGraphicsContext *graphics, int width, int height)
+void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
 //    /// adding background image
 //    if(mBackgroundBitmap.IsNull())

@@ -25,7 +25,7 @@ Pen::Pen(Game *game) : Item(game, PenImageName)
  * Draw the view on a graphics context
  * @param graphics Graphics context to draw on
  */
-void Pen::Draw(wxGraphicsContext *graphics)
+void Pen::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     if(mPenBitmap.IsNull())
     {

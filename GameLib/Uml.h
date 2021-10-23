@@ -30,7 +30,7 @@ public:
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations,
             std::wstring badReason);
 
-    void Draw(wxGraphicsContext *graphics) override;
+    void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
 
     /**
      * Identify if uml is bad

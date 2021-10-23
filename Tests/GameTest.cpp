@@ -45,7 +45,7 @@ TEST(GameTest, Visitor)
 
     TestVisitor visitor;
     game.Accept(&visitor);
-    ASSERT_EQ(4, visitor.mNumKid) << L"Visitor number of harolds";
+    ASSERT_EQ(3, visitor.mNumKid) << L"Visitor number of harolds";
 
 }
 
