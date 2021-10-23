@@ -51,6 +51,10 @@ public:
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
 
+    /**
+     * Set angle of the pen
+     *
+     */
     void SetAngle() { mPenAngle = 1.078; }
 
 };

@@ -51,7 +51,7 @@ public:
     /// Assignment operator
     void operator=(const UmlLoader &) = delete;
 
-    // Constructor
+    /// Constructor
     UmlLoader(Game *game);
 
     void Load();

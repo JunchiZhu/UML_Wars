@@ -34,7 +34,7 @@ private:
 
     /// Y mouse coordinate
     int mYMouseCoord = 0;
-
+    ///Pen made a member variable of Kid
     std::shared_ptr<Pen> pen;
 
 
