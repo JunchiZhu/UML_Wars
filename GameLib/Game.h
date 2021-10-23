@@ -35,7 +35,7 @@ private:
     std::unique_ptr<Scoreboard> mScore;
 
     /// The kid (Harold)
-    std::unique_ptr<Kid> mKid;
+    std::shared_ptr<Kid> mKid;
 
     /// Random number generator
     std::mt19937 mRandom;
@@ -50,6 +50,7 @@ private:
     /// Scale value
     double mScale = 0.0;
 public:
+
     /// Game area in virtual pixels
     const static int Width = 1250;
 
@@ -105,11 +106,13 @@ public:
     std::mt19937 &GetRandom() {return mRandom;}
 
     void Accept(ItemVisitor* visitor);
-
-
     bool IsEmpty();
 
-    void Shooting(int x, int y, wxMouseEvent& event);
+    void ThrowPen(double x, double y);
+
+    void SetKid(std::shared_ptr<Kid> kid){mKid = kid;}
+    std::shared_ptr<Kid> GetKid(){return mKid;}
+
 };
 
 #endif //UML_WARS_GAME_H

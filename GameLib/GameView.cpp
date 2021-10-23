@@ -4,6 +4,7 @@
  * @author ybw0014
  * @author Melody Buado
  * @author Matthew Baxter
+ * @author Junchi Zhu
  */
 
 #include "pch.h"
@@ -76,14 +77,6 @@ void GameView::AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu
  */
 void GameView::OnPaint(wxPaintEvent& event)
 {
-    // Compute the time that has elapsed
-    // since the last call to OnPaint.
-    auto newTime = mStopWatch.Time();
-    auto elapsed = (double)(newTime - mTime) * 0.001;
-    mTime = newTime;
-
-    mGame.Update(elapsed);
-
     // Draw
     // Create a double-buffered display context
     wxAutoBufferedPaintDC dc(this);
@@ -93,13 +86,22 @@ void GameView::OnPaint(wxPaintEvent& event)
     dc.SetBackground(background);
     dc.Clear();
 
+    // Compute the time that has elapsed
+    // since the last call to OnPaint.
+    auto newTime = mStopWatch.Time();
+    auto elapsed = (double)(newTime - mTime) * 0.001;
+    mTime = newTime;
+
+    mGame.Update(elapsed);
+
     // Create a graphics context
     auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
 
     // Tell the game class to draw
     wxRect rect = GetRect();
+    gc->PushState();
     mGame.OnDraw(gc.get(), rect.GetWidth(), rect.GetHeight());
-
+    gc->PopState();
 }
 
 /**
@@ -144,7 +146,8 @@ void GameView::OnUpdateVariantCustom(wxUpdateUIEvent& event)
  */
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
-    mGame.Shooting(event.GetX(), event.GetY(), event);
+    ///Refresh();
+    mGame.ThrowPen(event.GetX(), event.GetY());
 }
 
 /**
@@ -154,6 +157,7 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 void GameView::OnLeftUp(wxMouseEvent &event)
 {
     OnMouseMove(event);
+    Refresh();
 }
 
 /**

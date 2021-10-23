@@ -42,6 +42,29 @@ void Kid::Draw(wxGraphicsContext *graphics)
     graphics->DrawBitmap(mHaroldBitmap, -haroldWid/2, -haroldHit/2, haroldWid, haroldHit);
     graphics->Rotate(-mRotation);
     graphics->PopState();   // Restore the graphics state
+}
 
+/**
+* Shooting
+* @param
+*/
+void Kid::Shooting()
+{
+    double Angle = atan2(pen->GetPenX() - mXMouseCoord, pen->GetPenY() - mYMouseCoord);
+    double radians = Angle*(M_PI/180);
+    pen->ShootAngle(radians);
+}
+
+void Kid::ThrowPen1(){
+
+    if (GetterPen() != nullptr){
+        GetterPen()->StartFlying();
+    }
+}
+
+void Kid::Update(double elapsed)
+{
+
+    Item::Update(elapsed);
 
 }

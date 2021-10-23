@@ -11,8 +11,6 @@ using namespace std;
 /// Pen filename
 const wstring PenImageName = L"images/redpen.png";
 
-/// Pen's initial velocity
-const cse335::Vector PenVelocity = cse335::Vector(200, -600);
 
 /**
  * Constructor
@@ -21,7 +19,6 @@ const cse335::Vector PenVelocity = cse335::Vector(200, -600);
 Pen::Pen(Game *game) : Item(game, PenImageName)
 {
     mPenImage = std::make_shared<wxImage>(PenImageName);
-    mPenPosition = cse335::Vector(29,-54);
 }
 
 /**
@@ -38,13 +35,41 @@ void Pen::Draw(wxGraphicsContext *graphics)
     double penHit = mPenImage->GetHeight();
 
     graphics->PushState();  // Save the graphics state
-    graphics->Translate(29, -54);
+    graphics->Translate(mPenX, mPenY);
     graphics->Rotate(mPenAngle);
     graphics->DrawBitmap(mPenBitmap, -penWid/2, -penHit/2, penWid, penHit);
     graphics->PopState();   // Restore the graphics state
 }
 
-// velocity += velocity * elapsed
-// 0
-// 1. adding stuff in touch event
-// mPenPosition += PenVelocity * elapsed;
+void Pen::StartFlying(){
+
+     penflag = true;
+
+    //return flag;
+//    SetLocation(mPenX,mPenY);
+//    cse335::Vector Destination(mFinalX, mFinalY);
+//    cse335::Vector Pre_Step(mPenX, mPenY);
+//    cse335::Vector Path(Destination.X()-Pre_Step.X(), Destination.Y()-Pre_Step.Y());
+//
+//    Path.Normalize();
+//    SetLocation(Path.X(),Path.Y());
+
+}
+
+//void Pen::Moving(double x, double y){
+
+
+
+
+void Pen::Update(double elapsed)
+{
+    if (penflag)
+    {
+        SetLocation(200,200);
+
+//        SetLocation(GetX()+mSpeedX * cos(mShootAngle) * elapsed,
+//                GetY() + mSpeedY * (-sin(mShootAngle)) * elapsed);
+    }
+    penflag = false;
+
+}

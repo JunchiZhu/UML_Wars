@@ -24,7 +24,7 @@ private:
     wxGraphicsBitmap mHaroldBitmap;
 
     ///Harold's Pen
-    std::unique_ptr<Pen>  mPen;
+    std::shared_ptr<Pen> pen;
 
     /// The angle of rotation
     double mRotation = 0;
@@ -34,8 +34,6 @@ private:
 
     /// Y mouse coordinate
     int mYMouseCoord = 0;
-
-    std::shared_ptr<Pen> pen;
 
 
 public:
@@ -66,6 +64,14 @@ public:
      * @param y the Y mouse coordinate
      */
     void SetYMouseCoord(int y) { mYMouseCoord = y; }
+
+    void Shooting();
+
+    std::shared_ptr<Pen> GetterPen(){return pen; }
+
+    void ThrowPen1();
+
+    void Update(double elapsed) override;
 
 };
 

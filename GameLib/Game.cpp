@@ -37,10 +37,6 @@ Game::Game()
 
     mScore = make_unique<Scoreboard>(this);
     mKid = make_unique<Kid>(this);
-
-    // TODO: move this into kid's constructor
-    shared_ptr<Item> pen = make_shared<Pen>(this);
-    mItems.push_back(pen);
 }
 
 /**
@@ -125,6 +121,7 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
 
     mKid->SetXMouseCoord(oX);
     mKid->SetYMouseCoord(oY);
+    mKid->Shooting();
 }
 
 /**
@@ -133,6 +130,7 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
  */
 void Game::Update(double elapsed)
 {
+
     for (auto item : mItems)
     {
         item->Update(elapsed);
@@ -168,13 +166,7 @@ bool Game:: IsEmpty()
     }
 
 }
-
-/**
-* Shooting pen
-* @param
-*/
-void Game::Shooting(int x, int y, wxMouseEvent& event)
-{
-
+void Game::ThrowPen(double x, double y){
+    mKid->ThrowPen1();
 }
 

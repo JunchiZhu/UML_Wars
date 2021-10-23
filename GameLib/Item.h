@@ -92,7 +92,7 @@ public:
      * Handle updates for animation
      * @param elapsed The time since the last update
      */
-    virtual void Update(double elapsed) {}
+    virtual void Update(double elapsed){};
 
     /**
      * Accept a visitor
