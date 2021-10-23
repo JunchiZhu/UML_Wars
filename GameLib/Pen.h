@@ -67,6 +67,16 @@ public:
      */
     void SetAngle() { mPenAngle = 1.078; }
 
+    void StartFlying();
+
+    virtual void Update(double elapsed) override;
+
+    double GetPenX(){ return mPenX;}
+    double GetPenY(){ return mPenY;}
+
+    void ShootAngle(double y) { mShootAngle = y; }
+
 };
+
 
 #endif //UML_WARS_PEN_H
