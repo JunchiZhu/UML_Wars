@@ -42,11 +42,11 @@ void GameView::Initialize(wxFrame* mainFrame)
     Bind(wxEVT_PAINT, &GameView::OnPaint, this);
 
     // TODO: Add these events
+    Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
 //    Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
 //    Bind(wxEVT_LEFT_DCLICK, &GameView::OnLeftDoubleClick, this);
     Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
     Bind(wxEVT_TIMER, &GameView::OnTimer, this);
-    Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -92,17 +92,16 @@ void GameView::OnPaint(wxPaintEvent& event)
     auto elapsed = (double)(newTime - mTime) * 0.001;
     mTime = newTime;
 
-    mGame.Update(elapsed);
-
     // Create a graphics context
     auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
 
     // Tell the game class to draw
     wxRect rect = GetRect();
+
+    mGame.Update(elapsed);
     gc->PushState();
     mGame.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
     gc->PopState();
-
 }
 
 /**
@@ -147,8 +146,7 @@ void GameView::OnUpdateVariantCustom(wxUpdateUIEvent& event)
  */
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
-    ///Refresh();
-    mGame.ThrowPen(event.GetX(), event.GetY());
+    mGame.ThrowPen();
 }
 
 /**
@@ -158,7 +156,6 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 void GameView::OnLeftUp(wxMouseEvent &event)
 {
     OnMouseMove(event);
-    Refresh();
 }
 
 /**

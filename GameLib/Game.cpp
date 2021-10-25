@@ -37,6 +37,7 @@ Game::Game()
 
     mScore = make_unique<Scoreboard>(this);
     mKid = make_unique<Kid>(this);
+    mItems.push_back(mKid->GetterPen());
 }
 
 /**
@@ -47,17 +48,6 @@ Game::Game()
  */
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-//    /// adding background image
-//    if(mBackgroundBitmap.IsNull())
-//    {
-//        mBackgroundBitmap = graphics->CreateBitmapFromImage(*mBackground);
-//    }
-//    graphics->DrawBitmap(mBackgroundBitmap, 0, 0, 1000, 800);
-
-
-    //
-    // Automatic Scaling
-    //
     auto scaleX = double(width) / double(Width);
     auto scaleY = double(height) / double(Height);
     mScale = min(scaleX, scaleY);
@@ -81,10 +71,10 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     mScore->Draw(graphics);
     mKid->Draw(graphics);
 
-    for (auto item : mItems)
-    {
-        item->Draw(graphics);
-    }
+//    for (auto item : mItems)
+//    {
+//        item->Draw(graphics);
+//    }
 
     //
     // Draw filled rectangles
@@ -121,7 +111,6 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
 
     mKid->SetXMouseCoord(oX);
     mKid->SetYMouseCoord(oY);
-    mKid->Shooting();
 }
 
 /**
@@ -166,7 +155,7 @@ bool Game:: IsEmpty()
     }
 
 }
-void Game::ThrowPen(double x, double y){
-    mKid->ThrowPen1();
+void Game::ThrowPen(){
+    mKid->DoThrowing();
 }
 

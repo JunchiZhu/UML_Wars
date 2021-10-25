@@ -23,9 +23,6 @@ private:
     /// The item bitmap
     wxGraphicsBitmap mHaroldBitmap;
 
-    ///Harold's Pen
-    std::shared_ptr<Pen> pen;
-
     /// The angle of rotation
     double mRotation = 0;
 
@@ -35,6 +32,9 @@ private:
     /// Y mouse coordinate
     int mYMouseCoord = 0;
 
+    std::shared_ptr<Pen> pen;
+
+    double mHandAngle = 1.078;
 
 public:
     Kid(Game *game);
@@ -65,16 +65,9 @@ public:
      */
     void SetYMouseCoord(int y) { mYMouseCoord = y; }
 
-    void Shooting();
+    std::shared_ptr<Pen> GetterPen(){return pen;}
 
-    std::shared_ptr<Pen> GetterPen(){return pen; }
-
-    void ThrowPen1();
-
-    void Update(double elapsed) override;
-
-
-
+    void DoThrowing();
 };
 
 #endif //UML_WARS_KID_H

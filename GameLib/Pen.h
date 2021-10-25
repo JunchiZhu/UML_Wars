@@ -28,18 +28,15 @@ private:
     /// Pen angle
     double mPenAngle = 1.078;
 
+    double mSpeedX=300;
+    double mSpeedY=-600;
+
     double mPenX = 29;
     double mPenY = -54;
 
-    double mSpeedX=100;
-    double mSpeedY=70;
-
     double mShootAngle=0;
 
-    double mFinalX = 0;
-    double mFinalY = 0;
-
-    bool penflag = false;
+    bool mChecking = false;
 
 public:
 /// Default constructor (disabled)
@@ -65,18 +62,19 @@ public:
      * Set angle of the pen
      *
      */
-    void SetAngle() { mPenAngle = 1.078; }
+    void SetAngle() { mPenAngle = 1.078;}
+
+    bool GetCheck(){return mChecking;}
+
+    void Update(double elapsed) override;
+
+    double GetPenX() { return mPenX ;}
+
+    double GetPenY() { return mPenY ;}
+
+    void ShootAngle(double x) { mShootAngle = x; }
 
     void StartFlying();
-
-    virtual void Update(double elapsed) override;
-
-    double GetPenX(){ return mPenX;}
-    double GetPenY(){ return mPenY;}
-
-    void ShootAngle(double y) { mShootAngle = y; }
-
 };
-
 
 #endif //UML_WARS_PEN_H

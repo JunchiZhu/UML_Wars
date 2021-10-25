@@ -21,6 +21,7 @@ Item::Item(Game *game, const std::wstring &filename) : mGame(game)
         // Load image when it is not empty
         mItemImage = make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
         mItemBitmap = make_unique<wxBitmap>(*mItemImage);
+
     }
 }
 
@@ -62,9 +63,11 @@ void Item::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
+    gc->PushState();  // Save the graphics state
     gc->DrawBitmap(*mItemBitmap,
             double(GetX() - wid / 2),
             double(GetY() - hit / 2),
             wid,
             hit);
+    gc->PopState();   // Restore the graphics state
 }

@@ -10,6 +10,7 @@
 
 #ifndef UML_WARS_GAME_H
 #define UML_WARS_GAME_H
+
 #include <memory>
 #include <random>
 #include "Item.h"
@@ -40,7 +41,7 @@ private:
     /// Random number generator
     std::mt19937 mRandom;
 
-    /// The uml loader
+    // The uml loader
     std::unique_ptr<UmlLoader> mLoader;
 
     /// Offset Value for horizontal direction
@@ -113,11 +114,7 @@ public:
      * Function to shoot the pen.
      *
      */
-    void Shooting();
-    void ThrowPen(double x, double y);
-
-//    void SetKid(std::shared_ptr<Kid> kid){mKid = kid;}
-//    std::shared_ptr<Kid> GetKid(){return mKid;}
+    void ThrowPen();
 
 };
 

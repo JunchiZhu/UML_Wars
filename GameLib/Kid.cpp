@@ -11,6 +11,9 @@ using namespace std;
 ///Variable for image representing Kid(Harold)
 const std::wstring HaroldImageName = L"images/harold.png";
 
+const double InitialPenX = 29;
+const double InitialPenY = -54;
+
 /** Constructor
 * @param game The game this is a member of
 */
@@ -31,40 +34,25 @@ void Kid::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         mHaroldBitmap = graphics->CreateBitmapFromImage(*mHaroldImage);
     }
 
-    int haroldWid = mHaroldImage->GetWidth();
-    int haroldHit = mHaroldImage->GetHeight();
+    double haroldWid = mHaroldImage->GetWidth();
+    double haroldHit = mHaroldImage->GetHeight();
     mRotation = atan2(0 - mXMouseCoord, 900 - mYMouseCoord );
+
     graphics->PushState();  // Save the graphics state
     graphics->Translate(0, 900);
     graphics->Rotate(-mRotation);
-    pen->SetAngle();
     pen->Draw(graphics);
     graphics->DrawBitmap(mHaroldBitmap, -haroldWid/2, -haroldHit/2, haroldWid, haroldHit);
-    graphics->Rotate(-mRotation);
     graphics->PopState();   // Restore the graphics state
 }
 
-/**
-* Shooting
-* @param
-*/
-void Kid::Shooting()
+
+void Kid::DoThrowing()
 {
-    double Angle = atan2(pen->GetPenX() - mXMouseCoord, pen->GetPenY() - mYMouseCoord);
-    double radians = Angle*(M_PI/180);
+    double Angle = mRotation;
+
+    double radians = Angle*(M_PI/180)-(mHandAngle/2*3);
     pen->ShootAngle(radians);
+    pen->StartFlying();
 }
 
-void Kid::ThrowPen1(){
-
-    if (GetterPen() != nullptr){
-        GetterPen()->StartFlying();
-    }
-}
-
-void Kid::Update(double elapsed)
-{
-
-    Item::Update(elapsed);
-
-}
