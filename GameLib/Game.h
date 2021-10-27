@@ -41,7 +41,7 @@ private:
     /// Random number generator
     std::mt19937 mRandom;
 
-    // The uml loader
+    /// The uml loader
     std::unique_ptr<UmlLoader> mLoader;
 
     /// Offset Value for horizontal direction

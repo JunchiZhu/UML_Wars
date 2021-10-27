@@ -16,6 +16,7 @@
 #include "Item.h"
 #include "Kid.h"
 #include "Pen.h"
+#include "Uml.h"
 
 using namespace std;
 
@@ -38,6 +39,24 @@ Game::Game()
     mScore = make_unique<Scoreboard>(this);
     mKid = make_unique<Kid>(this);
     mItems.push_back(mKid->GetterPen());
+
+
+    std::vector<std::wstring> vec0;
+
+    std::vector<std::wstring> vec1;
+    vec1.push_back(L"Age: int");
+
+    std::vector<std::wstring> vec2;
+    vec2.push_back(L"Save()");
+    vec2.push_back(L"Load(filename: string)");
+
+    auto uml1 = std::make_shared<Uml>(this, L"Game", vec1, vec2, L"");
+    auto uml2 = std::make_shared<Uml>(this, L"NotGame", vec0, vec0, L"");
+    auto uml3 = std::make_shared<Uml>(this, L"notReallyAGame", vec0, vec0, L"should capitalize");
+
+    Add(uml1);
+    Add(uml2);
+    Add(uml3);
 }
 
 /**
@@ -71,10 +90,16 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     mScore->Draw(graphics);
     mKid->Draw(graphics);
 
-//    for (auto item : mItems)
-//    {
-//        item->Draw(graphics);
-//    }
+    std::shared_ptr<Uml> t = mLoader->GenerateGoodUml();
+
+
+
+
+
+    for (auto item : mItems)
+    {
+        item->Draw(graphics);
+    }
 
     //
     // Draw filled rectangles

@@ -39,5 +39,19 @@ Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, st
  */
 void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
+        wxColour backyelColor(255,255,193);
+        wxBrush rectBrush(backyelColor);
+        wxPen pB(*wxBLACK);
+        graphics->SetPen(pB);
+        graphics->SetBrush(rectBrush);
+
+        //graphics->DrawRectangle(0.0,200.0, 250.0,250.0);
+
+        if(mAttributes.size()!=0)
+        {
+            graphics->DrawRectangle(0.0,200.0, 250.0,250.0);
+            graphics->DrawText(mAttributes[0], 0.0, 200.0);
+
+        }
 
 }

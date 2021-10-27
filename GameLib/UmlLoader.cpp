@@ -153,8 +153,21 @@ void UmlLoader::LoadInheritances(wxXmlNode* node)
 std::shared_ptr<Uml> UmlLoader::GenerateGoodUml()
 {
     // TODO: generate a good uml
-    std::shared_ptr<Uml> u;
-    return u;
+    std::vector<std::wstring> vec0;
+
+    std::vector<std::wstring> vec1;
+    vec1.push_back(L"Age: int");
+
+    std::vector<std::wstring> vec2;
+    vec2.push_back(L"Save()");
+    vec2.push_back(L"Load(filename: string)");
+
+    auto uml1 = std::make_shared<Uml>(mGame, L"Game", vec1, vec2, L"");
+    auto uml2 = std::make_shared<Uml>(mGame, L"NotGame", vec0, vec0, L"");
+
+    // comment one line and uncomment the other one
+    return uml1;
+    // return uml2;
 }
 
 /**
