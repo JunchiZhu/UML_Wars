@@ -49,6 +49,11 @@ private:
 
     void OnTimer(wxTimerEvent& event);
 
+    /**
+ * Stop the timer so the window can close
+ */
+    void Stop() {mTimer.Stop();}
+
 public:
     void Initialize(wxFrame *mainFrame);
 

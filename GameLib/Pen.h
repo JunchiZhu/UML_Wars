@@ -8,15 +8,13 @@
 #ifndef UML_WARS_PEN_H
 #define UML_WARS_PEN_H
 
-#include <wx/graphics.h>
 #include "Item.h"
 #include "ItemVisitor.h"
 #include "Kid.h"
+
 /**
  * Pen class contains methods to manipulate the pen
  */
-
-
 class Pen : public Item{
 private:
     /// The pen image
@@ -28,13 +26,13 @@ private:
     /// Pen angle
     double mPenAngle = 1.078;
 
-    double mSpeedX=300;
-    double mSpeedY=-600;
+    double mSpeedX = 300;
+    double mSpeedY = -600;
 
-    double mPenX = 29;
-    double mPenY = -54;
+    double mPenX;
+    double mPenY;
 
-    double mShootAngle=0;
+    double mShootAngle = 0;
 
     bool mChecking = false;
 
@@ -64,13 +62,13 @@ public:
      */
     void SetAngle() { mPenAngle = 1.078;}
 
-    bool GetCheck(){return mChecking;}
+    bool GetCheck() { return mChecking; }
 
     void Update(double elapsed) override;
 
-    double GetPenX() { return mPenX ;}
+    double GetPenX() { return mPenX; }
 
-    double GetPenY() { return mPenY ;}
+    double GetPenY() { return mPenY; }
 
     void ShootAngle(double x) { mShootAngle = x; }
 

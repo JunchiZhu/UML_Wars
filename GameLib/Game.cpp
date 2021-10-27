@@ -36,7 +36,10 @@ Game::Game()
     mLoader = make_unique<UmlLoader>(this);
     mLoader->Load();
 
+    // load the scoreboard
     mScore = make_unique<Scoreboard>(this);
+
+    // load Harold
     mKid = make_unique<Kid>(this);
     mItems.push_back(mKid->GetterPen());
 

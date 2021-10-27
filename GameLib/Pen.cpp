@@ -13,7 +13,6 @@ const wstring PenImageName = L"images/redpen.png";
 const double InitialPenX = 29;
 const double InitialPenY = -54;
 
-
 /**
  * Constructor
  * @param game Pen is a member of Game
@@ -53,6 +52,5 @@ void Pen::Update(double elapsed)
     if(mChecking){
         mPenX += mSpeedX * cos(mShootAngle) * elapsed;
         mPenY -= (mSpeedY * (sin(mShootAngle))) * elapsed;
-        SetLocation(mPenX,mPenY);
     }
 }

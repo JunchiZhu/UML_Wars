@@ -32,7 +32,8 @@ private:
     /// Y mouse coordinate
     int mYMouseCoord = 0;
 
-    std::shared_ptr<Pen> pen;
+    /// The pen
+    std::shared_ptr<Pen> mPen;
 
     double mHandAngle = 1.078;
 
@@ -65,7 +66,7 @@ public:
      */
     void SetYMouseCoord(int y) { mYMouseCoord = y; }
 
-    std::shared_ptr<Pen> GetterPen(){return pen;}
+    std::shared_ptr<Pen> GetterPen() { return mPen; }
 
     void DoThrowing();
 };
