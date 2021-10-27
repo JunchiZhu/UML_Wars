@@ -11,7 +11,6 @@
 #include <wx/dcbuffer.h>
 #include "GameView.h"
 #include "Game.h"
-#include "Kid.h"
 #include "Item.h"
 #include "ids.h"
 

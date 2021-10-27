@@ -13,7 +13,6 @@ const wstring PenImageName = L"images/redpen.png";
 const double InitialPenX = 29;
 const double InitialPenY = -54;
 
-
 /**
  * Constructor
  * @param game Pen is a member of Game
