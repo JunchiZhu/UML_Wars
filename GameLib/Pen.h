@@ -31,8 +31,8 @@ private:
     double mSpeedX=300;
     double mSpeedY=-600;
 
-    double mPenX = 29;
-    double mPenY = -54;
+    double mPenX;
+    double mPenY;
 
     double mShootAngle=0;
 

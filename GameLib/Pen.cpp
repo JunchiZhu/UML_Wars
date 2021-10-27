@@ -53,6 +53,5 @@ void Pen::Update(double elapsed)
     if(mChecking){
         mPenX += mSpeedX * cos(mShootAngle) * elapsed;
         mPenY -= (mSpeedY * (sin(mShootAngle))) * elapsed;
-        SetLocation(mPenX,mPenY);
     }
 }
