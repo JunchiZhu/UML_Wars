@@ -15,7 +15,7 @@ TEST(UmlLoaderTest, Constructer) {
     UmlLoader loader(&game);
 }
 
-TEST(UmlLoaderTest, Loader){
+TEST(UmlLoaderTest, Loader) {
     Game game;
     UmlLoader loader(&game);
     loader.Load();

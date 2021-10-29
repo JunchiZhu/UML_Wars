@@ -4,6 +4,7 @@
  * @author ybw0014
  *
  * A class that inherits from the UmlNode, representing a inherit node
+ * Not used in generating umls, because we dont need to include inheritances
  */
 
 #ifndef UML_WARS_UMLINHERITNODE_H
