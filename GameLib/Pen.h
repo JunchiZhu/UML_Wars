@@ -24,17 +24,10 @@ private:
     wxGraphicsBitmap mPenBitmap;
 
     /// Pen angle
-    double mPenAngle = 1.078;
-
-    double mSpeedX = 300;
-    double mSpeedY = -600;
-
+    double mPenAngle;
     double mPenX;
     double mPenY;
 
-    double mShootAngle = 0;
-
-    bool mChecking = false;
 
 public:
 /// Default constructor (disabled)
@@ -56,23 +49,12 @@ public:
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
 
-    /**
-     * Set angle of the pen
-     *
-     */
-    void SetAngle() { mPenAngle = 1.078;}
-
-    bool GetCheck() { return mChecking; }
-
-    void Update(double elapsed) override;
-
     double GetPenX() { return mPenX; }
-
     double GetPenY() { return mPenY; }
 
-    void ShootAngle(double x) { mShootAngle = x; }
-
-    void StartFlying();
+    void SetPenAngle(double x) { mPenAngle = x;}
+    void SetPenX(double x) {  mPenX=x; }
+    void SetPenY(double y) {  mPenY=y; }
 };
 
 #endif //UML_WARS_PEN_H

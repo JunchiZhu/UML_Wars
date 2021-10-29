@@ -39,6 +39,12 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     graphics->DrawText(wxString::Format(wxT("%i"), GetMissed()), -100, 50);
     graphics->DrawText(wxString::Format(wxT("%i"), GetUnfair()), 300, 50);
 
+//
+//    graphics->DrawText(L"|", -600, 0);
+//    graphics->DrawText(L"|", 600, 0);
+//    graphics->DrawText(L"---", 0, 0);
+//    graphics->DrawText(L"---", 0, 950);
+
 }
 
 /**

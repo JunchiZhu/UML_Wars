@@ -99,6 +99,8 @@ public:
      * @param visitor The visitor we accept
      */
     virtual void Accept(ItemVisitor* visitor) = 0;
+
+    Game *Getgame() { return mGame; }
 };
 
 #endif //UML_WARS_ITEM_H

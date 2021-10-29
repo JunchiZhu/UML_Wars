@@ -39,7 +39,10 @@ Game::Game()
     mScore = make_unique<Scoreboard>(this);
 
     // load Harold
-    mKid = make_unique<Kid>(this);
+    //mKid = make_unique<Kid>(this);
+    //std::shared_ptr<Kid> mKid;
+    mKid = make_shared<Kid>(this);
+    mItems.push_back(mKid);
     mItems.push_back(mKid->GetterPen());
 }
 
@@ -72,12 +75,11 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     // Draw scoreboard and kid (and his pen of course)
     mScore->Draw(graphics);
-    mKid->Draw(graphics);
 
-//    for (auto item : mItems)
-//    {
-//        item->Draw(graphics);
-//    }
+    for (auto item : mItems)
+    {
+        item->Draw(graphics);
+    }
 
     //
     // Draw filled rectangles

@@ -35,7 +35,13 @@ private:
     /// The pen
     std::shared_ptr<Pen> mPen;
 
-    double mHandAngle = 1.078;
+    bool mChecking = false;
+
+    double mPenSpeedX = 300;
+    double mPenSpeedY = 600;
+
+    const double HandDistance = 61.3;
+    const double HandAngle = 1.078;
 
 public:
     Kid(Game *game);
@@ -68,7 +74,12 @@ public:
 
     std::shared_ptr<Pen> GetterPen() { return mPen; }
 
+    /**
+    * call StartFlying function to let Pen Fly
+    */
     void DoThrowing();
+
+    void Update(double elapsed) override;
 };
 
 #endif //UML_WARS_KID_H

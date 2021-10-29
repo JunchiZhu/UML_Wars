@@ -10,9 +10,6 @@ using namespace std;
 /// Pen filename
 const wstring PenImageName = L"images/redpen.png";
 
-const double InitialPenX = 29;
-const double InitialPenY = -54;
-
 /**
  * Constructor
  * @param game Pen is a member of Game
@@ -20,8 +17,6 @@ const double InitialPenY = -54;
 Pen::Pen(Game *game) : Item(game, PenImageName)
 {
     mPenImage = std::make_shared<wxImage>(PenImageName);
-    mPenX = InitialPenX;
-    mPenY = InitialPenY;
 }
 
 /**
@@ -39,18 +34,8 @@ void Pen::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 
     graphics->PushState();  // Save the graphics state
     graphics->Translate(mPenX, mPenY);
-    graphics->Rotate(mPenAngle);
+    graphics->Rotate((mPenAngle));
     graphics->DrawBitmap(mPenBitmap, -penWid/2, -penHit/2, penWid, penHit);
     graphics->PopState();   // Restore the graphics state
 }
-void Pen::StartFlying(){
-    mChecking = true;
-}
 
-void Pen::Update(double elapsed)
-{
-    if(mChecking){
-        mPenX += mSpeedX * cos(mShootAngle) * elapsed;
-        mPenY -= (mSpeedY * (sin(mShootAngle))) * elapsed;
-    }
-}

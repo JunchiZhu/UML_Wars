@@ -36,7 +36,8 @@ private:
     std::unique_ptr<Scoreboard> mScore;
 
     /// The kid (Harold)
-    std::unique_ptr<Kid> mKid;
+    //std::unique_ptr<Kid> mKid;
+    std::shared_ptr<Kid> mKid;
 
     /// Random number generator
     std::mt19937 mRandom;
@@ -107,8 +108,8 @@ public:
     std::mt19937 &GetRandom() {return mRandom;}
 
     void Accept(ItemVisitor* visitor);
+    //virtual void Accept(ItemVisitor* visitor) = 0;
     bool IsEmpty();
-
 
     /**
      * Function to shoot the pen.
