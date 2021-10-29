@@ -8,6 +8,9 @@
 #include "pch.h"
 #include "Uml.h"
 
+
+const double InitialUmlY = 200.0;
+
 /**
  * Basic constructor
  * @param game the game
@@ -18,6 +21,8 @@
 Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations)
         : Item(game, L""), mName(name), mAttributes(attributes), mOperations(operations)
 {
+
+    mUmlY = InitialUmlY;
 }
 
 /**
@@ -46,7 +51,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         graphics->SetPen(pB);
         graphics->SetBrush(rectBrush);
 
-        double yTracker = 250.0;
+        double yTracker = mUmlY + 50.0;
 
         int got = 0;
 
@@ -77,7 +82,8 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 
         if(mAttributes.size() != 0 && mOperations.size() != 0)
         {
-            graphics->DrawRectangle(0.0,200.0,con + 370.0, yTracker);
+
+            graphics->DrawRectangle(0.0,mUmlY,con + 370.0, con + 228.0);
 
             con = con + 370.0;
         }
@@ -86,8 +92,8 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         {
 
 
-            graphics->DrawText(mName,75.0,200.0);
-            graphics->StrokeLine(0.0,250.0,con,250.0);
+            graphics->DrawText(mName,75.0,mUmlY);
+            graphics->StrokeLine(0.0,mUmlY + 50.0,con,mUmlY + 50.0);
 
             for(int i = 0; i < mAttributes.size(); i++)
             {
@@ -126,5 +132,14 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 
 
         }
+
+}
+
+
+void Uml::Update(double elapsed)
+{
+
+
+    mUmlY -= mSpeedY * elapsed;
 
 }

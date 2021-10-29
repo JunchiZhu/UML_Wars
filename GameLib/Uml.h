@@ -24,6 +24,13 @@ private:
 
     /// The reason why uml is bad, empty if the uml is good
     std::wstring mBadReason;
+
+
+    double mUmlY;
+
+    double mSpeedY = -50.0;
+
+
 public:
     // Constructors
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations);
@@ -43,6 +50,9 @@ public:
      * @param visitor The visitor we accept
      */
     void Accept(ItemVisitor* visitor) override { visitor->VisitUml(this); }
+
+    void Update(double elapsed) override;
+
 };
 
 #endif //UML_WARS_UML_H
