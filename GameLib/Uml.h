@@ -46,6 +46,30 @@ public:
     bool IsBad() { return !mBadReason.empty(); }
 
     /**
+     * Get the class name
+     * @return the class name
+     */
+    std::wstring GetName() { return mName; }
+
+    /**
+     * Get the class attributes
+     * @return the class attributes
+     */
+    std::vector<std::wstring> GetAttributes() { return mAttributes; }
+
+    /**
+     * Get the class operations
+     * @return the class operations
+     */
+    std::vector<std::wstring> GetOperations() { return mOperations; }
+
+    /**
+     * Get the bad reason
+     * @return the bad reason
+     */
+    std::wstring GetBadReason() { return mBadReason; }
+
+    /**
      * Accept a visitor
      * @param visitor The visitor we accept
      */
