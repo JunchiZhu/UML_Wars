@@ -2,6 +2,7 @@
  * @file Uml.cpp
  *
  * @author ybw0014
+ * @author Matthew Baxter
  */
 
 #include "pch.h"
@@ -45,12 +46,84 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         graphics->SetPen(pB);
         graphics->SetBrush(rectBrush);
 
-        //graphics->DrawRectangle(0.0,200.0, 250.0,250.0);
+        double yTracker = 250.0;
+
+        int got = 0;
+
+
+        for(int i = 0; i < mAttributes.size(); i++)
+        {
+
+            if(mAttributes[i].length() > got)
+            {
+                got = mAttributes[i].length();
+            }
+        }
+
+
+        for(int i = 0; i< mOperations.size(); i++)
+        {
+
+            if(mOperations[i].length() > got)
+            {
+                got = mOperations[i].length();
+            }
+
+
+        }
+
+
+        double con = got;
+
+        if(mAttributes.size() != 0 && mOperations.size() != 0)
+        {
+            graphics->DrawRectangle(0.0,200.0,con + 370.0, yTracker);
+
+            con = con + 370.0;
+        }
 
         if(mAttributes.size()!=0)
         {
-            graphics->DrawRectangle(0.0,200.0, 250.0,250.0);
-            graphics->DrawText(mAttributes[0], 0.0, 200.0);
+
+
+            graphics->DrawText(mName,75.0,200.0);
+            graphics->StrokeLine(0.0,250.0,con,250.0);
+
+            for(int i = 0; i < mAttributes.size(); i++)
+            {
+                graphics->DrawText(mAttributes[i], 0.0, yTracker);
+                yTracker = yTracker + 45.0;
+
+                if(mAttributes[i].length() > got)
+                {
+                    got = mAttributes[i].length();
+                }
+            }
+
+            yTracker = yTracker + 25.0;
+
+        }
+
+        if (mOperations.size()!=0)
+        {
+
+            graphics->StrokeLine(0.0,yTracker,con,yTracker);
+
+            for(int i = 0; i< mOperations.size(); i++)
+            {
+                graphics->DrawText(mOperations[i], 0.0, yTracker);
+
+                yTracker = yTracker + 45.0;
+
+                if(mOperations[i].length() > got)
+                {
+                    got = mOperations[i].length();
+                }
+
+
+            }
+
+
 
         }
 

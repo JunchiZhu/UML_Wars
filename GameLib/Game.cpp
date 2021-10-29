@@ -93,7 +93,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     mScore->Draw(graphics);
     mKid->Draw(graphics);
 
-    std::shared_ptr<Uml> t = mLoader->GenerateGoodUml();
+    ///std::shared_ptr<Uml> t = mLoader->GenerateGoodUml();
 
 
 
