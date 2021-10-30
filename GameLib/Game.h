@@ -51,6 +51,9 @@ private:
     double mYOffset = 0.0;
     /// Scale value
     double mScale = 0.0;
+
+    bool mPlayingCustom = false;
+
 public:
 
     /// Game area in virtual pixels
@@ -116,6 +119,14 @@ public:
      *
      */
     void ThrowPen();
+
+    /**
+    * Set whether or not playing the custom variant
+    * @param variant determines the variant being played
+    */
+    void GetPlayingCustom(bool variant) { mPlayingCustom = variant; }
+
+    bool OutOfPlayingArea(std::shared_ptr<Item> item);
 
 };
 

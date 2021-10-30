@@ -18,6 +18,7 @@
 #include "Pen.h"
 #include "Uml.h"
 
+
 using namespace std;
 
 /**
@@ -44,23 +45,6 @@ Game::Game()
     mItems.push_back(mKid);
     mItems.push_back(mKid->GetterPen());
 
-
-    std::vector<std::wstring> vec0;
-
-    std::vector<std::wstring> vec1;
-    vec1.push_back(L"Age: int");
-
-    std::vector<std::wstring> vec2;
-    vec2.push_back(L"Save()");
-    vec2.push_back(L"Load(filename: string)");
-
-    auto uml1 = std::make_shared<Uml>(this, L"Game", vec1, vec2, L"");
-    auto uml2 = std::make_shared<Uml>(this, L"NotGame", vec0, vec0, L"");
-    auto uml3 = std::make_shared<Uml>(this, L"notReallyAGame", vec0, vec0, L"should capitalize");
-
-    Add(uml1);
-    Add(uml2);
-    Add(uml3);
 }
 
 /**
@@ -146,6 +130,21 @@ void Game::Update(double elapsed)
     {
         item->Update(elapsed);
     }
+
+    std::vector<std::shared_ptr<Item>> toRemove;
+    for (auto item : mItems)
+    {
+        if (OutOfPlayingArea(item) && item != mKid->GetterPen())
+        {
+            toRemove.push_back(item);
+        }
+    }
+
+    for (auto item : toRemove)
+    {
+        std::vector<std::shared_ptr<Item>>::iterator it = std::find(mItems.begin(), mItems.end(), item);
+        mItems.erase(it);
+    }
 }
 
 /**
@@ -179,5 +178,16 @@ bool Game:: IsEmpty()
 }
 void Game::ThrowPen(){
     mKid->DoThrowing();
+}
+
+bool Game::OutOfPlayingArea(std::shared_ptr<Item> item)
+{
+    double itemTop = item->GetY();
+    double itemSide = item->GetX();
+    if (itemSide > 1000 || itemSide < -1000 || itemTop > 1300)
+    {
+        return true;
+    }
+    return false;
 }
 
