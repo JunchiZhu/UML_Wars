@@ -104,7 +104,7 @@ void GameView::OnPaint(wxPaintEvent& event)
 }
 
 /**
- * Menu event handler Variantw>Standard menu optino
+ * Menu event handler Variant>Standard menu option
  * @param event Menu event
  */
 void GameView::OnVariantStandard(wxCommandEvent& event)
@@ -118,11 +118,18 @@ void GameView::OnVariantStandard(wxCommandEvent& event)
  */
 void GameView::OnUpdateVariantStandard(wxUpdateUIEvent& event)
 {
-    event.Check(mStandard);
+
+
+    if (mCustom) {
+        mCustom = !mCustom;
+        event.Check(mStandard);
+
+    }
+
 }
 
 /**
- * Menu event handler Variantw>Customd menu optino
+ * Menu event handler Variant>Custom menu option
  * @param event Menu event
  */
 void GameView::OnVariantCustom(wxCommandEvent& event)
@@ -136,7 +143,13 @@ void GameView::OnVariantCustom(wxCommandEvent& event)
  */
 void GameView::OnUpdateVariantCustom(wxUpdateUIEvent& event)
 {
-    event.Check(mCustom);
+    if (mStandard)
+    {
+        mStandard = !mStandard;
+        event.Check(mCustom);
+        mGame.GetPlayingCustom(mCustom);
+    }
+
 }
 
 /**

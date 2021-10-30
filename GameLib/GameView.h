@@ -66,6 +66,18 @@ public:
      * Will call wipe on the Scoreboard.
      */
     void ClearBoard(){mGame.Wipe();}
+
+    /**
+    * Check if playing the standard variant
+    * @return true if playing standard variant, false otherwise
+    */
+    bool PlayingStandard() { return mStandard; }
+
+    /**
+    * Check if playing the custom variant
+    * @return true if playing the custom variant, false otherwise
+    */
+    bool PlayingCustom() { return mCustom; }
 };
 
 #endif //UML_WARS_GAMEVIEW_H
