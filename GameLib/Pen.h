@@ -24,10 +24,7 @@ private:
     wxGraphicsBitmap mPenBitmap;
 
     /// Pen angle
-    double mPenAngle;
-    double mPenX;
-    double mPenY;
-
+    double mPenAngle = 1.078;
 
 public:
 /// Default constructor (disabled)
@@ -49,12 +46,8 @@ public:
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
 
-    double GetPenX() { return mPenX; }
-    double GetPenY() { return mPenY; }
-
     void SetPenAngle(double x) { mPenAngle = x;}
-    void SetPenX(double x) {  mPenX=x; }
-    void SetPenY(double y) {  mPenY=y; }
+    double GetPenAngle() { return mPenAngle; }
 };
 
 #endif //UML_WARS_PEN_H

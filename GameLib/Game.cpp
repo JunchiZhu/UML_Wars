@@ -130,7 +130,9 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
 {
     double oX = (x - mXOffset) / mScale;
     double oY = (y - mYOffset) / mScale;
-
+    const double XtoRotation = -1.15 / 600.0;
+//    mKid->SetRoataion(XtoRotation*oX);
+    mKid->SetRoataion( atan2(900 - oY,oX)-M_PI/2);
     mKid->SetXMouseCoord(oX);
     mKid->SetYMouseCoord(oY);
 }

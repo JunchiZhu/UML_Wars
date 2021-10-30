@@ -64,13 +64,13 @@ public:
     * Set the X mouse coordinate
     * @param x  the X mouse coordinate
     */
-    void SetXMouseCoord(int x) { mXMouseCoord = x; }
+    void SetXMouseCoord(double x) { mXMouseCoord = x; }
 
     /**
      * Set the Y mouse coordinate
      * @param y the Y mouse coordinate
      */
-    void SetYMouseCoord(int y) { mYMouseCoord = y; }
+    void SetYMouseCoord(double y) { mYMouseCoord = y; }
 
     std::shared_ptr<Pen> GetterPen() { return mPen; }
 
@@ -80,6 +80,12 @@ public:
     void DoThrowing();
 
     void Update(double elapsed) override;
+
+    void SetRoataion(double angle);
+
+    void SetPen();
+
+    void SetLocation(double x, double y) override;
 };
 
 #endif //UML_WARS_KID_H
