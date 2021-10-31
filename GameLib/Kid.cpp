@@ -20,9 +20,7 @@ const std::wstring HaroldImageName = L"images/harold.png";
 Kid::Kid(Game* game) : Item(game, HaroldImageName)
 {
     mHaroldImage = std::make_shared<wxImage>(HaroldImageName);
-    //mPen = make_shared<Pen>(game);
-    mPen = make_shared<Pen>(GetGame()); //update里
-    //GetGame()->Add(mPen) , write delete
+    mPen = make_shared<Pen>(GetGame());
     SetPen();
 }
 
@@ -49,7 +47,7 @@ void Kid::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 }
 
 void Kid::SetRoataion(double angle){
-    mRotation = angle;
+    mRotation = -angle;
     if(!mChecking){
         SetPen();
     }
@@ -73,18 +71,12 @@ void Kid::DoThrowing()
 void Kid::Update(double elapsed)
 {
     if(mChecking){
-        // start flying, pen stop rotate, don't care about rotation
         double x = mPen->GetX();
         x += mPenSpeedX * cos(mPen->GetPenAngle()) * elapsed;
         double y = mPen->GetY();
         y += mPenSpeedY * sin(mPen->GetPenAngle()) * elapsed;
         mPen->SetLocation(x,y);
-        //-650<=x<=650
-        //0<=y<=950
-        //100<=y && y<=900 && -
-        //x<=-600 || x>=600
-        //y<=100 || y>=900
-        if(x<=-600 || x>=600){
+        if(x<=-700 || x>=700 || y<=-1200 || y>500){
             GetGame()->Delete();
             auto newPen = make_shared<Pen>(GetGame());
             newPen = mPen;
@@ -99,3 +91,6 @@ void Kid::SetLocation(double x, double y) {
     Item::SetLocation(x, y);
     SetPen();
 }
+
+/// question: 1) shooting angel is not correct? (how to make Pen to be the center instead of Kid)
+/// question: 2) which Class should we write print uml message? (don't connect Pen and UML)

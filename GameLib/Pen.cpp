@@ -17,7 +17,6 @@ const wstring PenImageName = L"images/redpen.png";
 Pen::Pen(Game *game) : Item(game, PenImageName)
 {
     mPenImage = std::make_shared<wxImage>(PenImageName);
-    //SetLocation(29,-54);
 }
 
 /**
