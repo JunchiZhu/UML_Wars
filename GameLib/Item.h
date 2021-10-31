@@ -100,7 +100,9 @@ public:
      */
     virtual void Accept(ItemVisitor* visitor) = 0;
 
-    Game *Getgame() { return mGame; }
+    Game *GetGame() { return mGame; }
+
+//    void AddItem(std::shared_ptr<Item> item);
 };
 
 #endif //UML_WARS_ITEM_H

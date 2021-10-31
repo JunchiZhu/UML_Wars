@@ -24,7 +24,7 @@ private:
     wxGraphicsBitmap mPenBitmap;
 
     /// Pen angle
-    double mPenAngle = 1.078;
+    double mPenAngle = -1.078;
 
 public:
 /// Default constructor (disabled)

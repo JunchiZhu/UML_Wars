@@ -17,7 +17,7 @@ const wstring PenImageName = L"images/redpen.png";
 Pen::Pen(Game *game) : Item(game, PenImageName)
 {
     mPenImage = std::make_shared<wxImage>(PenImageName);
-    SetLocation(29,-54);
+    //SetLocation(29,-54);
 }
 
 /**
@@ -35,7 +35,8 @@ void Pen::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 
     graphics->PushState();  // Save the graphics state
     graphics->Translate(GetX(), GetY()+900);
-    graphics->Rotate((-mPenAngle));
+    graphics->Rotate((2*1.078));
+    graphics->Rotate((mPenAngle));
     graphics->DrawBitmap(mPenBitmap, -penWid/2, -penHit/2, penWid, penHit);
     graphics->PopState();   // Restore the graphics state
 }

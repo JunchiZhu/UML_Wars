@@ -105,6 +105,19 @@ void Game::Add(std::shared_ptr<Item> item)
 }
 
 /**
+ * Delet Old Pen in our game
+ * @param item Pen to delete
+ */
+void Game::Delete()
+{
+    for(auto element : mItems){
+        if(element == mKid->GetterPen()){
+            mItems.pop_back();
+        }
+    }
+}
+
+/**
  * Handle movement of the mouse over the playing area
  * @param x X location clicked on
  * @param y Y location clicked on
@@ -114,11 +127,10 @@ void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
 {
     double oX = (x - mXOffset) / mScale;
     double oY = (y - mYOffset) / mScale;
-    const double XtoRotation = -1.15 / 600.0;
-//    mKid->SetRoataion(XtoRotation*oX);
+
     mKid->SetRoataion( atan2(900 - oY,oX)-M_PI/2);
-    mKid->SetXMouseCoord(oX);
-    mKid->SetYMouseCoord(oY);
+//    mKid->SetXMouseCoord(oX);
+//    mKid->SetYMouseCoord(oY);
 }
 
 /**

@@ -128,6 +128,7 @@ public:
 
     bool OutOfPlayingArea(std::shared_ptr<Item> item);
 
+    void Delete();
 };
 
 #endif //UML_WARS_GAME_H

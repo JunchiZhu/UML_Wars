@@ -71,3 +71,5 @@ void Item::Draw(std::shared_ptr<wxGraphicsContext> gc)
             hit);
     gc->PopState();   // Restore the graphics state
 }
+
+
