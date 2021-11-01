@@ -7,9 +7,11 @@
 
 #include "pch.h"
 #include "Uml.h"
+#include <random>
 
 
 const double InitialUmlY = 200.0;
+
 
 /**
  * Basic constructor
@@ -23,6 +25,9 @@ Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, st
 {
 
     mUmlY = InitialUmlY;
+
+    mUmlTY = InitialUmlY;
+
 }
 
 /**
@@ -51,13 +56,29 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         graphics->SetPen(pB);
         graphics->SetBrush(rectBrush);
 
+
+        // Set font
+        wxFont font(wxSize(0, 20),
+                wxFONTFAMILY_SWISS,
+                wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_NORMAL);
+        wxColour fontColor(0, 0, 0);
+        graphics->SetFont(font, fontColor);
+
         double yTracker = mUmlY + 50.0;
 
+        double temp = mUmlTY + 25.0;
+
         int got = 0;
+
+        int amon = mAttributes.size() + mOperations.size();
+
+        double fin = 0.0;
 
 
         for(int i = 0; i < mAttributes.size(); i++)
         {
+            temp = temp + 22.50;
 
             if(mAttributes[i].length() > got)
             {
@@ -65,40 +86,41 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
             }
         }
 
+        temp = temp + 25.0;
+
 
         for(int i = 0; i< mOperations.size(); i++)
         {
+
+            temp = temp + 22.50;
 
             if(mOperations[i].length() > got)
             {
                 got = mOperations[i].length();
             }
 
-
         }
 
 
         double con = got;
 
-        if(mAttributes.size() != 0 && mOperations.size() != 0)
-        {
+        graphics->DrawRectangle(0.0,mUmlY,con*10.0, temp/1.75);
 
-            graphics->DrawRectangle(0.0,mUmlY,con + 370.0, con + 228.0);
+        temp = 0.0;
 
-            con = con + 370.0;
-        }
+        con = con *10.0;
 
         if(mAttributes.size()!=0)
         {
 
 
-            graphics->DrawText(mName,75.0,mUmlY);
+            graphics->DrawText(mName,con/2.0 -30.0,mUmlY);
             graphics->StrokeLine(0.0,mUmlY + 50.0,con,mUmlY + 50.0);
 
             for(int i = 0; i < mAttributes.size(); i++)
             {
                 graphics->DrawText(mAttributes[i], 0.0, yTracker);
-                yTracker = yTracker + 45.0;
+                yTracker = yTracker + 22.50;
 
                 if(mAttributes[i].length() > got)
                 {
@@ -119,7 +141,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
             {
                 graphics->DrawText(mOperations[i], 0.0, yTracker);
 
-                yTracker = yTracker + 45.0;
+                yTracker = yTracker + 22.50;
 
                 if(mOperations[i].length() > got)
                 {
