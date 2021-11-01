@@ -11,7 +11,6 @@
 
 #include <string>
 #include <vector>
-#include <random>
 
 #include "Item.h"
 
@@ -27,13 +26,10 @@ private:
     /// The reason why uml is bad, empty if the uml is good
     std::wstring mBadReason;
 
-
-    double mUmlY;
-
-    double mSpeedY = -100.0;
-
-    double mUmlTY;
-
+    /// The x speed
+    double mSpeedX;
+    /// The y speed
+    double mSpeedY;
 public:
     // Constructors
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations);
@@ -79,7 +75,6 @@ public:
     void Accept(ItemVisitor* visitor) override { visitor->VisitUml(this); }
 
     void Update(double elapsed) override;
-
 };
 
 #endif //UML_WARS_UML_H

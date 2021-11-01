@@ -19,6 +19,7 @@
 #include "Pen.h"
 #include "ItemVisitor.h"
 #include "UmlLoader.h"
+
 /**
  * Game class that encapsulates everything the game is able to do.
  */
@@ -54,12 +55,13 @@ private:
 
     /// The time elapsed since last uml was generated
     double mDuration = 114.514;
+    /// The time elapsed since game stared
+    double mTime = 0;
 
     /// Playing the standard variant?
     bool mPlayingStandard = true;
 
 public:
-
     /// Game area in virtual pixels
     const static int Width = 1250;
 
@@ -87,11 +89,17 @@ public:
     void Wipe() { mScore->Reset(); }
 
     /**
+     * Get the time elapsed since game starts
+     * @return
+     */
+    double GetTime() const { return mTime; }
+
+    /**
      * GetScore returns a vector container of Correct, Missed, and Unfair
      * @return std::vector<int> vect container with data
      */
-    std::vector<int> GetScore(){ std::vector<int> vect { mScore->GetCorrect(),mScore->GetMissed(),mScore->GetUnfair()};
-    return vect; }
+    std::vector<int> GetScore(){ std::vector<int> vect { mScore->GetCorrect(), mScore->GetMissed(), mScore->GetUnfair() };
+        return vect; }
 
     /**
      * Method to increase the Correct score; for testing
@@ -112,19 +120,10 @@ public:
      * Get the random number generator
      * @return Pointer to the random number generator
      */
-    std::mt19937 &GetRandom() {return mRandom;}
+    std::mt19937 &GetRandom() { return mRandom; }
 
     void Accept(ItemVisitor* visitor);
-    //virtual void Accept(ItemVisitor* visitor) = 0;
     bool IsEmpty();
-
-    /**
-     * Function to shoot the pen.
-     *
-     */
-    void ThrowPen();
-
-    bool OutOfPlayingArea(std::shared_ptr<Item> item);
 
     /**
      * Set whether user is playing the standard version or not
@@ -136,15 +135,19 @@ public:
      * Check if custom variant is checked
      * @return true if custom variant is checked
      */
-    bool IsCustomVariant() { return !mPlayingStandard; }
+    bool IsCustomVariant() const { return !mPlayingStandard; }
 
     /**
      * Check if standard variant is checked
      * @return true if standard variant is checked
      */
-    bool IsStandardVariant() { return mPlayingStandard; }
+    bool IsStandardVariant() const { return mPlayingStandard; }
 
-    void Delete();
+    void DeletePen();
+
+    void ThrowPen();
+
+    bool OutOfPlayingArea(std::shared_ptr<Item> item);
 };
 
 #endif //UML_WARS_GAME_H

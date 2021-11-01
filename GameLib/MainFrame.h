@@ -11,6 +11,7 @@
 #define UML_WARS_MAINFRAME_H
 
 #include "GameView.h"
+
 /**
  * MainFrame controls all the functions of buttons on
  * the window
@@ -27,7 +28,6 @@ private:
 
 public:
     void Initialize();
-
 };
 
 #endif //UML_WARS_MAINFRAME_H

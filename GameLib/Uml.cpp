@@ -6,12 +6,30 @@
  */
 
 #include "pch.h"
-#include "Uml.h"
 #include <random>
+#include <algorithm>
+#include "Game.h"
+#include "Uml.h"
 
+/// Font size
+const int FontSize = 20;
+/// Font weight
+const int FontWeight = 10;
 
-const double InitialUmlY = 200.0;
+/// Block padding (left & right)
+const double BlockPaddingX = 5.0;
+/// Block padding (top & bottom)
+const double BlockPaddingY = 3.0;
 
+/// The minimum x speed
+const double MinXSpeed = 5.0;
+/// The maximum x speed
+const double MaxXSpeed = 20.0;
+
+/// The initial y speed
+const double InitialYSpeed = 60.0;
+/// The vertical acceleration
+const double AccelerationY = 3.1415926;
 
 /**
  * Basic constructor
@@ -23,11 +41,25 @@ const double InitialUmlY = 200.0;
 Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations)
         : Item(game, L""), mName(name), mAttributes(attributes), mOperations(operations)
 {
+    double locBoundary = Game::Width / 5.0 * 2.0;
 
-    mUmlY = InitialUmlY;
+    // x location
+    std::uniform_real_distribution distLoc(-locBoundary, locBoundary);
+    double locX = distLoc(game->GetRandom());
 
-    mUmlTY = InitialUmlY;
+    SetLocation(locX, -200.0);
 
+    // x speed
+    std::uniform_real_distribution distSpeedX(MinXSpeed, MaxXSpeed);
+    mSpeedX = distSpeedX(game->GetRandom());
+    // if the uml is in right half, it moves left, otherwise moves right
+    if (locX > 0)
+    {
+        mSpeedX = -mSpeedX;
+    }
+
+    // y speed
+    mSpeedY = InitialYSpeed + game->GetTime() * AccelerationY;
 }
 
 /**
@@ -50,117 +82,84 @@ Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, st
  */
 void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
-        wxColour backyelColor(255,255,193);
-        wxBrush rectBrush(backyelColor);
-        wxPen pB(*wxBLACK);
-        graphics->SetPen(pB);
-        graphics->SetBrush(rectBrush);
+    // background
+    wxColour bgColor(255,255,193);
+    wxBrush bgBrush(bgColor);
+    graphics->SetBrush(bgBrush);
 
+    // border
+    graphics->SetPen(*wxBLACK_PEN);
 
-        // Set font
-        wxFont font(wxSize(0, 20),
-                wxFONTFAMILY_SWISS,
-                wxFONTSTYLE_NORMAL,
-                wxFONTWEIGHT_NORMAL);
-        wxColour fontColor(0, 0, 0);
-        graphics->SetFont(font, fontColor);
+    // font
+    wxFont font(wxSize(0, FontSize),
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_NORMAL);
+    graphics->SetFont(font, *wxBLACK);
 
-        double yTracker = mUmlY + 50.0;
+    // get maximum string length
+    auto maxLength = mName.length();
+    for (auto attribute : mAttributes)
+    {
+        maxLength = std::max(maxLength, attribute.length());
+    }
+    for (auto operation : mOperations)
+    {
+        maxLength = std::max(maxLength, operation.length());
+    }
 
-        double temp = mUmlTY + 25.0;
+    // Draw the overall rectangle
+    double rectWidth = maxLength * 1.0 * FontWeight + 2 * BlockPaddingX;
 
-        int got = 0;
-
-        int amon = mAttributes.size() + mOperations.size();
-
-        double fin = 0.0;
-
-
-        for(int i = 0; i < mAttributes.size(); i++)
+    int num = mAttributes.size() + mOperations.size(); // the number of attributes and operations
+    double rectHeight = FontSize + 2 * BlockPaddingY;
+    if (num > 0)
+    {
+        for (auto i = 0; i < num; i++)
         {
-            temp = temp + 22.50;
-
-            if(mAttributes[i].length() > got)
-            {
-                got = mAttributes[i].length();
-            }
+            rectHeight += FontSize + 2 * BlockPaddingY;
         }
+    }
+    else
+    {
+        rectHeight += 2 * BlockPaddingY;
+    }
 
-        temp = temp + 25.0;
+    graphics->DrawRectangle(GetX(), GetY(), rectWidth, rectHeight);
 
+    double yPos = GetY();
 
-        for(int i = 0; i< mOperations.size(); i++)
-        {
+    // name
+    double nameLocX = GetX() + rectWidth / 2 - mName.length() * 1.0 * FontWeight / 2;
+    graphics->DrawText(mName, nameLocX, yPos + BlockPaddingY);
+    yPos += FontSize + 2 * BlockPaddingY;
 
-            temp = temp + 22.50;
+    // dividing line
+    graphics->StrokeLine(GetX(), yPos, GetX() + rectWidth, yPos);
 
-            if(mOperations[i].length() > got)
-            {
-                got = mOperations[i].length();
-            }
+    // attributes
+    for (auto attribute : mAttributes)
+    {
+        graphics->DrawText(attribute, GetX() + BlockPaddingX, yPos + BlockPaddingY);
+        yPos += FontSize + 2 * BlockPaddingY;
+    }
 
-        }
+    // dividing line
+    graphics->StrokeLine(GetX(), yPos, GetX() + rectWidth, yPos);
 
-
-        double con = got;
-
-        graphics->DrawRectangle(0.0,mUmlY,con*10.0, temp/1.75);
-        temp = 0.0;
-
-        con = con *10.0;
-
-        if(mAttributes.size()!=0)
-        {
-
-
-            graphics->DrawText(mName,con/2.0 -30.0,mUmlY);
-            graphics->StrokeLine(0.0,mUmlY + 50.0,con,mUmlY + 50.0);
-
-            for(int i = 0; i < mAttributes.size(); i++)
-            {
-                graphics->DrawText(mAttributes[i], 0.0, yTracker);
-                yTracker = yTracker + 22.50;
-
-                if(mAttributes[i].length() > got)
-                {
-                    got = mAttributes[i].length();
-                }
-            }
-
-            yTracker = yTracker + 25.0;
-
-        }
-
-        if (mOperations.size()!=0)
-        {
-
-            graphics->StrokeLine(0.0,yTracker,con,yTracker);
-
-            for(int i = 0; i< mOperations.size(); i++)
-            {
-                graphics->DrawText(mOperations[i], 0.0, yTracker);
-
-                yTracker = yTracker + 22.50;
-
-                if(mOperations[i].length() > got)
-                {
-                    got = mOperations[i].length();
-                }
-
-
-            }
-
-
-
-        }
-
+    // operations
+    for (auto operation : mOperations)
+    {
+        graphics->DrawText(operation, GetX() + BlockPaddingX, yPos + BlockPaddingY);
+        yPos += FontSize + 2 * BlockPaddingY;
+    }
 }
 
-
+/**
+ * Handle updates for animation
+ * @param elapsed The time since the last update
+ */
 void Uml::Update(double elapsed)
 {
-
-
-    mUmlY -= mSpeedY * elapsed;
-
+    SetLocation(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);
 }

@@ -20,7 +20,7 @@
 using namespace std;
 
 /// The interval for umls to generate (in seconds)
-const int UmlGenerateInterval = 5;
+const int UmlGenerateInterval = 3;
 
 /**
  * Constructor
@@ -44,7 +44,7 @@ Game::Game()
     // load Harold
     mKid = make_shared<Kid>(this);
     mItems.push_back(mKid);
-    mItems.push_back(mKid->GetterPen());
+    mItems.push_back(mKid->GetPen());
 }
 
 /**
@@ -118,9 +118,9 @@ void Game::Add(std::shared_ptr<Item> item)
  * Delet Old Pen in our game
  * @param item Pen to delete
  */
-void Game::Delete()
+void Game::DeletePen()
 {
-    auto loc = find(mItems.begin(), mItems.end(), mKid->GetterPen());
+    auto loc = find(mItems.begin(), mItems.end(), mKid->GetPen());
     if (loc != mItems.end())
     {
         mItems.erase(loc);
@@ -138,7 +138,7 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
     double pX = (x - mXOffset) / mScale;
     double pY = (y - mYOffset) / mScale;
     //atan2(oY-(900 - 54),oX-(0 + 29))
-    mKid->SetRoataion( atan2(900-pY,pX)-M_PI/2);
+    mKid->SetRoataion(atan2(900 - pY, pX) - M_PI / 2);
     //(0+29,900-54) Pen
 }
 
@@ -149,6 +149,7 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
 void Game::Update(double elapsed)
 {
     mDuration += elapsed;
+    mTime += elapsed;
 
     // generate uml with specific interval
     if(mDuration >= UmlGenerateInterval)
@@ -175,7 +176,7 @@ void Game::Update(double elapsed)
     std::vector<std::shared_ptr<Item>> toRemove;
     for (auto item : mItems)
     {
-        if (OutOfPlayingArea(item) && item != mKid->GetterPen())
+        if (OutOfPlayingArea(item) && item !=mKid->GetPen())
         {
             toRemove.push_back(item);
         }
@@ -183,7 +184,7 @@ void Game::Update(double elapsed)
 
     for (auto item : toRemove)
     {
-        std::vector<std::shared_ptr<Item>>::iterator it = std::find(mItems.begin(), mItems.end(), item);
+        auto it = std::find(mItems.begin(), mItems.end(), item);
         mItems.erase(it);
     }
 }
@@ -209,18 +210,22 @@ bool Game::IsEmpty()
     return mItems.size() == 0;
 }
 
+/**
+ * Throw the pen
+ */
 void Game::ThrowPen(){
     mKid->DoThrowing();
 }
 
+/**
+ * Check if an item is out of playing area
+ * @param item The item to be checked
+ * @return if the item is out of playing area
+ */
 bool Game::OutOfPlayingArea(std::shared_ptr<Item> item)
 {
     double itemTop = item->GetY();
     double itemSide = item->GetX();
-    if (itemSide > 1000 || itemSide < -1000 || itemTop > 1300)
-    {
-        return true;
-    }
-    return false;
+    return itemSide > 1000 || itemSide < -1000 || itemTop > 1300;
 }
 

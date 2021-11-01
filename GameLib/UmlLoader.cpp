@@ -16,10 +16,10 @@
 /// UML data filename
 const std::wstring DataFilename = L"data/uml.xml";
 
-// The maximum number of attributes that can be generated
+/// The maximum number of attributes that can be generated
 const int NumAttributesCap = 3;
 
-// The maximum number of operations that can be generated
+/// The maximum number of operations that can be generated
 const int NumOperationsCap = 4;
 
 /**
@@ -280,7 +280,6 @@ std::shared_ptr<Uml> UmlLoader::GenerateBadUml()
         badReason = name->GetBadReason();
     }
 
-    std::cout << badReason << std::endl;
     // pass values to uml constructor
     return std::make_shared<Uml>(mGame, name->GetValue(), attrs, ops, badReason);
 }

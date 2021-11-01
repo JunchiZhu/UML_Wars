@@ -46,7 +46,17 @@ public:
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
 
+    /**
+     * Set the angle of pen
+     * @param x the angle of pen
+     */
     void SetPenAngle(double x) { mPenAngle = x;}
+
+    /**
+     * Get the angle of pen
+     * @return the angle of pen
+     */
+    double GetPenAngle() const { return mPenAngle; }
     double GetPenAngle() { return mPenAngle; }
     bool HitTest(int x, int y) override;
 };

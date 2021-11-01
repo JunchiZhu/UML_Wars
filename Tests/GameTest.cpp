@@ -95,7 +95,7 @@ TEST(GameTest, Update)
 
     TestVisitor visitor1;
     game.Accept(&visitor1);
-    ASSERT_EQ(2, visitor1.mNumUml) << L"Visitor number of Uml";
+    ASSERT_EQ(3, visitor1.mNumUml) << L"Visitor number of Uml";
 
     // Set uml to the left of the playing area
     uml2->SetLocation(-1050, 200);
@@ -103,7 +103,7 @@ TEST(GameTest, Update)
 
     TestVisitor visitor2;
     game.Accept(&visitor2);
-    ASSERT_EQ(1, visitor2.mNumUml) << L"Visitor number of Uml";
+    ASSERT_EQ(2, visitor2.mNumUml) << L"Visitor number of Uml";
 
     // Set uml below the playing area
     uml3->SetLocation(500, 1350);
@@ -111,7 +111,7 @@ TEST(GameTest, Update)
 
     TestVisitor visitor3;
     game.Accept(&visitor3);
-    ASSERT_EQ(0, visitor3.mNumUml) << L"No more uml";
+    ASSERT_EQ(1, visitor3.mNumUml) << L"Only one generated uml is left";
 
     // Check that the pen and Harold weren't removed
     ASSERT_EQ(1, visitor3.mNumPen) << L"Visitor number of pens";

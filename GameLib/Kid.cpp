@@ -11,16 +11,16 @@
 using namespace std;
 
 /// Variable for image representing Kid(Harold)
-
 const std::wstring HaroldImageName = L"images/harold.png";
 
-/** Constructor
-* @param game The game this is a member of
-*/
+/**
+ * Constructor
+ * @param game The game this is a member of
+ */
 Kid::Kid(Game* game) : Item(game, HaroldImageName)
 {
     mHaroldImage = std::make_shared<wxImage>(HaroldImageName);
-    mPen = make_shared<Pen>(GetGame());
+    mPen = make_shared<Pen>(game);
     SetPen();
 }
 
@@ -41,32 +41,46 @@ void Kid::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     graphics->PushState();  // Save the graphics state
     graphics->Translate(0, 900);
     graphics->Rotate(-mRotation);
-    graphics->DrawBitmap(mHaroldBitmap, -haroldWid/2, -haroldHit/2, haroldWid, haroldHit);
+    graphics->DrawBitmap(mHaroldBitmap, -haroldWid / 2, -haroldHit / 2, haroldWid, haroldHit);
     graphics->PopState();   // Restore the graphics state
 }
 
+/**
+ * Set the rotation
+ * @param angle
+ */
 void Kid::SetRoataion(double angle){
-    mRotation = angle+0.5;
+    mRotation = angle + 0.5;
     if(!mChecking){
         SetPen();
     }
 }
 
+/**
+ * Set the pen's angle and location
+ */
 void Kid::SetPen(){
     if (mPen != nullptr) {
         double handAngle = mRotation + HandAngle;
         double handX = HandDistance * cos(handAngle);
         double handY = HandDistance * sin(handAngle);
         mPen->SetPenAngle(-handAngle);
-        mPen->SetLocation(GetX()+handX,GetY()-handY);//(0+29,900-54)
+        mPen->SetLocation(GetX() + handX, GetY() - handY); //(0+29,900-54)
     }
 }
 
+/**
+ * Mark the pen as thrown
+ */
 void Kid::DoThrowing()
 {
     mChecking = true;
 }
 
+/**
+ * Handle updates for animation
+ * @param elapsed The time since the last update
+ */
 void Kid::Update(double elapsed)
 {
     if(mChecking){
@@ -75,8 +89,8 @@ void Kid::Update(double elapsed)
         double y = mPen->GetY();
         y += 500 * sin(mPen->GetPenAngle()) * elapsed;
         mPen->SetLocation(x,y);
-        if(x<=-700 || x>=700 || y<=-1200 || y>500){
-            GetGame()->Delete();
+        if(x <= -700 || x >= 700 || y <= -1200 || y > 500){
+            GetGame()->DeletePen();
             auto newPen = make_shared<Pen>(GetGame());
             newPen = mPen;
             SetPen();
@@ -86,6 +100,11 @@ void Kid::Update(double elapsed)
     }
 }
 
+/**
+ * Set the kid's location
+ * @param x the x coordinate
+ * @param y the y coordinate
+ */
 void Kid::SetLocation(double x, double y) {
     Item::SetLocation(x, y);
     SetPen();

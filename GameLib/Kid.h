@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "Pen.h"
 #include "ItemVisitor.h"
+
 /**
  * Kid class contains methods to manipulate a
  * kid(Harold) object
@@ -35,12 +36,17 @@ private:
     /// The pen
     std::shared_ptr<Pen> mPen;
 
+    /// If the pen is thrown
     bool mChecking = false;
 
+    /// The pen's horizontal speed
     double mPenSpeedX = 300;
+    /// The pen's vertical speed
     double mPenSpeedY = 600;
 
+    /// The length of hand
     const double HandDistance = 61.3;
+    /// The angle of hand
     const double HandAngle = 1.078;
 
 public:
@@ -72,11 +78,12 @@ public:
      */
     void SetYMouseCoord(double y) { mYMouseCoord = y; }
 
-    std::shared_ptr<Pen> GetterPen() { return mPen; }
-
     /**
-    * call StartFlying function to let Pen Fly
-    */
+     * Get the pointer of Pen
+     * @return the pointer of pen
+     */
+    std::shared_ptr<Pen> GetPen() { return mPen; }
+
     void DoThrowing();
 
     void Update(double elapsed) override;
