@@ -19,6 +19,7 @@
 #include "Pen.h"
 #include "ItemVisitor.h"
 #include "UmlLoader.h"
+
 /**
  * Game class that encapsulates everything the game is able to do.
  */
@@ -88,11 +89,17 @@ public:
     void Wipe() { mScore->Reset(); }
 
     /**
+     * Get the time elapsed since game starts
+     * @return
+     */
+    double GetTime() const { return mTime; }
+
+    /**
      * GetScore returns a vector container of Correct, Missed, and Unfair
      * @return std::vector<int> vect container with data
      */
-    std::vector<int> GetScore(){ std::vector<int> vect { mScore->GetCorrect(),mScore->GetMissed(),mScore->GetUnfair()};
-    return vect; }
+    std::vector<int> GetScore(){ std::vector<int> vect { mScore->GetCorrect(), mScore->GetMissed(), mScore->GetUnfair() };
+        return vect; }
 
     /**
      * Method to increase the Correct score; for testing
@@ -113,7 +120,7 @@ public:
      * Get the random number generator
      * @return Pointer to the random number generator
      */
-    std::mt19937 &GetRandom() {return mRandom;}
+    std::mt19937 &GetRandom() { return mRandom; }
 
     void Accept(ItemVisitor* visitor);
     bool IsEmpty();
@@ -128,13 +135,13 @@ public:
      * Check if custom variant is checked
      * @return true if custom variant is checked
      */
-    bool IsCustomVariant() { return !mPlayingStandard; }
+    bool IsCustomVariant() const { return !mPlayingStandard; }
 
     /**
      * Check if standard variant is checked
      * @return true if standard variant is checked
      */
-    bool IsStandardVariant() { return mPlayingStandard; }
+    bool IsStandardVariant() const { return mPlayingStandard; }
 
     void DeletePen();
 

@@ -35,9 +35,9 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     graphics->DrawText(L"Unfair", 300, 100);
 
     // Draw scores
-    graphics->DrawText(wxString::Format(wxT("%i"), GetCorrect()), -500, 50);
-    graphics->DrawText(wxString::Format(wxT("%i"), GetMissed()), -100, 50);
-    graphics->DrawText(wxString::Format(wxT("%i"), GetUnfair()), 300, 50);
+    graphics->DrawText(wxString::Format(wxT("%i"), GetCorrect()), -470, 50);
+    graphics->DrawText(wxString::Format(wxT("%i"), GetMissed()), -60, 50);
+    graphics->DrawText(wxString::Format(wxT("%i"), GetUnfair()), 350, 50);
 
 }
 

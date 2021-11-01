@@ -20,7 +20,7 @@
 using namespace std;
 
 /// The interval for umls to generate (in seconds)
-const int UmlGenerateInterval = 5;
+const int UmlGenerateInterval = 3;
 
 /**
  * Constructor
@@ -149,6 +149,7 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
 void Game::Update(double elapsed)
 {
     mDuration += elapsed;
+    mTime += elapsed;
 
     // generate uml with specific interval
     if(mDuration >= UmlGenerateInterval)

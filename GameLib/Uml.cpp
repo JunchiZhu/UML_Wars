@@ -26,6 +26,11 @@ const double MinXSpeed = 5.0;
 /// The maximum x speed
 const double MaxXSpeed = 20.0;
 
+/// The initial y speed
+const double InitialYSpeed = 60.0;
+/// The vertical acceleration
+const double AccelerationY = 3.1415926;
+
 /**
  * Basic constructor
  * @param game the game
@@ -42,7 +47,7 @@ Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, st
     std::uniform_real_distribution distLoc(-locBoundary, locBoundary);
     double locX = distLoc(game->GetRandom());
 
-    SetLocation(locX, 0.0);
+    SetLocation(locX, -200.0);
 
     // x speed
     std::uniform_real_distribution distSpeedX(MinXSpeed, MaxXSpeed);
@@ -54,8 +59,7 @@ Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, st
     }
 
     // y speed
-    // TODO: accelerate y speed as time elapses
-    mSpeedY = 5.0;
+    mSpeedY = InitialYSpeed + game->GetTime() * AccelerationY;
 }
 
 /**
@@ -94,7 +98,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     graphics->SetFont(font, *wxBLACK);
 
     // get maximum string length
-    unsigned long maxLength = mName.length();
+    auto maxLength = mName.length();
     for (auto attribute : mAttributes)
     {
         maxLength = std::max(maxLength, attribute.length());
