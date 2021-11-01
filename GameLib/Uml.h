@@ -11,6 +11,8 @@
 
 #include <string>
 #include <vector>
+#include <random>
+
 #include "Item.h"
 
 /**
@@ -28,7 +30,9 @@ private:
 
     double mUmlY;
 
-    double mSpeedY = -50.0;
+    double mSpeedY = -100.0;
+
+    double mUmlTY;
 
 
 public:
