@@ -275,7 +275,12 @@ std::shared_ptr<Uml> UmlLoader::GenerateBadUml()
     {
         name = mNames[nameIndex(mGame->GetRandom())];
     }
+    if (name->IsBad())
+    {
+        badReason = name->GetBadReason();
+    }
 
+    std::cout << badReason << std::endl;
     // pass values to uml constructor
-    return std::make_shared<Uml>(mGame, name->GetValue(), attrs, ops);
+    return std::make_shared<Uml>(mGame, name->GetValue(), attrs, ops, badReason);
 }

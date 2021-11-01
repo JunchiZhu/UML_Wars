@@ -15,7 +15,6 @@
 #include "Game.h"
 #include "Item.h"
 #include "Kid.h"
-#include "Pen.h"
 #include "Uml.h"
 
 using namespace std;
@@ -111,10 +110,10 @@ void Game::Add(std::shared_ptr<Item> item)
  */
 void Game::Delete()
 {
-    for(auto element : mItems){
-        if(element == mKid->GetterPen()){
-            mItems.pop_back();
-        }
+    auto loc = find(mItems.begin(), mItems.end(), mKid->GetterPen());
+    if (loc != mItems.end())
+    {
+        mItems.erase(loc);
     }
 }
 
@@ -195,19 +194,11 @@ void Game::Accept(ItemVisitor* visitor)
  * Function to check if the game items is empty or not.
  * @return boolean true if empty; false otherwise
  */
-
-bool Game:: IsEmpty()
+bool Game::IsEmpty()
 {
-    if (mItems.size()==0) {
-        return true;
-    }
-
-    else {
-        return false;
-
-    }
-
+    return mItems.size() == 0;
 }
+
 void Game::ThrowPen(){
     mKid->DoThrowing();
 }
