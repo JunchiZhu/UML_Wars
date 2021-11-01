@@ -16,6 +16,12 @@
 /// UML data filename
 const std::wstring DataFilename = L"data/uml.xml";
 
+// The maximum number of attributes that can be generated
+const int NumAttributesCap = 3;
+
+// The maximum number of operations that can be generated
+const int NumOperationsCap = 4;
+
 /**
  * Constructor
  */
@@ -158,21 +164,18 @@ std::shared_ptr<Uml> UmlLoader::GenerateGoodUml()
 {
     int num = 0;
 
-    std::cout << GetNumNames() << std::endl;
     // name
     std::uniform_int_distribution<> nameIndex(0, GetNumNames() - 1);
     std::shared_ptr<UmlNode> name = mNames[nameIndex(mGame->GetRandom())];
-    std::cout << "Type:" << name->GetType() << " Value: " << name->GetValue() << " Bad? " << name->IsBad() << std::endl;
     // make sure name is not a bad one
     while (name->IsBad())
     {
         name = mNames[nameIndex(mGame->GetRandom())];
-        std::cout << "Type:" << name->GetType() << " Value: " << name->GetValue() << " Bad? " << name->IsBad() << std::endl;
     }
 
     // attributes
     std::vector<std::wstring> attrs;
-    std::uniform_int_distribution<> attrNum(0, GetNumAttributes());
+    std::uniform_int_distribution<> attrNum(0, NumAttributesCap);
     std::uniform_int_distribution<> attrIndex(0, GetNumAttributes() - 1);
     num = attrNum(mGame->GetRandom()); // the number of attributes to be generated
     for (int i = 0; i < num; i++)
@@ -189,7 +192,7 @@ std::shared_ptr<Uml> UmlLoader::GenerateGoodUml()
 
     // operations
     std::vector<std::wstring> ops;
-    std::uniform_int_distribution<> opNum(0, GetNumOperations());
+    std::uniform_int_distribution<> opNum(0, NumOperationsCap);
     std::uniform_int_distribution<> opIndex(0, GetNumOperations() - 1);
     num = opNum(mGame->GetRandom()); // the number of operations to be generated
     for (int i = 0; i < num; i++)
@@ -219,7 +222,7 @@ std::shared_ptr<Uml> UmlLoader::GenerateBadUml()
 
     // attributes
     std::vector<std::wstring> attrs;
-    std::uniform_int_distribution<> attrNum(0, GetNumAttributes());
+    std::uniform_int_distribution<> attrNum(0, NumAttributesCap);
     std::uniform_int_distribution<> attrIndex(0, GetNumAttributes() - 1);
     num = attrNum(mGame->GetRandom()); // the number of attributes to be generated
     for (int i = 0; i < num; i++)
@@ -242,7 +245,7 @@ std::shared_ptr<Uml> UmlLoader::GenerateBadUml()
 
     // operations
     std::vector<std::wstring> ops;
-    std::uniform_int_distribution<> opNum(0, GetNumOperations());
+    std::uniform_int_distribution<> opNum(0, NumOperationsCap);
     std::uniform_int_distribution<> opIndex(0, GetNumOperations() - 1);
     num = opNum(mGame->GetRandom()); // the number of operations to be generated
     for (int i = 0; i < num; i++)
@@ -272,7 +275,12 @@ std::shared_ptr<Uml> UmlLoader::GenerateBadUml()
     {
         name = mNames[nameIndex(mGame->GetRandom())];
     }
+    if (name->IsBad())
+    {
+        badReason = name->GetBadReason();
+    }
 
+    std::cout << badReason << std::endl;
     // pass values to uml constructor
-    return std::make_shared<Uml>(mGame, name->GetValue(), attrs, ops);
+    return std::make_shared<Uml>(mGame, name->GetValue(), attrs, ops, badReason);
 }

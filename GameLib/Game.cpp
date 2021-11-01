@@ -10,16 +10,17 @@
 #include "pch.h"
 
 #include <algorithm>
-#include "wx/graphics.h"
+#include <cmath>
 
 #include "Game.h"
 #include "Item.h"
 #include "Kid.h"
-#include "Pen.h"
 #include "Uml.h"
 
-
 using namespace std;
+
+/// The interval for umls to generate (in seconds)
+const int UmlGenerateInterval = 5;
 
 /**
  * Constructor
@@ -44,7 +45,6 @@ Game::Game()
     mKid = make_shared<Kid>(this);
     mItems.push_back(mKid);
     mItems.push_back(mKid->GetterPen());
-
 }
 
 /**
@@ -110,8 +110,11 @@ void Game::Add(std::shared_ptr<Item> item)
  */
 void Game::Delete()
 {
-    auto loc = find(begin(mItems), end(mItems), mKid->GetterPen());
-    mItems.erase(loc);
+    auto loc = find(mItems.begin(), mItems.end(), mKid->GetterPen());
+    if (loc != mItems.end())
+    {
+        mItems.erase(loc);
+    }
 }
 
 /**
@@ -135,6 +138,24 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
  */
 void Game::Update(double elapsed)
 {
+    mDuration += elapsed;
+
+    // generate uml with specific interval
+    if(mDuration >= UmlGenerateInterval)
+    {
+        uniform_int_distribution goodOrBad(0, 1);
+        shared_ptr<Uml> uml;
+        if (goodOrBad(GetRandom()) == 1)
+        {
+            uml = mLoader->GenerateGoodUml();
+        }
+        else
+        {
+            uml = mLoader->GenerateBadUml();
+        }
+        Add(uml);
+        mDuration = 0;
+    }
 
     for (auto item : mItems)
     {
@@ -173,19 +194,11 @@ void Game::Accept(ItemVisitor* visitor)
  * Function to check if the game items is empty or not.
  * @return boolean true if empty; false otherwise
  */
-
-bool Game:: IsEmpty()
+bool Game::IsEmpty()
 {
-    if (mItems.size()==0) {
-        return true;
-    }
-
-    else {
-        return false;
-
-    }
-
+    return mItems.size() == 0;
 }
+
 void Game::ThrowPen(){
     mKid->DoThrowing();
 }
