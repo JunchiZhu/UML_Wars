@@ -34,7 +34,6 @@ private:
 
     double mUmlTY;
 
-
 public:
     // Constructors
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations);

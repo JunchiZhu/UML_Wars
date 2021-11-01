@@ -48,6 +48,7 @@ public:
 
     void SetPenAngle(double x) { mPenAngle = x;}
     double GetPenAngle() { return mPenAngle; }
+    bool HitTest(int x, int y) override;
 };
 
 #endif //UML_WARS_PEN_H

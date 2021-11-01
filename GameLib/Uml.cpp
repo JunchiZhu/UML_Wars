@@ -105,7 +105,6 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         double con = got;
 
         graphics->DrawRectangle(0.0,mUmlY,con*10.0, temp/1.75);
-
         temp = 0.0;
 
         con = con *10.0;
