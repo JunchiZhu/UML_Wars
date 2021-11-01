@@ -55,7 +55,8 @@ private:
     /// The time elapsed since last uml was generated
     double mDuration = 114.514;
 
-    bool mPlayingCustom = false;
+    /// Playing the standard variant?
+    bool mPlayingStandard = true;
 
 public:
 
@@ -123,13 +124,25 @@ public:
      */
     void ThrowPen();
 
-    /**
-    * Set whether or not playing the custom variant
-    * @param variant determines the variant being played
-    */
-    void GetPlayingCustom(bool variant) { mPlayingCustom = variant; }
-
     bool OutOfPlayingArea(std::shared_ptr<Item> item);
+
+    /**
+     * Set whether user is playing the standard version or not
+     * @param variant bool to determine if playing standard
+     */
+    void SetStandardVariant(bool variant) { mPlayingStandard = variant; }
+
+    /**
+     * Check if custom variant is checked
+     * @return true if custom variant is checked
+     */
+    bool IsCustomVariant() { return !mPlayingStandard; }
+
+    /**
+     * Check if standard variant is checked
+     * @return true if standard variant is checked
+     */
+    bool IsStandardVariant() { return mPlayingStandard; }
 
     void Delete();
 };

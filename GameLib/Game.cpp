@@ -74,6 +74,16 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     // Draw in virtual pixels on the graphics context
     //
 
+    if (!mPlayingStandard)
+    {
+        if(mBackgroundBitmap.IsNull())
+        {
+            mBackgroundBitmap = graphics->CreateBitmapFromImage(*mBackground);
+        }
+        graphics->DrawBitmap(mBackgroundBitmap, -700, 0, 1400, 1000);
+
+    }
+
     // Draw scoreboard and kid (and his pen of course)
     mScore->Draw(graphics);
 

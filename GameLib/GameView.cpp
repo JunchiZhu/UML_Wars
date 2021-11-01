@@ -109,7 +109,7 @@ void GameView::OnPaint(wxPaintEvent& event)
  */
 void GameView::OnVariantStandard(wxCommandEvent& event)
 {
-    mStandard = !mStandard;
+    mGame.SetStandardVariant(event.GetId() == IDM_VARIANT_STANDARD);
 }
 
 /**
@@ -118,13 +118,7 @@ void GameView::OnVariantStandard(wxCommandEvent& event)
  */
 void GameView::OnUpdateVariantStandard(wxUpdateUIEvent& event)
 {
-
-
-    if (mCustom) {
-        mCustom = !mCustom;
-        event.Check(mStandard);
-
-    }
+    event.Check(event.GetId() == IDM_VARIANT_CUSTOM ? mGame.IsStandardVariant() : !mGame.IsCustomVariant());
 
 }
 
@@ -134,7 +128,7 @@ void GameView::OnUpdateVariantStandard(wxUpdateUIEvent& event)
  */
 void GameView::OnVariantCustom(wxCommandEvent& event)
 {
-    mCustom = !mCustom;
+    mGame.SetStandardVariant(event.GetId() == IDM_VARIANT_STANDARD);
 }
 
 /**
@@ -143,12 +137,7 @@ void GameView::OnVariantCustom(wxCommandEvent& event)
  */
 void GameView::OnUpdateVariantCustom(wxUpdateUIEvent& event)
 {
-    if (mStandard)
-    {
-        mStandard = !mStandard;
-        event.Check(mCustom);
-        mGame.GetPlayingCustom(mCustom);
-    }
+    event.Check(event.GetId() == IDM_VARIANT_CUSTOM ? mGame.IsCustomVariant() : ! mGame.IsCustomVariant());
 
 }
 

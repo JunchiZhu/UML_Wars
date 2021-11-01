@@ -29,9 +29,6 @@ private:
     /// The last stopwatch time
     long mTime = 0;
 
-    bool mStandard = false;          ///< Playing the standard variant?
-    bool mCustom = false;           ///< Playing the custom variant?
-
     void OnPaint(wxPaintEvent& event);
 
     void OnMouseMove(wxMouseEvent &event);
@@ -67,17 +64,6 @@ public:
      */
     void ClearBoard(){mGame.Wipe();}
 
-    /**
-    * Check if playing the standard variant
-    * @return true if playing standard variant, false otherwise
-    */
-    bool PlayingStandard() { return mStandard; }
-
-    /**
-    * Check if playing the custom variant
-    * @return true if playing the custom variant, false otherwise
-    */
-    bool PlayingCustom() { return mCustom; }
 };
 
 #endif //UML_WARS_GAMEVIEW_H
