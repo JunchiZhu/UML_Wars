@@ -116,16 +116,7 @@ public:
     std::mt19937 &GetRandom() {return mRandom;}
 
     void Accept(ItemVisitor* visitor);
-    //virtual void Accept(ItemVisitor* visitor) = 0;
     bool IsEmpty();
-
-    /**
-     * Function to shoot the pen.
-     *
-     */
-    void ThrowPen();
-
-    bool OutOfPlayingArea(std::shared_ptr<Item> item);
 
     /**
      * Set whether user is playing the standard version or not
@@ -145,7 +136,11 @@ public:
      */
     bool IsStandardVariant() { return mPlayingStandard; }
 
-    void Delete();
+    void DeletePen();
+
+    void ThrowPen();
+
+    bool OutOfPlayingArea(std::shared_ptr<Item> item);
 };
 
 #endif //UML_WARS_GAME_H

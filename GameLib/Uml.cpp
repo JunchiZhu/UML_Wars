@@ -151,6 +151,10 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     }
 }
 
+/**
+ * Handle updates for animation
+ * @param elapsed The time since the last update
+ */
 void Uml::Update(double elapsed)
 {
     SetLocation(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);

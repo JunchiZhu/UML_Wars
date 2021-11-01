@@ -35,7 +35,6 @@ private:
     void OnLeftDown(wxMouseEvent &event);
     void OnLeftUp(wxMouseEvent& event);
 
-
     void OnVariantStandard(wxCommandEvent &event);
 
     void OnUpdateVariantStandard(wxUpdateUIEvent &event);

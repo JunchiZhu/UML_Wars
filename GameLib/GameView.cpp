@@ -30,12 +30,6 @@ void GameView::Initialize(wxFrame* mainFrame)
             wxFULL_REPAINT_ON_RESIZE);
 
 
-    auto Rectangle = mainFrame->GetRect();
-
-    int width = Rectangle.GetWidth();
-
-    int height = Rectangle.GetHeight();
-
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     Bind(wxEVT_PAINT, &GameView::OnPaint, this);
@@ -64,6 +58,8 @@ void GameView::AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu
     // Options added to the view menu
     variantMenu->Append(IDM_VARIANT_STANDARD, L"&Standard", L"Enable to play standard version", wxITEM_CHECK);
     variantMenu->Append(IDM_VARIANT_CUSTOM, L"&Custom", L"Enable to play custom version", wxITEM_CHECK);
+
+    // Bind events
     mainFrame->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnVariantStandard, this, IDM_VARIANT_STANDARD);
     mainFrame->Bind(wxEVT_UPDATE_UI, &GameView::OnUpdateVariantStandard, this, IDM_VARIANT_STANDARD);
     mainFrame->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnVariantCustom, this, IDM_VARIANT_CUSTOM);

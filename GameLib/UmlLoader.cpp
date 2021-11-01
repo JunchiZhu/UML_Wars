@@ -16,10 +16,10 @@
 /// UML data filename
 const std::wstring DataFilename = L"data/uml.xml";
 
-// The maximum number of attributes that can be generated
+/// The maximum number of attributes that can be generated
 const int NumAttributesCap = 3;
 
-// The maximum number of operations that can be generated
+/// The maximum number of operations that can be generated
 const int NumOperationsCap = 4;
 
 /**

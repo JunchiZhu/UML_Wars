@@ -89,7 +89,7 @@ void MainFrame::OnClose(wxCloseEvent& event)
 
 
 /**
- * Handle a restart-class event. Delete all items except harold and redpen.
+ * Handle a restart-class event. DeletePen all items except harold and redpen.
  * Reset score
  * @param event The Restart event
  */

@@ -46,8 +46,17 @@ public:
     */
     void Accept(ItemVisitor* visitor) override { visitor->VisitPen(this); }
 
+    /**
+     * Set the angle of pen
+     * @param x the angle of pen
+     */
     void SetPenAngle(double x) { mPenAngle = x;}
-    double GetPenAngle() { return mPenAngle; }
+
+    /**
+     * Get the angle of pen
+     * @return the angle of pen
+     */
+    double GetPenAngle() const { return mPenAngle; }
 };
 
 #endif //UML_WARS_PEN_H
