@@ -11,7 +11,6 @@
 using namespace std;
 
 /// Variable for image representing Kid(Harold)
-
 const std::wstring HaroldImageName = L"images/harold.png";
 
 /** Constructor
@@ -20,7 +19,7 @@ const std::wstring HaroldImageName = L"images/harold.png";
 Kid::Kid(Game* game) : Item(game, HaroldImageName)
 {
     mHaroldImage = std::make_shared<wxImage>(HaroldImageName);
-    mPen = make_shared<Pen>(GetGame());
+    mPen = make_shared<Pen>(game);
     SetPen();
 }
 

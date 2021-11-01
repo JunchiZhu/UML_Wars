@@ -54,12 +54,13 @@ private:
 
     /// The time elapsed since last uml was generated
     double mDuration = 114.514;
+    /// The time elapsed since game stared
+    double mTime = 0;
 
     /// Playing the standard variant?
     bool mPlayingStandard = true;
 
 public:
-
     /// Game area in virtual pixels
     const static int Width = 1250;
 

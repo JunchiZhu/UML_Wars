@@ -280,7 +280,6 @@ std::shared_ptr<Uml> UmlLoader::GenerateBadUml()
         badReason = name->GetBadReason();
     }
 
-    std::cout << badReason << std::endl;
     // pass values to uml constructor
     return std::make_shared<Uml>(mGame, name->GetValue(), attrs, ops, badReason);
 }
