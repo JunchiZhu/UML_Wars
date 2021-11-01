@@ -10,7 +10,7 @@
 #include "pch.h"
 
 #include <algorithm>
-#include "wx/graphics.h"
+#include <cmath>
 
 #include "Game.h"
 #include "Item.h"
@@ -18,8 +18,10 @@
 #include "Pen.h"
 #include "Uml.h"
 
-
 using namespace std;
+
+/// The interval for umls to generate (in seconds)
+const int UmlGenerateInterval = 5;
 
 /**
  * Constructor
@@ -44,7 +46,6 @@ Game::Game()
     mKid = make_shared<Kid>(this);
     mItems.push_back(mKid);
     mItems.push_back(mKid->GetterPen());
-
 }
 
 /**
@@ -138,6 +139,24 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
  */
 void Game::Update(double elapsed)
 {
+    mDuration += elapsed;
+
+    // generate uml with specific interval
+    if(mDuration >= UmlGenerateInterval)
+    {
+        uniform_int_distribution goodOrBad(0, 1);
+        shared_ptr<Uml> uml;
+        if (goodOrBad(GetRandom()) == 1)
+        {
+            uml = mLoader->GenerateGoodUml();
+        }
+        else
+        {
+            uml = mLoader->GenerateBadUml();
+        }
+        Add(uml);
+        mDuration = 0;
+    }
 
     for (auto item : mItems)
     {

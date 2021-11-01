@@ -52,6 +52,9 @@ private:
     /// Scale value
     double mScale = 0.0;
 
+    /// The time elapsed since last uml was generated
+    double mDuration = 114.514;
+
     bool mPlayingCustom = false;
 
 public:
