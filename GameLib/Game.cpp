@@ -110,11 +110,8 @@ void Game::Add(std::shared_ptr<Item> item)
  */
 void Game::Delete()
 {
-    for(auto element : mItems){
-        if(element == mKid->GetterPen()){
-            mItems.pop_back();
-        }
-    }
+    auto loc = find(begin(mItems), end(mItems), mKid->GetterPen());
+    mItems.erase(loc);
 }
 
 /**
