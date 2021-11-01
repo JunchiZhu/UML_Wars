@@ -68,7 +68,7 @@ public:
 
     void Add(std::shared_ptr<Item> item);
 
-    void OnMouseMove(int x, int y, wxMouseEvent& event);
+    void OnMouseMove(double x, double y, wxMouseEvent& event);
 
     void Update(double elapsed);
 

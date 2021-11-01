@@ -123,12 +123,12 @@ void Game::Delete()
  * @param y Y location clicked on
  * @param event wxMouseEvent event
 */
-void Game::OnMouseMove(int x, int y, wxMouseEvent& event)
+void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
 {
     double pX = (x - mXOffset) / mScale;
     double pY = (y - mYOffset) / mScale;
     //atan2(oY-(900 - 54),oX-(0 + 29))
-    mKid->SetRoataion( atan2(pY-(900 - 54),pX-(0 + 29))+M_PI/2);
+    mKid->SetRoataion( atan2(900-pY,pX)-M_PI/2);
     //(0+29,900-54) Pen
 }
 

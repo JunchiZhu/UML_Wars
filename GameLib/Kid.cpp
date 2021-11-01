@@ -37,7 +37,6 @@ void Kid::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 
     double haroldWid = mHaroldImage->GetWidth();
     double haroldHit = mHaroldImage->GetHeight();
-//    mRotation = atan2(0 - mXMouseCoord, 900 - mYMouseCoord );
 
     graphics->PushState();  // Save the graphics state
     graphics->Translate(0, 900);
@@ -47,7 +46,7 @@ void Kid::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 }
 
 void Kid::SetRoataion(double angle){
-    mRotation = -angle;
+    mRotation = angle+0.5;
     if(!mChecking){
         SetPen();
     }
@@ -72,9 +71,9 @@ void Kid::Update(double elapsed)
 {
     if(mChecking){
         double x = mPen->GetX();
-        x += mPenSpeedX * cos(mPen->GetPenAngle()) * elapsed;
+        x += 500 * cos(mPen->GetPenAngle()) * elapsed;
         double y = mPen->GetY();
-        y += mPenSpeedY * sin(mPen->GetPenAngle()) * elapsed;
+        y += 500 * sin(mPen->GetPenAngle()) * elapsed;
         mPen->SetLocation(x,y);
         if(x<=-700 || x>=700 || y<=-1200 || y>500){
             GetGame()->Delete();
@@ -93,4 +92,5 @@ void Kid::SetLocation(double x, double y) {
 }
 
 /// question: 1) shooting angel is not correct? (how to make Pen to be the center instead of Kid)
-/// question: 2) which Class should we write print uml message? (don't connect Pen and UML)
+/// question: 2) which Class should we write print uml message? (don't know how to connect Pen and UML)
+/// hittest 函数， For (item in getgame()->mItem) -》 Item->hittest(x,y)
