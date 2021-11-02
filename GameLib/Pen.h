@@ -57,6 +57,8 @@ public:
      * @return the angle of pen
      */
     double GetPenAngle() const { return mPenAngle; }
+    double GetPenAngle() { return mPenAngle; }
+    bool HitTest(int x, int y) override;
 };
 
 #endif //UML_WARS_PEN_H

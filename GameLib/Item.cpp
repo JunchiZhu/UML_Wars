@@ -25,6 +25,26 @@ Item::Item(Game *game, const std::wstring &filename) : mGame(game)
     }
 }
 
+
+/**
+ * Draw this item
+ * @param gc Graphics context to draw on
+ */
+void Item::Draw(std::shared_ptr<wxGraphicsContext> gc)
+{
+    double wid = mItemBitmap->GetWidth();
+    double hit = mItemBitmap->GetHeight();
+    gc->PushState();  // Save the graphics state
+    gc->DrawBitmap(*mItemBitmap,
+            double(GetX() - wid / 2),
+            double(GetY() - hit / 2),
+            wid,
+            hit);
+    gc->PopState();   // Restore the graphics state
+}
+
+
+
 /**
  * Test to see if we hit this object with a mouse.
  * @param x X position to test
@@ -54,22 +74,3 @@ bool Item::HitTest(int x, int y)
     // part of the image
     return !mItemImage->IsTransparent((int)testX, (int)testY);
 }
-
-/**
- * Draw this item
- * @param gc Graphics context to draw on
- */
-void Item::Draw(std::shared_ptr<wxGraphicsContext> gc)
-{
-    double wid = mItemBitmap->GetWidth();
-    double hit = mItemBitmap->GetHeight();
-    gc->PushState();  // Save the graphics state
-    gc->DrawBitmap(*mItemBitmap,
-            double(GetX() - wid / 2),
-            double(GetY() - hit / 2),
-            wid,
-            hit);
-    gc->PopState();   // Restore the graphics state
-}
-
-
