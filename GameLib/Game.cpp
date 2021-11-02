@@ -45,6 +45,7 @@ Game::Game()
     mKid = make_shared<Kid>(this);
     mItems.push_back(mKid);
     mItems.push_back(mKid->GetPen());
+
 }
 
 /**

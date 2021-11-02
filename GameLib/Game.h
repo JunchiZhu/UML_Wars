@@ -81,7 +81,7 @@ public:
     /**
      * Reset will clear the mItems vector
      */
-    void Reset() { mItems.clear(); }
+    void Reset() { mItems.erase(mItems.begin()+1, mItems.end()); mItems.push_back(mKid->GetPen()); }
 
     /**
      * Wipe will Reset the Scoreboard to Zero.
