@@ -156,7 +156,7 @@ public:
     void noDuration(){mDuration = 0;}
 
 
-    bool noTimeNoDuration(){return mTime == 0 && mDuration == 0;}
+    bool noTimeNoDuration(){return mTime == 0 && mDuration ==0;}
 };
 
 #endif //UML_WARS_GAME_H
