@@ -35,8 +35,6 @@ private:
 
     double mWid;
 
-    bool mHitCheck = false;
-
 public:
     // Constructors
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations);
@@ -84,8 +82,6 @@ public:
     void Update(double elapsed) override;
 
     bool HitTest(int x, int y) override;
-
-    void SetCheckFlag(bool x) { mHitCheck = x;}
 };
 
 #endif //UML_WARS_UML_H

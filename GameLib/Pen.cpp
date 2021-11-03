@@ -66,7 +66,7 @@ bool Pen::HitTest(int x, int y)
     return !mPenImage->IsTransparent((int)testX, (int)testY);
 }
 
-void Pen::SetLocation(double x, double y) {
+void Pen::SetLocation(double x, double y){
     Item::SetLocation(x, y);
     GetGame()->DisplayMessage(this);
 }

@@ -30,6 +30,8 @@ private:
     /// The bitmap we can display for this item
     std::unique_ptr<wxBitmap> mItemBitmap;
 
+    bool mHitCheck = false;
+
 protected:
     /// Constructor
     Item(Game *game, const std::wstring &filename);
@@ -105,6 +107,12 @@ public:
      * @return the game
      */
     Game *GetGame() { return mGame; }
+
+    virtual void SetCheckFlag(bool x) { mHitCheck = x;}
+    bool GetterFlag(){return mHitCheck;}
 };
+
+// remove function in item
+//
 
 #endif //UML_WARS_ITEM_H

@@ -237,7 +237,7 @@ void Game::DisplayMessage(Item* pen){
             if (item->HitTest((int)pen->GetX(),(int)pen->GetY()))
             {
                 bool flag = true;
-//                item->SetCheckFlag(flag);
+                item->SetCheckFlag(flag);
             }
         }
         if(item.get()==pen)

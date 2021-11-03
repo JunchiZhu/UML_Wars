@@ -156,7 +156,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         yPos += FontSize + 2 * BlockPaddingY;
     }
 
-    if(mHitCheck){
+    if(GetterFlag()){
         wxFont font(wxSize(0, 40),
                 wxFONTFAMILY_SWISS,
                 wxFONTSTYLE_NORMAL,
