@@ -93,6 +93,8 @@ public:
     void SetPen();
 
     void SetLocation(double x, double y) override;
+
+    bool HitTest(int x, int y) override;
 };
 
 #endif //UML_WARS_KID_H

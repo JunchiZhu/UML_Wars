@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "Pen.h"
+#include "Game.h"
 
 using namespace std;
 
@@ -63,4 +64,9 @@ bool Pen::HitTest(int x, int y)
     // If the location is transparent, we are not in the drawn
     // part of the image
     return !mPenImage->IsTransparent((int)testX, (int)testY);
+}
+
+void Pen::SetLocation(double x, double y) {
+    Item::SetLocation(x, y);
+    GetGame()->DisplayMessage(this);
 }

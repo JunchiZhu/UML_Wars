@@ -126,6 +126,8 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     }
 
     graphics->DrawRectangle(GetX(), GetY(), rectWidth, rectHeight);
+    mHit = rectHeight;
+    mWid = rectWidth;
 
     double yPos = GetY();
 
@@ -153,6 +155,16 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         graphics->DrawText(operation, GetX() + BlockPaddingX, yPos + BlockPaddingY);
         yPos += FontSize + 2 * BlockPaddingY;
     }
+
+    if(mHitCheck){
+        wxFont font(wxSize(0, 40),
+                wxFONTFAMILY_SWISS,
+                wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_NORMAL);
+        wxColour fontColor(0, 50, 0);
+        graphics->SetFont(font, fontColor);
+        graphics->DrawText(mBadReason,GetX(),GetX());
+    }
 }
 
 /**
@@ -163,3 +175,29 @@ void Uml::Update(double elapsed)
 {
     SetLocation(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);
 }
+
+bool Uml::HitTest(int x, int y) {
+    double wid = mWid;
+    double hit = mHit;
+    double testX = x - GetX() + wid / 2;
+    double testY = y - GetY() + hit / 2;
+    // Test to see if x, y are in the image
+    if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+    {
+        return false;
+    }
+    return true;
+}
+
+
+//void Uml::PrintUnfair(std::shared_ptr<wxGraphicsContext> graphics){
+//    wxFont font(wxSize(0, 40),
+//            wxFONTFAMILY_SWISS,
+//            wxFONTSTYLE_NORMAL,
+//            wxFONTWEIGHT_NORMAL);
+//    wxColour fontColor(50, 0, 0);
+//    graphics->SetFont(font, fontColor);
+//    graphics->DrawText("Unfair!",GetX(),GetY());
+//}
+
+

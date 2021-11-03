@@ -148,6 +148,8 @@ public:
     void ThrowPen();
 
     bool OutOfPlayingArea(std::shared_ptr<Item> item);
+
+    void DisplayMessage(Item* pen);
 };
 
 #endif //UML_WARS_GAME_H

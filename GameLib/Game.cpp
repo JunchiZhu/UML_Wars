@@ -230,3 +230,20 @@ bool Game::OutOfPlayingArea(std::shared_ptr<Item> item)
     return itemSide > 1000 || itemSide < -1000 || itemTop > 1300;
 }
 
+void Game::DisplayMessage(Item* pen){
+    for(auto item : mItems){
+        if(item.get()!=pen)
+        {
+            if (item->HitTest((int)pen->GetX(),(int)pen->GetY()))
+            {
+                bool flag = true;
+//                item->SetCheckFlag(flag);
+            }
+        }
+        if(item.get()==pen)
+        {
+            continue;
+        }
+    }
+}
+

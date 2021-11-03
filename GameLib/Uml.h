@@ -30,6 +30,13 @@ private:
     double mSpeedX;
     /// The y speed
     double mSpeedY;
+
+    double mHit;
+
+    double mWid;
+
+    bool mHitCheck = false;
+
 public:
     // Constructors
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations);
@@ -75,6 +82,10 @@ public:
     void Accept(ItemVisitor* visitor) override { visitor->VisitUml(this); }
 
     void Update(double elapsed) override;
+
+    bool HitTest(int x, int y) override;
+
+    void SetCheckFlag(bool x) { mHitCheck = x;}
 };
 
 #endif //UML_WARS_UML_H

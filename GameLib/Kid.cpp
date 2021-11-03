@@ -113,3 +113,27 @@ void Kid::SetLocation(double x, double y) {
 /// question: 1) shooting angel is not correct? (how to make Pen to be the center instead of Kid)
 /// question: 2) which Class should we write print uml message? (don't know how to connect Pen and UML)
 /// hittest 函数， For (item in getgame()->mItem) -》 Item->hittest(x,y)
+
+bool Kid::HitTest(int x, int y)
+{
+    double wid = mHaroldImage->GetWidth();
+    double hit = mHaroldImage->GetHeight();
+
+    // Make x and y relative to the top-left corner of the bitmap image
+    // Subtracting the center makes x, y relative to the image center
+    // Adding half the size makes x, y relative to the image top corner
+    double testX = x - GetX() + wid / 2;
+    double testY = y - GetY() + hit / 2;
+
+    // Test to see if x, y are in the image
+    if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+    {
+        // We are outside the image
+        return false;
+    }
+
+    // Test to see if x, y are in the drawn part of the image
+    // If the location is transparent, we are not in the drawn
+    // part of the image
+    return !mHaroldImage->IsTransparent((int)testX, (int)testY);
+}
