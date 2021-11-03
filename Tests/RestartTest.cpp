@@ -10,6 +10,9 @@
 #include <Item.h>
 #include <Game.h>
 
+#include "Uml.h"
+#include "UmlLoader.h"
+
 
 
 TEST(RestartTest, Construct) {
@@ -34,12 +37,9 @@ TEST(RestartTest, Construct) {
 
     ASSERT_TRUE(test[2] == 0);
 
+    std::shared_ptr<Uml> uml;
 
-    Uml goodUml1(&game, L"ClassNameOnly", {}, {}, L"");
-    Uml goodUml2(&game, L"OneAttribute", {L"age: int"}, {}, L"");
-    Uml goodUml3(&game, L"AndOneOperation", {L"hit: bool"}, {L"Shoot()"},L"");
-    Uml badUml1(&game, L"badClass", {}, {}, L"Should capitalize");
-    Uml badUml2(&game, L"badAttribute", {L"Age: int"}, {}, L"Don't capitalize");
+    game.Add(uml);
 
     ASSERT_FALSE(game.IsEmpty());
 
@@ -47,8 +47,20 @@ TEST(RestartTest, Construct) {
 
     game.Reset();
 
+    game.noTime();
 
-    ASSERT_TRUE(game.IsEmpty());
+    game.noDuration();
+
+
+    ASSERT_TRUE(game.noTimeNoDuration());
+
+
+
+
+
+
+
+
 
 
 

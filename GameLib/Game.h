@@ -150,6 +150,13 @@ public:
     bool OutOfPlayingArea(std::shared_ptr<Item> item);
 
     void DisplayMessage(Item* pen);
+
+    void noTime(){mTime = 0;}
+
+    void noDuration(){mDuration = 0;}
+
+
+    bool noTimeNoDuration(){return mTime == 0 && mDuration == 0;}
 };
 
 #endif //UML_WARS_GAME_H

@@ -208,7 +208,7 @@ void Game::Accept(ItemVisitor* visitor)
  */
 bool Game::IsEmpty()
 {
-    return mItems.size() == 0;
+    return mItems.size() == 2;
 }
 
 /**
