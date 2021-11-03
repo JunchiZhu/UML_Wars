@@ -63,6 +63,11 @@ public:
      */
     void ClearBoard(){mGame.Wipe();}
 
+
+    void resetTime(){mGame.noTime();}
+
+    void resetDuration(){mGame.noDuration();}
+
 };
 
 #endif //UML_WARS_GAMEVIEW_H

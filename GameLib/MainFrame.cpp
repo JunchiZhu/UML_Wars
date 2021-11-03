@@ -101,6 +101,10 @@ void MainFrame::OnRestart(wxCommandEvent& event)
 
     mGameView->ClearBoard();
 
+    mGameView->resetTime();
+
+    mGameView->resetDuration();
+
 
 
 }
