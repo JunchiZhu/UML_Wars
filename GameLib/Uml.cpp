@@ -158,7 +158,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         yPos += FontSize + 2 * BlockPaddingY;
     }
 
-    if(true){//true, mHitCheck
+    if(mHitCheck){//true, mHitCheck
         if(!mBadReason.empty()){
             wxFont font(wxSize(0, 40),
                     wxFONTFAMILY_SWISS,
@@ -187,6 +187,11 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
  */
 void Uml::Update(double elapsed)
 {
+    if(mHitCheck){
+        mSpeedX = 0;
+        mSpeedY = 0;
+
+    }
     SetLocation(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);
 }
 
