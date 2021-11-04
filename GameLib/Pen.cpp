@@ -54,12 +54,11 @@ bool Pen::HitTest(double x, double y)
     {
         return false;
     }
-    return false;
+    return !mPenImage->IsTransparent((int)testX, (int)testY);
 }
 
 bool Pen::HitConfirm(){
-    if(!mHitCheck){
-        mHitCheck = GetGame()->PenHitUml(this);
-    }
+
+    mHitCheck = GetGame()->PenHitUml(this);
     return mHitCheck;
 }

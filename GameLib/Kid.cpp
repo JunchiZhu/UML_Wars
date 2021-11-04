@@ -98,7 +98,7 @@ void Kid::Update(double elapsed)
             GetGame()->Add(newPen);
             mPen->SetterCheck(false);
         }
-        if(x <= -700 || x >= 700 || y <= -1200 || y >= 500){
+        else if(x <= -700 || x >= 700 || y <= -1200 || y >= 500){
             GetGame()->DeletePen();
             auto newPen = make_shared<Pen>(GetGame());
             newPen = mPen;
@@ -135,5 +135,5 @@ bool Kid::HitTest(double x, double y)
     {
         return false;
     }
-    return false;//!mHaroldImage->IsTransparent((int)testX, (int)testY);
+    return !mHaroldImage->IsTransparent((int)testX, (int)testY);
 }

@@ -76,7 +76,7 @@ public:
      * @param y Y position to test
      * @return true if hit.
      */
-    virtual bool HitTest(double x, double y);
+    virtual bool HitTest(double x, double y) ;
 
     /**
      * Get the width of the Item

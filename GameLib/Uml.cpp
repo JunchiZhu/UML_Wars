@@ -189,23 +189,16 @@ void Uml::Update(double elapsed)
 {
     SetLocation(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);
 }
-// how to pause for 1 second
+
 
 bool Uml::HitTest(double x, double y) {
     // TODO: use GetWidth() and GetWidth()
-    double wid = mWid; /// current UML's Width
-    double hit = mHit;/// current UML's Height
-    double testX = x - GetX() + wid / 2;/// Pen's X at center
-    double testY = y - GetY() + hit / 2;/// Pen's Y at center
-    ///Find boundary for each UML
-    ///Left edge of GetX()-wid/2
-    ///Right edge of  GetX()+wid/2
-    ///Upper edge of GetY()+hit/2
-    ///Lower edge of GetY()-hit/2
-    if (testX < GetX()+wid/2 || testY < GetY()+hit/2 || testX >= GetX()-wid/2 || testY >= GetY()-hit/2)
+    double wid = GetWidth(); /// current UML's Width
+    double hit = GetWidth();/// current UML's Height
+
+    if (x < GetX() || x > GetX()+wid || y < GetY() || y > GetY()+hit)
     {
         return false;
     }
-    /// if Pen's location is inside of uml, return true
     return true;
 }
