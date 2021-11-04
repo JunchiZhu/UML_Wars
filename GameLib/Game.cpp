@@ -129,6 +129,20 @@ void Game::DeletePen()
     }
 }
 
+///**
+// * Delet Old UML in our game
+// * item UML to delete
+// */
+//void Game::DeleteUml()
+//{
+//    shared_ptr<Uml> uml;
+//    auto loc = find(mItems.begin(), mItems.end(), uml);
+//    if (loc != mItems.end())
+//    {
+//        mItems.erase(loc);
+//    }
+//}
+
 /**
  * Handle movement of the mouse over the playing area
  * @param x X location clicked on
@@ -191,6 +205,7 @@ void Game::Update(double elapsed)
         auto it = std::find(mItems.begin(), mItems.end(), item);
         mItems.erase(it);
     }
+
 }
 
 /**
@@ -244,7 +259,7 @@ bool Game::PenHitUml(Item *pen){
         {
             continue;
         }
-        if (item->HitTest((double)pen->GetX(), (double)pen->GetY()))
+        if (item->HitTest((double)pen->GetX(), (double)pen->GetY()+900))
         {
             HitCheckGetter visitor;
             item->Accept(&visitor);

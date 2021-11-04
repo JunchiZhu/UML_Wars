@@ -27,6 +27,8 @@ public:
         uml->SetHit(true);
     }
 
+
+
 };
 
 #endif //UML_WARS_HITCHECKGETTER_H

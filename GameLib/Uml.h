@@ -39,6 +39,8 @@ private:
     /// Checker used to check hit is happened or not
     bool mHitCheck = false;
 
+    bool mDelete = false;
+
 public:
     // Constructors
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations);
@@ -109,6 +111,8 @@ public:
      * setter function used to set mHitCheck value
      */
     void SetHit(bool x){ mHitCheck = x; }
+
+    void SetDelet(bool x){ mDelete = x; }
 };
 
 #endif //UML_WARS_UML_H

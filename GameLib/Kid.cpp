@@ -90,15 +90,7 @@ void Kid::Update(double elapsed)
         y += 800 * sin(mPen->GetPenAngle()) * elapsed;
         mPen->SetLocation(x,y);
 
-        if(mPen->HitConfirm()){
-            GetGame()->DeletePen();
-            auto newPen = make_shared<Pen>(GetGame());
-            newPen = mPen;
-            SetPen();
-            GetGame()->Add(newPen);
-            mPen->SetterCheck(false);
-        }
-        else if(x <= -700 || x >= 700 || y <= -1200 || y >= 500){
+        if(x <= -700 || x >= 700 || y <= -1200 || y >= 500){
             GetGame()->DeletePen();
             auto newPen = make_shared<Pen>(GetGame());
             newPen = mPen;
@@ -106,7 +98,18 @@ void Kid::Update(double elapsed)
             GetGame()->Add(newPen);
             mChecking = false;
         }
+
+        if(mPen->HitConfirm()){
+            GetGame()->DeletePen();
+            auto newPen = make_shared<Pen>(GetGame());
+            newPen = mPen;
+            SetPen();
+            GetGame()->Add(newPen);
+            mPen->SetterCheck(false);
+            mChecking = false;
+        }
     }
+
 }
 /**
  * Set the kid's location
