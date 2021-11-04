@@ -19,6 +19,7 @@
 #include "Pen.h"
 #include "ItemVisitor.h"
 #include "UmlLoader.h"
+#include <wx/sound.h>
 
 /**
  * Game class that encapsulates everything the game is able to do.

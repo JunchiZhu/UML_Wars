@@ -149,6 +149,8 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
  */
 void Game::Update(double elapsed)
 {
+
+
     mDuration += elapsed;
     mTime += elapsed;
 

@@ -21,7 +21,11 @@
 
 
      ///
-     IDM_RESTART
+     IDM_RESTART,
+
+
+     ///
+     IDM_MUSIC
  };
 
 #endif //UML_WARS_IDS_H

@@ -15,10 +15,10 @@ set(SOURCE_FILES
         UmlLoader.cpp UmlLoader.h
         UmlNode.cpp UmlNode.h
         ItemVisitor.cpp ItemVisitor.h
-        UmlInheritNode.cpp UmlInheritNode.h)
+        UmlInheritNode.cpp UmlInheritNode.h SoundStuff.cpp SoundStuff.h)
 
 set(wxBUILD_PRECOMP OFF)
-find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
+find_package(wxWidgets COMPONENTS core base xrc html xml  media REQUIRED)
 
 # Include the wxWidgets use file to initialize various settings
 include(${wxWidgets_USE_FILE})

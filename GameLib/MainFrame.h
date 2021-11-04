@@ -9,8 +9,10 @@
 
 #ifndef UML_WARS_MAINFRAME_H
 #define UML_WARS_MAINFRAME_H
-
+#include <wx/sound.h>
+#include <wx/mediactrl.h>
 #include "GameView.h"
+#include "pch.h"
 
 /**
  * MainFrame controls all the functions of buttons on
@@ -26,8 +28,19 @@ private:
     void OnClose(wxCloseEvent &event);
     void OnRestart(wxCommandEvent& event);
 
+    std::unique_ptr<wxSound> mSound;
+
+    std::unique_ptr<wxMediaCtrl> mMediaCtrl;
+
 public:
     void Initialize();
+
+
+protected:
+    void OnMediaLoaded(wxMediaEvent& event);
+    void Play(wxCommandEvent& event);
+
+
 };
 
 #endif //UML_WARS_MAINFRAME_H

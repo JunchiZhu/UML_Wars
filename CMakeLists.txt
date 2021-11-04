@@ -35,6 +35,8 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/images/ DESTINATION ${CMAKE_CURRENT_BINARY
 # Copy data into output directory
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/data/)
 
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/audio/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/audio/)
+
 if(APPLE)
     # When building for MacOS, also copy files into the bundle resources
     set(RESOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/UML_Wars.app/Contents/Resources)
