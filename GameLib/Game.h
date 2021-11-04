@@ -175,6 +175,8 @@ public:
      * @return the hit Item
      */
     std::shared_ptr<Item> HitCheck(int x, int y);
+
+    void DeleteUml();
 };
 
 #endif //UML_WARS_GAME_H
