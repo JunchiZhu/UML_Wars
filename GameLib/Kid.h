@@ -94,7 +94,7 @@ public:
 
     void SetLocation(double x, double y) override;
 
-    bool HitTest(int x, int y) override;
+    bool HitTest(double x, double y) override;
 };
 
 #endif //UML_WARS_KID_H

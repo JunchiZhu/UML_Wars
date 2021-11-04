@@ -15,7 +15,7 @@ set(SOURCE_FILES
         UmlLoader.cpp UmlLoader.h
         UmlNode.cpp UmlNode.h
         ItemVisitor.cpp ItemVisitor.h
-        UmlInheritNode.cpp UmlInheritNode.h)
+        UmlInheritNode.cpp UmlInheritNode.h HitCheckGetter.cpp HitCheckGetter.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

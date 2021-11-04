@@ -149,14 +149,17 @@ public:
 
     bool OutOfPlayingArea(std::shared_ptr<Item> item);
 
-    void DisplayMessage(Item* pen);
+    std::vector<std::shared_ptr<Item>> GetterList(){return mItems;}
 
     void noTime(){mTime = 0;}
 
     void noDuration(){mDuration = 0;}
 
-
     bool noTimeNoDuration(){return mTime == 0 && mDuration ==0;}
+
+    bool PenHitUml(Item *uml);
+
+    std::shared_ptr<Item> HitCheck(int x, int y);
 };
 
 #endif //UML_WARS_GAME_H

@@ -76,7 +76,7 @@ public:
      * @param y Y position to test
      * @return true if hit.
      */
-    virtual bool HitTest(int x, int y);
+    virtual bool HitTest(double x, double y);
 
     /**
      * Get the width of the Item
@@ -108,8 +108,6 @@ public:
      */
     Game *GetGame() { return mGame; }
 
-    virtual void SetCheckFlag(bool x) { mHitCheck = x;}
-    bool GetterFlag(){return mHitCheck;}
 };
 
 // remove function in item

@@ -85,11 +85,20 @@ void Kid::Update(double elapsed)
 {
     if(mChecking){
         double x = mPen->GetX();
-        x += 500 * cos(mPen->GetPenAngle()) * elapsed;
+        x += 800 * cos(mPen->GetPenAngle()) * elapsed;
         double y = mPen->GetY();
-        y += 500 * sin(mPen->GetPenAngle()) * elapsed;
+        y += 800 * sin(mPen->GetPenAngle()) * elapsed;
         mPen->SetLocation(x,y);
-        if(x <= -700 || x >= 700 || y <= -1200 || y > 500){
+
+        if(mPen->HitConfirm()){
+            GetGame()->DeletePen();
+            auto newPen = make_shared<Pen>(GetGame());
+            newPen = mPen;
+            SetPen();
+            GetGame()->Add(newPen);
+            mPen->SetterCheck(false);
+        }
+        if(x <= -700 || x >= 700 || y <= -1200 || y >= 500){
             GetGame()->DeletePen();
             auto newPen = make_shared<Pen>(GetGame());
             newPen = mPen;
@@ -99,7 +108,6 @@ void Kid::Update(double elapsed)
         }
     }
 }
-
 /**
  * Set the kid's location
  * @param x the x coordinate
@@ -114,26 +122,18 @@ void Kid::SetLocation(double x, double y) {
 /// question: 2) which Class should we write print uml message? (don't know how to connect Pen and UML)
 /// hittest 函数， For (item in getgame()->mItem) -》 Item->hittest(x,y)
 
-bool Kid::HitTest(int x, int y)
+bool Kid::HitTest(double x, double y)
 {
     double wid = mHaroldImage->GetWidth();
     double hit = mHaroldImage->GetHeight();
 
-    // Make x and y relative to the top-left corner of the bitmap image
-    // Subtracting the center makes x, y relative to the image center
-    // Adding half the size makes x, y relative to the image top corner
     double testX = x - GetX() + wid / 2;
     double testY = y - GetY() + hit / 2;
 
     // Test to see if x, y are in the image
     if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
     {
-        // We are outside the image
         return false;
     }
-
-    // Test to see if x, y are in the drawn part of the image
-    // If the location is transparent, we are not in the drawn
-    // part of the image
-    return !mHaroldImage->IsTransparent((int)testX, (int)testY);
+    return false;//!mHaroldImage->IsTransparent((int)testX, (int)testY);
 }

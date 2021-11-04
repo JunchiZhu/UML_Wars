@@ -26,6 +26,8 @@ private:
     /// Pen angle
     double mPenAngle = -1.078;
 
+    bool mHitCheck = false;
+
 public:
 /// Default constructor (disabled)
     Pen() = delete;
@@ -58,9 +60,11 @@ public:
      */
     double GetPenAngle() { return mPenAngle; }
 
-    bool HitTest(int x, int y) override;
+    bool HitTest(double x, double y) override;
 
-    void SetLocation(double x, double y)override;
+    void SetterCheck(bool x){mHitCheck = x;}
+
+    bool HitConfirm();
 };
 
 #endif //UML_WARS_PEN_H

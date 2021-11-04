@@ -16,6 +16,7 @@
 #include "Item.h"
 #include "Kid.h"
 #include "Uml.h"
+#include "HitCheckGetter.h"
 
 using namespace std;
 
@@ -229,21 +230,34 @@ bool Game::OutOfPlayingArea(std::shared_ptr<Item> item)
     double itemSide = item->GetX();
     return itemSide > 1000 || itemSide < -1000 || itemTop > 1300;
 }
+///visitor pattern
 
-void Game::DisplayMessage(Item* pen){
-    for(auto item : mItems){
-        if(item.get()!=pen)
-        {
-            if (item->HitTest((int)pen->GetX(),(int)pen->GetY()))
-            {
-                bool flag = true;
-                item->SetCheckFlag(flag);
-            }
-        }
-        if(item.get()==pen)
+bool Game::PenHitUml(Item *pen){
+    for(auto item:mItems){
+        if (item.get() == pen)
         {
             continue;
         }
+        if (item->HitTest((double)pen->GetX(), (double)pen->GetY()))
+        {
+            HitCheckGetter visitor;
+            item->Accept(&visitor);
+            return true;
+        }
     }
+    return false;
 }
+
+std::shared_ptr<Item> Game::HitCheck(int x, int y)
+{
+    for (auto i = mItems.rbegin(); i != mItems.rend();  i++)
+    {
+        if ((*i)->HitTest(x, y))
+        {
+            return *i;
+        }
+    }
+    return  nullptr;
+}
+
 

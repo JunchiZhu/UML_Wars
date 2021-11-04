@@ -156,14 +156,26 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         yPos += FontSize + 2 * BlockPaddingY;
     }
 
-    if(GetterFlag()){
-        wxFont font(wxSize(0, 40),
-                wxFONTFAMILY_SWISS,
-                wxFONTSTYLE_NORMAL,
-                wxFONTWEIGHT_NORMAL);
-        wxColour fontColor(0, 50, 0);
-        graphics->SetFont(font, fontColor);
-        graphics->DrawText(mBadReason,GetX(),GetX());
+    if(mHitCheck){//true, mHitCheck
+        if(!mBadReason.empty()){
+            wxFont font(wxSize(0, 40),
+                    wxFONTFAMILY_SWISS,
+                    wxFONTSTYLE_NORMAL,
+                    wxFONTWEIGHT_NORMAL);
+            wxColour fontColor(0, 50, 0);
+            graphics->SetFont(font, fontColor);
+            graphics->DrawText(mBadReason,GetX(),GetY());//use graphics ****-mWid/3 +mHit/3
+        }
+        else{
+            wxFont font(wxSize(0, 40),
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_NORMAL);
+            wxColour fontColor(50, 0, 0);
+            graphics->SetFont(font, fontColor);
+            graphics->DrawText("Unfair!",GetX(),GetY());
+        }
+
     }
 }
 
@@ -175,29 +187,22 @@ void Uml::Update(double elapsed)
 {
     SetLocation(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);
 }
+// how to pause for 1 second
 
-bool Uml::HitTest(int x, int y) {
-    double wid = mWid;
-    double hit = mHit;
-    double testX = x - GetX() + wid / 2;
-    double testY = y - GetY() + hit / 2;
-    // Test to see if x, y are in the image
-    if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+bool Uml::HitTest(double x, double y) {
+    double wid = mWid; /// current UML's Width
+    double hit = mHit;/// current UML's Height
+    double testX = x - GetX() + wid / 2;/// Pen's X at center
+    double testY = y - GetY() + hit / 2;/// Pen's Y at center
+    ///Find boundary for each UML
+    ///Left edge of GetX()-wid/2
+    ///Right edge of  GetX()+wid/2
+    ///Upper edge of GetY()+hit/2
+    ///Lower edge of GetY()-hit/2
+    if (testX < GetX()+wid/2 || testY < GetY()+hit/2 || testX >= GetX()-wid/2 || testY >= GetY()-hit/2)
     {
         return false;
     }
+    /// if Pen's location is inside of uml, return true
     return true;
 }
-
-
-//void Uml::PrintUnfair(std::shared_ptr<wxGraphicsContext> graphics){
-//    wxFont font(wxSize(0, 40),
-//            wxFONTFAMILY_SWISS,
-//            wxFONTSTYLE_NORMAL,
-//            wxFONTWEIGHT_NORMAL);
-//    wxColour fontColor(50, 0, 0);
-//    graphics->SetFont(font, fontColor);
-//    graphics->DrawText("Unfair!",GetX(),GetY());
-//}
-
-
