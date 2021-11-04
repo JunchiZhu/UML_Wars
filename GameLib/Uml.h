@@ -31,9 +31,10 @@ private:
     /// The y speed
     double mSpeedY;
 
-    double mHit;
-
-    double mWid;
+    /// The width of uml area
+    double mWidth;
+    /// The height of uml area
+    double mHeight;
 
     bool mHitCheck = false;
 
@@ -76,6 +77,18 @@ public:
     std::wstring GetBadReason() { return mBadReason; }
 
     /**
+     * Get the uml's width
+     * @return the uml's width
+     */
+    double GetWidth() const override { return mWidth; }
+
+    /**
+     * Get the uml's height
+     * @return the uml's height
+     */
+    double GetHeight() const override { return mHeight; }
+
+    /**
      * Accept a visitor
      * @param visitor The visitor we accept
      */
@@ -83,9 +96,9 @@ public:
 
     void Update(double elapsed) override;
 
-    virtual bool HitTest(double x, double y) override;
+    bool HitTest(double x, double y) override;
 
-    void SetHit(bool x){mHitCheck = x;}
+    void SetHit(bool x){ mHitCheck = x; }
 };
 
 #endif //UML_WARS_UML_H

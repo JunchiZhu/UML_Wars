@@ -60,6 +60,38 @@ Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, st
 
     // y speed
     mSpeedY = InitialYSpeed + game->GetTime() * AccelerationY;
+
+    // get maximum string length
+    auto maxLength = mName.length();
+    for (auto attribute : mAttributes)
+    {
+        maxLength = std::max(maxLength, attribute.length());
+    }
+    for (auto operation : mOperations)
+    {
+        maxLength = std::max(maxLength, operation.length());
+    }
+
+    // Calculate the uml area's width and height
+    double rectWidth = maxLength * 1.0 * FontWeight + 2 * BlockPaddingX;
+
+    int num = mAttributes.size() + mOperations.size(); // the number of attributes and operations
+    double rectHeight = FontSize + 2 * BlockPaddingY;
+    if (num > 0)
+    {
+        for (auto i = 0; i < num; i++)
+        {
+            rectHeight += FontSize + 2 * BlockPaddingY;
+        }
+    }
+    else
+    {
+        rectHeight += 2 * BlockPaddingY;
+    }
+
+    // Apply the calculated width and height to member variable
+    mWidth = rectWidth;
+    mHeight = rectHeight;
 }
 
 /**
@@ -97,47 +129,17 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
             wxFONTWEIGHT_NORMAL);
     graphics->SetFont(font, *wxBLACK);
 
-    // get maximum string length
-    auto maxLength = mName.length();
-    for (auto attribute : mAttributes)
-    {
-        maxLength = std::max(maxLength, attribute.length());
-    }
-    for (auto operation : mOperations)
-    {
-        maxLength = std::max(maxLength, operation.length());
-    }
-
-    // Draw the overall rectangle
-    double rectWidth = maxLength * 1.0 * FontWeight + 2 * BlockPaddingX;
-
-    int num = mAttributes.size() + mOperations.size(); // the number of attributes and operations
-    double rectHeight = FontSize + 2 * BlockPaddingY;
-    if (num > 0)
-    {
-        for (auto i = 0; i < num; i++)
-        {
-            rectHeight += FontSize + 2 * BlockPaddingY;
-        }
-    }
-    else
-    {
-        rectHeight += 2 * BlockPaddingY;
-    }
-
-    graphics->DrawRectangle(GetX(), GetY(), rectWidth, rectHeight);
-    mHit = rectHeight;
-    mWid = rectWidth;
+    graphics->DrawRectangle(GetX(), GetY(), GetWidth(), GetHeight());
 
     double yPos = GetY();
 
     // name
-    double nameLocX = GetX() + rectWidth / 2 - mName.length() * 1.0 * FontWeight / 2;
+    double nameLocX = GetX() + GetWidth() / 2 - mName.length() * 1.0 * FontWeight / 2;
     graphics->DrawText(mName, nameLocX, yPos + BlockPaddingY);
     yPos += FontSize + 2 * BlockPaddingY;
 
     // dividing line
-    graphics->StrokeLine(GetX(), yPos, GetX() + rectWidth, yPos);
+    graphics->StrokeLine(GetX(), yPos, GetX() + GetWidth(), yPos);
 
     // attributes
     for (auto attribute : mAttributes)
@@ -147,7 +149,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     }
 
     // dividing line
-    graphics->StrokeLine(GetX(), yPos, GetX() + rectWidth, yPos);
+    graphics->StrokeLine(GetX(), yPos, GetX() + GetWidth(), yPos);
 
     // operations
     for (auto operation : mOperations)
@@ -190,6 +192,7 @@ void Uml::Update(double elapsed)
 // how to pause for 1 second
 
 bool Uml::HitTest(double x, double y) {
+    // TODO: use GetWidth() and GetWidth()
     double wid = mWid; /// current UML's Width
     double hit = mHit;/// current UML's Height
     double testX = x - GetX() + wid / 2;/// Pen's X at center

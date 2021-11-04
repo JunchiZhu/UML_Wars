@@ -82,13 +82,13 @@ public:
      * Get the width of the Item
      * @return Item width in pixels
      */
-    int GetWidth() const { return mItemBitmap->GetWidth(); }
+    virtual double GetWidth() const { return mItemBitmap->GetWidth(); }
 
     /**
      * Get the height of the item
      * @return item height in pixels
      */
-    int GetHeight() const { return mItemBitmap->GetHeight(); }
+    virtual double GetHeight() const { return mItemBitmap->GetHeight(); }
 
     /**
      * Handle updates for animation
