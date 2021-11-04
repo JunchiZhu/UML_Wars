@@ -45,13 +45,14 @@ void Item::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 
 
+
 /**
  * Test to see if we hit this object with a mouse.
  * @param x X position to test
  * @param y Y position to test
  * @return true if hit.
  */
-bool Item::HitTest(int x, int y)
+bool Item::HitTest(double x, double y)
 {
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
@@ -72,5 +73,5 @@ bool Item::HitTest(int x, int y)
     // Test to see if x, y are in the drawn part of the image
     // If the location is transparent, we are not in the drawn
     // part of the image
-    return !mItemImage->IsTransparent((int)testX, (int)testY);
+    return true;
 }

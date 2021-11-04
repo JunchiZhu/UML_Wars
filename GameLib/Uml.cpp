@@ -60,6 +60,38 @@ Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, st
 
     // y speed
     mSpeedY = InitialYSpeed + game->GetTime() * AccelerationY;
+
+    // get maximum string length
+    auto maxLength = mName.length();
+    for (auto attribute : mAttributes)
+    {
+        maxLength = std::max(maxLength, attribute.length());
+    }
+    for (auto operation : mOperations)
+    {
+        maxLength = std::max(maxLength, operation.length());
+    }
+
+    // Calculate the uml area's width and height
+    double rectWidth = maxLength * 1.0 * FontWeight + 2 * BlockPaddingX;
+
+    int num = mAttributes.size() + mOperations.size(); // the number of attributes and operations
+    double rectHeight = FontSize + 2 * BlockPaddingY;
+    if (num > 0)
+    {
+        for (auto i = 0; i < num; i++)
+        {
+            rectHeight += FontSize + 2 * BlockPaddingY;
+        }
+    }
+    else
+    {
+        rectHeight += 2 * BlockPaddingY;
+    }
+
+    // Apply the calculated width and height to member variable
+    mWidth = rectWidth;
+    mHeight = rectHeight;
 }
 
 /**
@@ -97,47 +129,17 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
             wxFONTWEIGHT_NORMAL);
     graphics->SetFont(font, *wxBLACK);
 
-    // get maximum string length
-    auto maxLength = mName.length();
-    for (auto attribute : mAttributes)
-    {
-        maxLength = std::max(maxLength, attribute.length());
-    }
-    for (auto operation : mOperations)
-    {
-        maxLength = std::max(maxLength, operation.length());
-    }
-
-    // Draw the overall rectangle
-    double rectWidth = maxLength * 1.0 * FontWeight + 2 * BlockPaddingX;
-
-    int num = mAttributes.size() + mOperations.size(); // the number of attributes and operations
-    double rectHeight = FontSize + 2 * BlockPaddingY;
-    if (num > 0)
-    {
-        for (auto i = 0; i < num; i++)
-        {
-            rectHeight += FontSize + 2 * BlockPaddingY;
-        }
-    }
-    else
-    {
-        rectHeight += 2 * BlockPaddingY;
-    }
-
-    graphics->DrawRectangle(GetX(), GetY(), rectWidth, rectHeight);
-    mHit = rectHeight;
-    mWid = rectWidth;
+    graphics->DrawRectangle(GetX(), GetY(), GetWidth(), GetHeight());
 
     double yPos = GetY();
 
     // name
-    double nameLocX = GetX() + rectWidth / 2 - mName.length() * 1.0 * FontWeight / 2;
+    double nameLocX = GetX() + GetWidth() / 2 - mName.length() * 1.0 * FontWeight / 2;
     graphics->DrawText(mName, nameLocX, yPos + BlockPaddingY);
     yPos += FontSize + 2 * BlockPaddingY;
 
     // dividing line
-    graphics->StrokeLine(GetX(), yPos, GetX() + rectWidth, yPos);
+    graphics->StrokeLine(GetX(), yPos, GetX() + GetWidth(), yPos);
 
     // attributes
     for (auto attribute : mAttributes)
@@ -147,7 +149,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     }
 
     // dividing line
-    graphics->StrokeLine(GetX(), yPos, GetX() + rectWidth, yPos);
+    graphics->StrokeLine(GetX(), yPos, GetX() + GetWidth(), yPos);
 
     // operations
     for (auto operation : mOperations)
@@ -156,14 +158,26 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         yPos += FontSize + 2 * BlockPaddingY;
     }
 
-    if(GetterFlag()){
-        wxFont font(wxSize(0, 40),
-                wxFONTFAMILY_SWISS,
-                wxFONTSTYLE_NORMAL,
-                wxFONTWEIGHT_NORMAL);
-        wxColour fontColor(0, 50, 0);
-        graphics->SetFont(font, fontColor);
-        graphics->DrawText(mBadReason,GetX(),GetX());
+    if(true){//true, mHitCheck
+        if(!mBadReason.empty()){
+            wxFont font(wxSize(0, 40),
+                    wxFONTFAMILY_SWISS,
+                    wxFONTSTYLE_NORMAL,
+                    wxFONTWEIGHT_NORMAL);
+            wxColour fontColor(0, 50, 0);
+            graphics->SetFont(font, fontColor);
+            graphics->DrawText(mBadReason,GetX(),GetY());//use graphics ****-mWid/3 +mHit/3
+        }
+        else{
+            wxFont font(wxSize(0, 40),
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_NORMAL);
+            wxColour fontColor(50, 0, 0);
+            graphics->SetFont(font, fontColor);
+            graphics->DrawText("Unfair!",GetX(),GetY());
+        }
+
     }
 }
 
@@ -176,28 +190,20 @@ void Uml::Update(double elapsed)
     SetLocation(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);
 }
 
-bool Uml::HitTest(int x, int y) {
-    double wid = mWid;
-    double hit = mHit;
-    double testX = x - GetX() + wid / 2;
-    double testY = y - GetY() + hit / 2;
-    // Test to see if x, y are in the image
-    if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+/**
+ * Test to see if we hit this object with a mouse.
+ * @param x X position to test
+ * @param y Y position to test
+ * @return true if hit.
+ */
+bool Uml::HitTest(double x, double y) {
+    // TODO: use GetWidth() and GetWidth()
+    double wid = GetWidth(); /// current UML's Width
+    double hit = GetWidth();/// current UML's Height
+
+    if (x < GetX() || x > GetX()+wid || y < GetY() || y > GetY()+hit)
     {
         return false;
     }
     return true;
 }
-
-
-//void Uml::PrintUnfair(std::shared_ptr<wxGraphicsContext> graphics){
-//    wxFont font(wxSize(0, 40),
-//            wxFONTFAMILY_SWISS,
-//            wxFONTSTYLE_NORMAL,
-//            wxFONTWEIGHT_NORMAL);
-//    wxColour fontColor(50, 0, 0);
-//    graphics->SetFont(font, fontColor);
-//    graphics->DrawText("Unfair!",GetX(),GetY());
-//}
-
-

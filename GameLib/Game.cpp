@@ -16,6 +16,7 @@
 #include "Item.h"
 #include "Kid.h"
 #include "Uml.h"
+#include "HitCheckGetter.h"
 
 using namespace std;
 
@@ -117,7 +118,7 @@ void Game::Add(std::shared_ptr<Item> item)
 
 /**
  * Delet Old Pen in our game
- * @param item Pen to delete
+ * item Pen to delete
  */
 void Game::DeletePen()
 {
@@ -231,21 +232,43 @@ bool Game::OutOfPlayingArea(std::shared_ptr<Item> item)
     double itemSide = item->GetX();
     return itemSide > 1000 || itemSide < -1000 || itemTop > 1300;
 }
+/**
+ * Ask Kid to throw the Pen, like a trigger
+ *  @param item uml
+ *  @return true if Pen Hit Uml otherwise false
+ */
 
-void Game::DisplayMessage(Item* pen){
-    for(auto item : mItems){
-        if(item.get()!=pen)
-        {
-            if (item->HitTest((int)pen->GetX(),(int)pen->GetY()))
-            {
-                bool flag = true;
-                item->SetCheckFlag(flag);
-            }
-        }
-        if(item.get()==pen)
+bool Game::PenHitUml(Item *pen){
+    for(auto item:mItems){
+        if (item.get() == pen)
         {
             continue;
         }
+        if (item->HitTest((double)pen->GetX(), (double)pen->GetY()))
+        {
+            HitCheckGetter visitor;
+            item->Accept(&visitor);
+            return true;
+        }
     }
+    return false;
 }
+
+/**
+ * A test function which is used to check HitTest function is work or not
+ * @param x is item's x coordinate, y is item's y coordinate
+ * @return the hit Item
+ */
+std::shared_ptr<Item> Game::HitCheck(int x, int y)
+{
+    for (auto i = mItems.rbegin(); i != mItems.rend();  i++)
+    {
+        if ((*i)->HitTest(x, y))
+        {
+            return *i;
+        }
+    }
+    return  nullptr;
+}
+
 

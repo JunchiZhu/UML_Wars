@@ -76,19 +76,19 @@ public:
      * @param y Y position to test
      * @return true if hit.
      */
-    virtual bool HitTest(int x, int y);
+    virtual bool HitTest(double x, double y) ;
 
     /**
      * Get the width of the Item
      * @return Item width in pixels
      */
-    int GetWidth() const { return mItemBitmap->GetWidth(); }
+    virtual double GetWidth() const { return mItemBitmap->GetWidth(); }
 
     /**
      * Get the height of the item
      * @return item height in pixels
      */
-    int GetHeight() const { return mItemBitmap->GetHeight(); }
+    virtual double GetHeight() const { return mItemBitmap->GetHeight(); }
 
     /**
      * Handle updates for animation
@@ -108,8 +108,6 @@ public:
      */
     Game *GetGame() { return mGame; }
 
-    virtual void SetCheckFlag(bool x) { mHitCheck = x;}
-    bool GetterFlag(){return mHitCheck;}
 };
 
 // remove function in item

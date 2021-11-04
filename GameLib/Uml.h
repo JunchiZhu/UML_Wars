@@ -31,9 +31,13 @@ private:
     /// The y speed
     double mSpeedY;
 
-    double mHit;
+    /// The width of uml area
+    double mWidth;
+    /// The height of uml area
+    double mHeight;
 
-    double mWid;
+    /// Checker used to check hit is happened or not
+    bool mHitCheck = false;
 
 public:
     // Constructors
@@ -74,6 +78,18 @@ public:
     std::wstring GetBadReason() { return mBadReason; }
 
     /**
+     * Get the uml's width
+     * @return the uml's width
+     */
+    double GetWidth() const override { return mWidth; }
+
+    /**
+     * Get the uml's height
+     * @return the uml's height
+     */
+    double GetHeight() const override { return mHeight; }
+
+    /**
      * Accept a visitor
      * @param visitor The visitor we accept
      */
@@ -81,7 +97,18 @@ public:
 
     void Update(double elapsed) override;
 
-    bool HitTest(int x, int y) override;
+    /**
+     * Test to see if we hit this object with a mouse.
+     * @param x X position to test
+     * @param y Y position to test
+     * @return true if hit.
+     */
+    bool HitTest(double x, double y) override;
+
+    /**
+     * setter function used to set mHitCheck value
+     */
+    void SetHit(bool x){ mHitCheck = x; }
 };
 
 #endif //UML_WARS_UML_H

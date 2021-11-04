@@ -119,4 +119,41 @@ TEST(GameTest, Update)
 
 }
 
+TEST(AquariumTest, Construct){
+    Game game;
+    wstring name;
+    vector<wstring> attributes;
+    vector<wstring> operations;
+}
+
+TEST(AquariumTest, HitTest) {
+    Game game;
+    wstring name;
+    vector<wstring> attributes;
+    vector<wstring> operations;
+
+//    ASSERT_EQ(game.HitTest(100, 200), nullptr) <<
+//                                                   L"Testing empty game";
+//
+//    shared_ptr<Pen> pen = make_shared<Pen>(&game);
+//    pen->SetLocation(100, 200);
+//    game.Add(pen);
+//
+//    ASSERT_TRUE(game.HitCheck(100, 200) == pen) <<
+//                                                     L"Testing pen at 100, 200";
+//
+    shared_ptr<Kid> kid = make_shared<Kid>(&game);
+    kid->SetLocation(200, 200);
+    game.Add(kid);
+
+    ASSERT_TRUE(game.HitCheck(200, 200) == kid) <<
+                                               L"Testing kid at 200, 200";
+
+    shared_ptr<Uml> uml = make_shared<Uml>(&game, name, attributes, operations);
+    uml->SetLocation(300, 200);
+    game.Add(uml);
+
+    ASSERT_TRUE(game.HitCheck(300, 200) == uml) <<
+                                               L"Testing uml at 300, 200";
+}
 

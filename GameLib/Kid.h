@@ -83,18 +83,41 @@ public:
      * @return the pointer of pen
      */
     std::shared_ptr<Pen> GetPen() { return mPen; }
-
+    /**
+     * Mark the pen as thrown
+     */
     void DoThrowing();
-
+    /**
+     * Handle updates for animation
+     * @param elapsed The time since the last update
+     */
     void Update(double elapsed) override;
 
+    /**
+     * Set the rotation
+     * @param angle
+     */
     void SetRoataion(double angle);
 
+    /**
+     * Set the pen's angle and location
+     */
     void SetPen();
 
+    /**
+     * Set the kid's location
+     * @param x the x coordinate
+     * @param y the y coordinate
+     */
     void SetLocation(double x, double y) override;
 
-    bool HitTest(int x, int y) override;
+    /**
+     * Test to see if we hit this object with a mouse.
+     * @param x X position to test
+     * @param y Y position to test
+     * @return true if hit.
+     */
+    bool HitTest(double x, double y) override;
 };
 
 #endif //UML_WARS_KID_H
