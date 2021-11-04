@@ -10,10 +10,17 @@
 
 #include "Uml.h"
 
-
+/**
+  *  Get HitChecker
+  */
 class HitCheckGetter : public ItemVisitor{
 private:
 
+
+/**
+ * Visit a UML object
+ * @param uml Uml we are visiting
+ */
 public:
     void VisitUml(Uml* uml)
     {

@@ -158,7 +158,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         yPos += FontSize + 2 * BlockPaddingY;
     }
 
-    if(mHitCheck){//true, mHitCheck
+    if(true){//true, mHitCheck
         if(!mBadReason.empty()){
             wxFont font(wxSize(0, 40),
                     wxFONTFAMILY_SWISS,
@@ -190,7 +190,12 @@ void Uml::Update(double elapsed)
     SetLocation(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);
 }
 
-
+/**
+ * Test to see if we hit this object with a mouse.
+ * @param x X position to test
+ * @param y Y position to test
+ * @return true if hit.
+ */
 bool Uml::HitTest(double x, double y) {
     // TODO: use GetWidth() and GetWidth()
     double wid = GetWidth(); /// current UML's Width

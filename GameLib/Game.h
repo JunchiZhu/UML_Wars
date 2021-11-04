@@ -143,8 +143,13 @@ public:
      */
     bool IsStandardVariant() const { return mPlayingStandard; }
 
+    /**
+     * Delet the Pen if pen is out of game or hit Uml
+     */
     void DeletePen();
-
+    /**
+     * Ask Kid to throw the Pen, like a trigger
+     */
     void ThrowPen();
 
     bool OutOfPlayingArea(std::shared_ptr<Item> item);
@@ -157,8 +162,18 @@ public:
 
     bool noTimeNoDuration(){return mTime == 0 && mDuration ==0;}
 
+    /**
+     * Ask Kid to throw the Pen, like a trigger
+     *  @param item uml
+     *  @return true if Pen Hit Uml otherwise false
+     */
     bool PenHitUml(Item *uml);
 
+    /**
+     * A test function which is used to check HitTest function is work or not
+     * @param x is item's x coordinate, y is item's y coordinate
+     * @return the hit Item
+     */
     std::shared_ptr<Item> HitCheck(int x, int y);
 };
 

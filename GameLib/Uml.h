@@ -36,6 +36,7 @@ private:
     /// The height of uml area
     double mHeight;
 
+    /// Checker used to check hit is happened or not
     bool mHitCheck = false;
 
 public:
@@ -96,8 +97,17 @@ public:
 
     void Update(double elapsed) override;
 
+    /**
+     * Test to see if we hit this object with a mouse.
+     * @param x X position to test
+     * @param y Y position to test
+     * @return true if hit.
+     */
     bool HitTest(double x, double y) override;
 
+    /**
+     * setter function used to set mHitCheck value
+     */
     void SetHit(bool x){ mHitCheck = x; }
 };
 

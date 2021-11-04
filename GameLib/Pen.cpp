@@ -41,7 +41,12 @@ void Pen::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     graphics->DrawBitmap(mPenBitmap, -penWid/2, -penHit/2, penWid, penHit);
     graphics->PopState();   // Restore the graphics state
 }
-
+/**
+ * Test to see if we hit this object with a mouse.
+ * @param x X position to test
+ * @param y Y position to test
+ * @return true if hit.
+ */
 bool Pen::HitTest(double x, double y)
 {
     double wid = mPenImage->GetWidth();
@@ -56,7 +61,10 @@ bool Pen::HitTest(double x, double y)
     }
     return !mPenImage->IsTransparent((int)testX, (int)testY);
 }
-
+/**
+ * Get the angle of pen
+ * @return true if Pen hit Uml
+ */
 bool Pen::HitConfirm(){
 
     mHitCheck = GetGame()->PenHitUml(this);

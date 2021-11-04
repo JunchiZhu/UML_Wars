@@ -26,6 +26,7 @@ private:
     /// Pen angle
     double mPenAngle = -1.078;
 
+    /// hit checker
     bool mHitCheck = false;
 
 public:
@@ -60,10 +61,18 @@ public:
      */
     double GetPenAngle() { return mPenAngle; }
 
+
     bool HitTest(double x, double y) override;
 
+    /**
+     * setter used to check hit is happened or not
+     */
     void SetterCheck(bool x){mHitCheck = x;}
 
+    /**
+     * Get the angle of pen
+     * @return true if Pen hit Uml
+     */
     bool HitConfirm();
 };
 
