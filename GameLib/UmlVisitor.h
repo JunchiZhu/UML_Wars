@@ -18,6 +18,7 @@ private:
     /// The Uml that is being visited
     Uml* mUml;
 
+    /// Was the Uml hit by the pen?
     bool mWasHit = false;
 
 public:
@@ -33,6 +34,10 @@ public:
      */
     bool Bad() { return mUml->IsBad(); }
 
+    /**
+     * Tell if the uml was hit
+     * @return true if it was hit, false otherwise
+     */
     bool WasHit() {return mWasHit;}
 
 };

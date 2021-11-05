@@ -16,6 +16,8 @@
 
 
 class SoundStuff : public wxMediaCtrl{
+
+
 public:
 
     SoundStuff(wxWindow *parent);
