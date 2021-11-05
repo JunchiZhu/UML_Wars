@@ -75,6 +75,15 @@ void Kid::SetPen(){
 void Kid::DoThrowing()
 {
     mChecking = true;
+
+    if(mChecking)
+    {
+
+        mSound = std::make_unique<wxSound>("audio/195937__michimuc2__short-wind-noise.wav");
+
+
+        auto grab= mSound->Play(wxSOUND_ASYNC);
+    }
 }
 
 /**
@@ -84,6 +93,7 @@ void Kid::DoThrowing()
 void Kid::Update(double elapsed)
 {
     if(mChecking){
+
         double x = mPen->GetX();
         x += 800 * cos(mPen->GetPenAngle()) * elapsed;
         double y = mPen->GetY();

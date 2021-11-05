@@ -49,6 +49,10 @@ private:
     /// The angle of hand
     const double HandAngle = 1.078;
 
+
+    std::unique_ptr<wxSound> mSound;
+
+
 public:
     Kid(Game *game);
 

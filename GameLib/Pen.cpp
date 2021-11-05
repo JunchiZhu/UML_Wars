@@ -59,6 +59,7 @@ bool Pen::HitTest(double x, double y)
     {
         return false;
     }
+
     return !mPenImage->IsTransparent((int)testX, (int)testY);
 }
 /**
@@ -68,5 +69,15 @@ bool Pen::HitTest(double x, double y)
 bool Pen::HitConfirm(){
 
     mHitCheck = GetGame()->PenHitUml(this);
+    if(mHitCheck)
+    {
+
+        mSound = std::make_unique<wxSound>("audio/27568__suonho__memorymoon-space-blaster-plays.wav");
+
+
+        auto grab= mSound->Play(wxSOUND_ASYNC);
+
+
+    }
     return mHitCheck;
 }

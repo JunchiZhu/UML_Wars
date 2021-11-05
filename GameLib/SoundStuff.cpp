@@ -40,10 +40,10 @@ SoundStuff::SoundStuff(wxWindow *parent) {
     mMediaCtrl->Load("audio/172561__djgriffin__video-game-7.wav");
 
     ///Play a song on loop
-    mSound = std::make_unique<wxSound>("audio/48543__flick3r__rezzo-3.wav");
+    ///Sound = std::make_unique<wxSound>("audio/48543__flick3r__rezzo-3.wav");
 
 
-    auto grab= mSound->Play(wxSOUND_ASYNC|wxSOUND_LOOP);
+    ///auto grab= mSound->Play(wxSOUND_ASYNC|wxSOUND_LOOP);
 
 }
 

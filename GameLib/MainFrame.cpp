@@ -77,6 +77,9 @@ void MainFrame::Initialize()
 
     SoundStuff s(this);
 
+
+    mMediaCtrl->Load("audio/172561__djgriffin__video-game-7.wav");
+
 }
 
 
