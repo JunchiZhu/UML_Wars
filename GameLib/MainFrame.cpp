@@ -73,12 +73,13 @@ void MainFrame::Initialize()
 
     SetMenuBar( menuBar );
 
+
     mMediaCtrl = std::make_unique<wxMediaCtrl>(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxMEDIABACKEND_WMP10);
 
     SoundStuff s(this);
 
 
-    ///mMediaCtrl->Load("audio/Final Count.wav");
+    ///mMediaCtrl->Load("audio/172561__djgriffin__video-game-7.wav");
 
 }
 
