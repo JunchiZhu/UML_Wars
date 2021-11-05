@@ -39,22 +39,24 @@ void MainFrame::Initialize()
     SetSizer( sizer );
     Layout();
 
-    CreateStatusBar();
-
     auto menuBar = new wxMenuBar();
 
     auto fileMenu = new wxMenu();
     auto variantMenu = new wxMenu();
     auto helpMenu = new wxMenu();
     auto restartMenu = new wxMenu();
-
     auto soundMenu = new wxMenu();
 
+    menuBar->Append(fileMenu, L"&File");
+    menuBar->Append(variantMenu, L"&Variant");
+    menuBar->Append(restartMenu, L"&Restart");
+    menuBar->Append(soundMenu, L"&Sound");
+    menuBar->Append(helpMenu, L"&Help");
 
     fileMenu->Append(wxID_EXIT, "E&xit\tAlt-X", "Quit this program");
     helpMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
-    restartMenu->Append(IDM_RESTART, "&Restart\tF1", "Restart the game");
-    soundMenu->Append(IDM_MUSIC,"&Sounds\tF1", "Restart the game");
+    restartMenu->Append(IDM_RESTART, "&Restart\tCtrl-R", "Restart the game");
+    soundMenu->Append(IDM_MUSIC,"&Sounds\tAlt-S", "Restart the game");
 
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnAbout, this, wxID_ABOUT);
@@ -63,30 +65,18 @@ void MainFrame::Initialize()
     Bind(wxEVT_MEDIA_LOADED, &MainFrame::OnMediaLoaded, this);
     Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
 
-    menuBar->Append(fileMenu, L"&File" );
-    menuBar->Append(variantMenu, L"&Variant");
     mGameView->AddMenus(this, menuBar, fileMenu, variantMenu);
-    menuBar->Append(helpMenu, L"&Help");
-    menuBar->Append(restartMenu, L"&Restart");
-
-    menuBar->Append(soundMenu, L"&Sound");
 
     SetMenuBar( menuBar );
-
+    CreateStatusBar(1, wxSTB_SIZEGRIP, wxID_ANY);
 
     mMediaCtrl = std::make_unique<wxMediaCtrl>(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxMEDIABACKEND_WMP10);
 
     SoundStuff s(this);
 
-
     ///mMediaCtrl->Load("audio/172561__djgriffin__video-game-7.wav");
 
 }
-
-
-
-
-
 
 /**
  * Exit menu option handlers
@@ -108,8 +98,6 @@ void MainFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
             L"About UML Wars",
             wxOK,
             this);
-
-
 }
 
 
@@ -154,7 +142,6 @@ void MainFrame::OnMediaLoaded(wxMediaEvent &event)
 
 void MainFrame::Play(wxCommandEvent& event)
 {
-
     int random = rand() % 4;
     std::vector<std::string> grab = {"173933__johnsonbrandediting__cartoon-laugh.wav","48543__flick3r__rezzo-3.wav","169628__dinsfire__male-voice-screaming-loudly.wav", "343490__mafon2__comical-screams.wav" };
     std::string get = grab[random];
