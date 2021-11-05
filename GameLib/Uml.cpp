@@ -197,7 +197,7 @@ void Uml::Update(double elapsed)
         mTime += elapsed;
         mSpeedX = 0;
         mSpeedY = 0;
-        if (mTime >= 1)
+        if (mTime >= .5)
         {
             SetLocation(800, 1000);
             mTime = 0;
