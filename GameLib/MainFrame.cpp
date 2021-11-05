@@ -115,7 +115,7 @@ void MainFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
  */
 void MainFrame::OnClose(wxCloseEvent& event)
 {
-    // mGameView->Stop();
+    mGameView->Stop();
     Destroy();
     event.Skip();
 }
