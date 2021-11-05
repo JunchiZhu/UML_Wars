@@ -8,6 +8,7 @@
 #ifndef UML_WARS_PEN_H
 #define UML_WARS_PEN_H
 
+#include <wx/sound.h>
 #include "Item.h"
 #include "ItemVisitor.h"
 #include "Kid.h"
@@ -28,6 +29,8 @@ private:
 
     /// hit checker
     bool mHitCheck = false;
+
+    std::unique_ptr<wxSound> mSound;
 
 public:
     /// Default constructor (disabled)
