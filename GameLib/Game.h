@@ -155,29 +155,29 @@ public:
 
     bool OutOfPlayingArea(std::shared_ptr<Item> item);
 
-    std::vector<std::shared_ptr<Item>> GetterList(){return mItems;}
-
+    /**
+     * Sets the time since the game started back to zero
+     */
     void noTime(){mTime = 0;}
 
+    /**
+     * Sets the time since the last Uml was generated back to zero
+     */
     void noDuration(){mDuration = 0;}
 
+    /**
+     * Check if time and duration are zero
+     * @return true if both are zero, false otherwise
+     */
     bool noTimeNoDuration(){return mTime == 0 && mDuration ==0;}
 
-    /**
-     * Ask Kid to throw the Pen, like a trigger
-     *  @param item uml
-     *  @return true if Pen Hit Uml otherwise false
-     */
-    bool PenHitUml(Item *uml);
+    bool PenHitUml(Item *pen);
 
-    /**
-     * A test function which is used to check HitTest function is work or not
-     * @param x is item's x coordinate, y is item's y coordinate
-     * @return the hit Item
-     */
     std::shared_ptr<Item> HitCheck(int x, int y);
 
     void DeleteUml();
+
+
 };
 
 #endif //UML_WARS_GAME_H

@@ -30,6 +30,7 @@ private:
     /// The bitmap we can display for this item
     std::unique_ptr<wxBitmap> mItemBitmap;
 
+    /// Has the item been hit by the pen?
     bool mHitCheck = false;
 
 protected:

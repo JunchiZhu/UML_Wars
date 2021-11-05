@@ -30,7 +30,7 @@ private:
     bool mHitCheck = false;
 
 public:
-/// Default constructor (disabled)
+    /// Default constructor (disabled)
     Pen() = delete;
 
     /// Copy constructor (disabled)
@@ -65,7 +65,8 @@ public:
     bool HitTest(double x, double y) override;
 
     /**
-     * setter used to check hit is happened or not
+     * Setter used to check if the pen hit an item
+     * @param x bool to see if the pen hit an item
      */
     void SetterCheck(bool x){mHitCheck = x;}
 

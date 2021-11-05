@@ -46,14 +46,15 @@ private:
     void OnTimer(wxTimerEvent& event);
 
     /**
- * Stop the timer so the window can close
- */
+     * Stop the timer so the window can close
+     */
     void Stop() {mTimer.Stop();}
 
 public:
     void Initialize(wxFrame *mainFrame);
 
     void AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu, wxMenu* variantMenu);
+
     /**
      * Will call reset on mGame.
      */
@@ -63,9 +64,14 @@ public:
      */
     void ClearBoard(){mGame.Wipe();}
 
-
+    /**
+     * Reset the time since the game started
+     */
     void resetTime(){mGame.noTime();}
 
+    /**
+     * Reset the time since the last Uml was generated
+     */
     void resetDuration(){mGame.noDuration();}
 
 };
