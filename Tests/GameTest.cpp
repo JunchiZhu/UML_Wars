@@ -119,14 +119,14 @@ TEST(GameTest, Update)
 
 }
 
-TEST(AquariumTest, Construct){
+TEST(GameTest, Construct){
     Game game;
     wstring name;
     vector<wstring> attributes;
     vector<wstring> operations;
 }
 
-TEST(AquariumTest, HitTest) {
+TEST(GameTest, HitTest) {
     Game game;
     wstring name;
     vector<wstring> attributes;

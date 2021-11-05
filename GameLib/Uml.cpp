@@ -166,7 +166,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
                     wxFONTWEIGHT_NORMAL);
             wxColour fontColor(0, 50, 0);
             graphics->SetFont(font, fontColor);
-            graphics->DrawText(mBadReason,GetX(),GetY());//use graphics ****-mWid/3 +mHit/3
+            graphics->DrawText(mBadReason,GetX(),GetY()+mHeight/3);
         }
         else{
             wxFont font(wxSize(0, 40),
@@ -175,7 +175,7 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
             wxFONTWEIGHT_NORMAL);
             wxColour fontColor(50, 0, 0);
             graphics->SetFont(font, fontColor);
-            graphics->DrawText("Unfair!",GetX(),GetY());
+            graphics->DrawText("Unfair!",GetX()+mWidth/3,GetY()+mHeight/3);
         }
 
     }

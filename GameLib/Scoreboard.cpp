@@ -26,7 +26,7 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> graphics)
             wxFONTFAMILY_SWISS,
             wxFONTSTYLE_NORMAL,
             wxFONTWEIGHT_NORMAL);
-    wxColour fontColor(0, 64, 0);
+    wxColour fontColor(250, 154, 127);
     graphics->SetFont(font, fontColor);
 
     // Draw text
