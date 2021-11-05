@@ -28,6 +28,7 @@ private:
 
     /// The x speed
     double mSpeedX;
+
     /// The y speed
     double mSpeedY;
 
@@ -41,6 +42,9 @@ private:
 
     /// Time since uml was hit
     double mTime = 0;
+
+    /// Was the uml hit?
+    bool mWasHit = false;
 
 public:
     // Constructors
@@ -115,10 +119,10 @@ public:
     void SetHit(bool x){ mHitCheck = x; }
 
     /**
-     * Getter function for the mHitCheck value
-     * @return true if the uml was hit, false otherwise
+     * Determine if the uml was hit
+     * @return true if hit, false otherwise
      */
-    bool GetHit() {return mHitCheck; }
+    bool WasHit() {return mWasHit;}
 
 
 };

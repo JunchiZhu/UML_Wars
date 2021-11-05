@@ -26,8 +26,6 @@ TEST(RestartTest, Construct) {
 
     game.Wipe();
 
-
-
     std::vector<int> test = game.GetScore();
 
     ASSERT_TRUE(test[0] == 0);
@@ -42,27 +40,12 @@ TEST(RestartTest, Construct) {
 
     ASSERT_FALSE(game.IsEmpty());
 
-
-
     game.Reset();
 
-    game.noTime();
+    game.NoTime();
 
-    game.noDuration();
+    game.NoDuration();
 
-
-    ASSERT_TRUE(game.noTimeNoDuration());
-
-
-
-
-
-
-
-
-
-
-
-
+    ASSERT_TRUE(game.NoTimeNoDuration());
 
 }

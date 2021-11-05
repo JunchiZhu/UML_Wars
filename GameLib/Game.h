@@ -124,6 +124,7 @@ public:
     std::mt19937 &GetRandom() { return mRandom; }
 
     void Accept(ItemVisitor* visitor);
+
     bool IsEmpty();
 
     /**
@@ -158,22 +159,23 @@ public:
     /**
      * Sets the time since the game started back to zero
      */
-    void noTime(){mTime = 0;}
+    void NoTime(){mTime = 0;}
 
     /**
      * Sets the time since the last Uml was generated back to zero
      */
-    void noDuration(){mDuration = 0;}
+    void NoDuration(){mDuration = 0;}
 
     /**
      * Check if time and duration are zero
      * @return true if both are zero, false otherwise
      */
-    bool noTimeNoDuration(){return mTime == 0 && mDuration ==0;}
+    bool NoTimeNoDuration(){return mTime == 0 && mDuration ==0;}
 
     bool PenHitUml(Item *pen);
 
     std::shared_ptr<Item> HitCheck(int x, int y);
+
 
 };
 

@@ -75,3 +75,4 @@ bool Item::HitTest(double x, double y)
     // part of the image
     return true;
 }
+

@@ -135,16 +135,13 @@ void MainFrame::OnRestart(wxCommandEvent& event)
 
     mGameView->ClearGame();
 
-
     mGameView->ClearBoard();
 
-    mGameView->resetTime();
+    mGameView->ResetTime();
 
-    mGameView->resetDuration();
+    mGameView->ResetDuration();
 
     event.Skip();
-
-
 
 }
 

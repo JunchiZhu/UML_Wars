@@ -5,6 +5,7 @@
  * Handle Sound for the Program
  */
 
+#include "pch.h"
 #include "SoundStuff.h"
 #include "ids.h"
 

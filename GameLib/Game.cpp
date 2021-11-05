@@ -139,7 +139,7 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
     double pY = (y - mYOffset) / mScale;
 
     //atan2(oY-(900 - 54),oX-(0 + 29))
-    mKid->SetRoataion(atan2(900 - pY, pX) - M_PI / 2);
+    mKid->SetRotation(atan2(900 - pY, pX) - M_PI / 2);
 }
 
 /**
@@ -184,7 +184,7 @@ void Game::Update(double elapsed)
             item->Accept(&visitor);
 
             // Add to the missed score
-            if (visitor.Bad() && !visitor.WasHit())
+            if (visitor.Bad() && visitor.WasHit() == false)
             {
                 mScore->AddMissed();
             }
@@ -252,16 +252,19 @@ bool Game::PenHitUml(Item *pen){
         {
             continue;
         }
+        // Check if the pen hit a uml
         if (item->HitTest((double)pen->GetX(), (double)pen->GetY()+900))
         {
             UmlVisitor visitor;
             item->Accept(&visitor);
             if (visitor.Bad())
             {
+                // Add to the correct score
                 mScore->AddCorrect();
             }
             else
             {
+                // Add to the unfair score
                 mScore->AddUnfair();
             }
             return true;

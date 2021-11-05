@@ -30,6 +30,7 @@ private:
 
     ///wxSound member object
     std::unique_ptr<wxSound> mSound;
+
     ///wxMediaCtrl member object
     std::unique_ptr<wxMediaCtrl> mMediaCtrl;
 

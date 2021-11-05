@@ -27,12 +27,6 @@ private:
     /// The angle of rotation
     double mRotation = 0;
 
-    /// X mouse coordinate
-    int mXMouseCoord = 0;
-
-    /// Y mouse coordinate
-    int mYMouseCoord = 0;
-
     /// The pen
     std::shared_ptr<Pen> mPen;
 
@@ -71,18 +65,6 @@ public:
     void Accept(ItemVisitor* visitor) override { visitor->VisitKid(this); }
 
     /**
-    * Set the X mouse coordinate
-    * @param x  the X mouse coordinate
-    */
-    void SetXMouseCoord(double x) { mXMouseCoord = x; }
-
-    /**
-     * Set the Y mouse coordinate
-     * @param y the Y mouse coordinate
-     */
-    void SetYMouseCoord(double y) { mYMouseCoord = y; }
-
-    /**
      * Get the pointer of Pen
      * @return the pointer of pen
      */
@@ -101,7 +83,7 @@ public:
      * Set the rotation
      * @param angle
      */
-    void SetRoataion(double angle);
+    void SetRotation(double angle);
 
     /**
      * Set the pen's angle and location

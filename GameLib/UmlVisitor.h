@@ -11,8 +11,8 @@
 #include "Uml.h"
 
 /**
-  *  Get HitChecker
-  */
+ *  Get HitChecker
+ */
 class UmlVisitor : public ItemVisitor{
 private:
     /// The Uml that is being visited
@@ -26,7 +26,7 @@ public:
     * Visit a UML object
     * @param uml Uml we are visiting
     */
-    void VisitUml(Uml* uml){ uml->SetHit(true); mUml = uml; mWasHit = uml->GetHit();}
+    void VisitUml(Uml* uml){ uml->SetHit(true); mUml = uml; mWasHit = uml->WasHit();}
 
     /**
      * Check if the Uml is bad

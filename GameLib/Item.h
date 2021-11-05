@@ -27,6 +27,7 @@ private:
 
     /// The underlying item image
     std::unique_ptr<wxImage> mItemImage;
+
     /// The bitmap we can display for this item
     std::unique_ptr<wxBitmap> mItemBitmap;
 
@@ -36,6 +37,7 @@ private:
 protected:
     /// Constructor
     Item(Game *game, const std::wstring &filename);
+
 public:
     /// Default constructor (disabled)
     Item() = delete;
@@ -110,8 +112,5 @@ public:
     Game *GetGame() { return mGame; }
 
 };
-
-// remove function in item
-//
 
 #endif //UML_WARS_ITEM_H

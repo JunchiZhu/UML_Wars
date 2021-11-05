@@ -49,7 +49,7 @@ void Kid::Draw(std::shared_ptr<wxGraphicsContext> graphics)
  * Set the rotation
  * @param angle
  */
-void Kid::SetRoataion(double angle){
+void Kid::SetRotation(double angle){
     mRotation = angle + 0.5;
     if(!mChecking){
         SetPen();
