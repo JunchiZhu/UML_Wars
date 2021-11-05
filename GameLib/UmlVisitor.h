@@ -1,8 +1,9 @@
 /**
  * @file UmlVisitor.h
  * @author Junchi Zhu
+ * @author Melody Buado
  *
- *
+ * Visitor class for uml
  */
 
 #ifndef UML_WARS_UMLVISITOR_H
@@ -11,7 +12,7 @@
 #include "Uml.h"
 
 /**
- *  Get HitChecker
+ *  Visitor class for uml
  */
 class UmlVisitor : public ItemVisitor{
 private:

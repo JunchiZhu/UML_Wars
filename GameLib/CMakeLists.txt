@@ -15,7 +15,9 @@ set(SOURCE_FILES
         UmlLoader.cpp UmlLoader.h
         UmlNode.cpp UmlNode.h
         ItemVisitor.cpp ItemVisitor.h
-        UmlInheritNode.cpp UmlInheritNode.h SoundStuff.cpp SoundStuff.h)
+        UmlInheritNode.cpp UmlInheritNode.h
+        SoundStuff.cpp SoundStuff.h
+        UmlVisitor.cpp UmlVisitor.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml  media REQUIRED)
