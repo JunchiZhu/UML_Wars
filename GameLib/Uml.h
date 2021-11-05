@@ -42,6 +42,8 @@ private:
     /// Time since uml was hit
     double mTime = 0;
 
+    bool mWasHit = false;
+
 public:
     // Constructors
     Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, std::vector<std::wstring> operations);
@@ -119,6 +121,8 @@ public:
      * @return true if the uml was hit, false otherwise
      */
     bool GetHit() {return mHitCheck; }
+
+    bool WasHit() {return mWasHit;}
 
 
 };

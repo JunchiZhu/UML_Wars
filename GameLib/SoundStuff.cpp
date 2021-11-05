@@ -3,6 +3,7 @@
  * @author matt5
  */
 
+#include "pch.h"
 #include "SoundStuff.h"
 #include "ids.h"
 

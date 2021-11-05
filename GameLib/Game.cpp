@@ -139,7 +139,7 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
     double pY = (y - mYOffset) / mScale;
 
     //atan2(oY-(900 - 54),oX-(0 + 29))
-    mKid->SetRoataion(atan2(900 - pY, pX) - M_PI / 2);
+    mKid->SetRotation(atan2(900 - pY, pX) - M_PI / 2);
 }
 
 /**
@@ -184,10 +184,12 @@ void Game::Update(double elapsed)
             item->Accept(&visitor);
 
             // Add to the missed score
-            if (visitor.Bad() && !visitor.WasHit())
+            if (visitor.Bad() && visitor.WasHit() == false)
             {
                 mScore->AddMissed();
             }
+
+
 
         }
     }

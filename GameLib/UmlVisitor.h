@@ -26,7 +26,7 @@ public:
     * Visit a UML object
     * @param uml Uml we are visiting
     */
-    void VisitUml(Uml* uml){ uml->SetHit(true); mUml = uml; mWasHit = uml->GetHit();}
+    void VisitUml(Uml* uml){ uml->SetHit(true); mUml = uml; mWasHit = uml->WasHit();}
 
     /**
      * Check if the Uml is bad

@@ -62,12 +62,12 @@ public:
     /**
      * Reset the time since the game started
      */
-    void resetTime(){mGame.noTime();}
+    void ResetTime(){mGame.NoTime();}
 
     /**
      * Reset the time since the last Uml was generated
      */
-    void resetDuration(){mGame.noDuration();}
+    void ResetDuration(){mGame.NoDuration();}
 
     /**
      * Stop the timer so the window can close

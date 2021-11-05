@@ -195,6 +195,8 @@ void Uml::Update(double elapsed)
         {
             SetLocation(800, 1000);
             mTime = 0;
+            mWasHit = true;
+
         }
     }
     SetLocation(GetX() + mSpeedX * elapsed, GetY() + mSpeedY * elapsed);

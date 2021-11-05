@@ -11,7 +11,6 @@
 #include <wx/sound.h>
 #include "Item.h"
 #include "ItemVisitor.h"
-#include "Kid.h"
 
 /**
  * Pen class contains methods to manipulate the pen
