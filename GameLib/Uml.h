@@ -39,6 +39,7 @@ private:
     /// Checker used to check hit is happened or not
     bool mHitCheck = false;
 
+    /// Does the Uml need to be deleted?
     bool mDelete = false;
 
 public:
@@ -108,11 +109,18 @@ public:
     bool HitTest(double x, double y) override;
 
     /**
-     * setter function used to set mHitCheck value
+     * Setter function used to set mHitCheck value
+     * @param x bool to determine if the Uml was hit
      */
     void SetHit(bool x){ mHitCheck = x; }
 
-    void SetDelet(bool x){ mDelete = x; }
+    bool GetHit() {return mHitCheck; }
+
+    /**
+     * Setter function to see if the uml needs to be deleted
+     * @param x bool to determine if needed to be deleted
+     */
+    void SetDelete(bool x){ mDelete = x; }
 };
 
 #endif //UML_WARS_UML_H

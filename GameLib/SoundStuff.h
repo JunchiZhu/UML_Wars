@@ -16,16 +16,9 @@
 
 
 class SoundStuff : public wxMediaCtrl{
-
-
 public:
 
     SoundStuff(wxWindow *parent);
-
-
-
-
-
 
 private:
     void OnPlay(wxMediaEvent& event);

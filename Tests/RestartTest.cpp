@@ -9,9 +9,8 @@
 #include "gtest/gtest.h"
 #include <Item.h>
 #include <Game.h>
-
-#include "Uml.h"
-#include "UmlLoader.h"
+#include <Uml.h>
+#include <UmlLoader.h>
 
 
 

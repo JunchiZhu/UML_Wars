@@ -8,15 +8,13 @@
  */
 
 #include "pch.h"
-
 #include <algorithm>
 #include <cmath>
-
 #include "Game.h"
 #include "Item.h"
 #include "Kid.h"
 #include "Uml.h"
-#include "HitCheckGetter.h"
+#include "UmlVisitor.h"
 
 using namespace std;
 
@@ -86,13 +84,13 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     }
 
-    // Draw scoreboard and kid (and his pen of course)
-    mScore->Draw(graphics);
-
     for (auto item : mItems)
     {
         item->Draw(graphics);
     }
+
+    // Draw scoreboard and kid (and his pen of course)
+    mScore->Draw(graphics);
 
     //
     // Draw filled rectangles
@@ -117,8 +115,8 @@ void Game::Add(std::shared_ptr<Item> item)
 }
 
 /**
- * Delet Old Pen in our game
- * item Pen to delete
+ * Delete the old Pen in our game
+ *
  */
 void Game::DeletePen()
 {
@@ -129,19 +127,14 @@ void Game::DeletePen()
     }
 }
 
-///**
-// * Delet Old UML in our game
-// * item UML to delete
-// */
-//void Game::DeleteUml()
-//{
-//    shared_ptr<Uml> uml;
-//    auto loc = find(mItems.begin(), mItems.end(), uml);
-//    if (loc != mItems.end())
-//    {
-//        mItems.erase(loc);
-//    }
-//}
+/**
+ * Delete the old UML in our game
+ *
+ */
+void Game::DeleteUml()
+{
+
+}
 
 /**
  * Handle movement of the mouse over the playing area
@@ -153,9 +146,9 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
 {
     double pX = (x - mXOffset) / mScale;
     double pY = (y - mYOffset) / mScale;
+
     //atan2(oY-(900 - 54),oX-(0 + 29))
     mKid->SetRoataion(atan2(900 - pY, pX) - M_PI / 2);
-    //(0+29,900-54) Pen
 }
 
 /**
@@ -164,8 +157,6 @@ void Game::OnMouseMove(double x, double y, wxMouseEvent& event)
  */
 void Game::Update(double elapsed)
 {
-
-
     mDuration += elapsed;
     mTime += elapsed;
 
@@ -191,15 +182,25 @@ void Game::Update(double elapsed)
         item->Update(elapsed);
     }
 
+    // Check if the uml went out of the playing area
     std::vector<std::shared_ptr<Item>> toRemove;
     for (auto item : mItems)
     {
         if (OutOfPlayingArea(item) && item !=mKid->GetPen())
         {
             toRemove.push_back(item);
+            UmlVisitor visitor;
+            item->Accept(&visitor);
+
+            // Add to the missed score
+            if (visitor.Bad())
+            {
+                mScore->AddMissed();
+            }
         }
     }
 
+    // Remove all uml that went out of the playing area
     for (auto item : toRemove)
     {
         auto it = std::find(mItems.begin(), mItems.end(), item);
@@ -245,14 +246,14 @@ bool Game::OutOfPlayingArea(std::shared_ptr<Item> item)
 {
     double itemTop = item->GetY();
     double itemSide = item->GetX();
-    return itemSide > 1000 || itemSide < -1000 || itemTop > 1300;
+    return itemSide > 700 || itemSide < -700 || itemTop > 1000;
 }
+
 /**
  * Ask Kid to throw the Pen, like a trigger
- *  @param item uml
+ *  @param pen the pen that is doing the hitting
  *  @return true if Pen Hit Uml otherwise false
  */
-
 bool Game::PenHitUml(Item *pen){
     for(auto item:mItems){
         if (item.get() == pen)
@@ -261,8 +262,16 @@ bool Game::PenHitUml(Item *pen){
         }
         if (item->HitTest((double)pen->GetX(), (double)pen->GetY()+900))
         {
-            HitCheckGetter visitor;
+            UmlVisitor visitor;
             item->Accept(&visitor);
+            if (visitor.Bad())
+            {
+                mScore->AddCorrect();
+            }
+            else
+            {
+                mScore->AddUnfair();
+            }
             return true;
         }
     }
@@ -271,7 +280,8 @@ bool Game::PenHitUml(Item *pen){
 
 /**
  * A test function which is used to check HitTest function is work or not
- * @param x is item's x coordinate, y is item's y coordinate
+ * @param x the item's x coordinate
+ * @param y the item's y coordinate
  * @return the hit Item
  */
 std::shared_ptr<Item> Game::HitCheck(int x, int y)
