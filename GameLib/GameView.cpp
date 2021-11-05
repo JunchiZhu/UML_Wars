@@ -8,6 +8,8 @@
  */
 
 #include "pch.h"
+#include <wx/sound.h>
+#include <wx/mediactrl.h>
 #include <wx/dcbuffer.h>
 #include "GameView.h"
 #include "Game.h"
@@ -40,6 +42,9 @@ void GameView::Initialize(wxFrame* mainFrame)
 //    Bind(wxEVT_LEFT_DCLICK, &GameView::OnLeftDoubleClick, this);
     Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
     Bind(wxEVT_TIMER, &GameView::OnTimer, this);
+
+
+    Bind(wxEVT_MEDIA_LOADED, &GameView::OnMediaLoaded, this);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -125,6 +130,8 @@ void GameView::OnUpdateVariantStandard(wxUpdateUIEvent& event)
 void GameView::OnVariantCustom(wxCommandEvent& event)
 {
     mGame.SetStandardVariant(event.GetId() == IDM_VARIANT_STANDARD);
+
+    mMediaCtrl->Load("audio/Final Count.wav");
 }
 
 /**
@@ -172,4 +179,10 @@ void GameView::OnMouseMove(wxMouseEvent &event)
 void GameView::OnTimer(wxTimerEvent& event)
 {
     Refresh();
+}
+
+
+void GameView::OnMediaLoaded(wxMediaEvent &event)
+{
+    mMediaCtrl->Play();
 }

@@ -45,6 +45,16 @@ private:
 
     void OnTimer(wxTimerEvent& event);
 
+    ///wxMediaCtrl member object
+    std::unique_ptr<wxMediaCtrl> mMediaCtrl;
+
+
+    /**
+ * Media Loaded event handler
+ * @param event the event to catch
+ */
+    void OnMediaLoaded(wxMediaEvent& event);
+
 public:
     void Initialize(wxFrame *mainFrame);
 

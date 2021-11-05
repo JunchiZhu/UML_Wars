@@ -1,6 +1,8 @@
 /**
  * @file SoundStuff.cpp
- * @author matt5
+ * @author Matthew Baxter
+ *
+ * Handle Sound for the Program
  */
 
 #include "pch.h"
@@ -18,10 +20,6 @@ wxFORCE_LINK_MODULE(wxmediabackend_wmp10)
 
 
 
-/**
- * constructor
- * @param parent
- */
 SoundStuff::SoundStuff(wxWindow *parent) {
 
     ///wxMediaCtrl(parent, IDM_MUSIC,  L"/audio/final-count-by-kevin-macleod-from-filmmusic-io.mp3", wxDefaultPosition, wxDefaultSize, 0);

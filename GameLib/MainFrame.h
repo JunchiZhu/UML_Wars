@@ -28,8 +28,9 @@ private:
     void OnClose(wxCloseEvent &event);
     void OnRestart(wxCommandEvent& event);
 
+    ///wxSound member object
     std::unique_ptr<wxSound> mSound;
-
+    ///wxMediaCtrl member object
     std::unique_ptr<wxMediaCtrl> mMediaCtrl;
 
 public:
@@ -37,7 +38,15 @@ public:
 
 
 protected:
+    /**
+     * Media Loaded event handler
+     * @param event the event to catch
+     */
     void OnMediaLoaded(wxMediaEvent& event);
+    /**
+     * Play on button press event handler
+     * @param event the event to catch
+     */
     void Play(wxCommandEvent& event);
 
 
