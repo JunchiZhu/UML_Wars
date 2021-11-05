@@ -20,7 +20,7 @@ const std::wstring DataFilename = L"data/uml.xml";
 const int NumAttributesCap = 3;
 
 /// The maximum number of operations that can be generated
-const int NumOperationsCap = 4;
+const int NumOperationsCap = 3;
 
 /**
  * Constructor
