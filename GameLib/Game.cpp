@@ -189,8 +189,6 @@ void Game::Update(double elapsed)
                 mScore->AddMissed();
             }
 
-
-
         }
     }
 
@@ -254,16 +252,19 @@ bool Game::PenHitUml(Item *pen){
         {
             continue;
         }
+        // Check if the pen hit a uml
         if (item->HitTest((double)pen->GetX(), (double)pen->GetY()+900))
         {
             UmlVisitor visitor;
             item->Accept(&visitor);
             if (visitor.Bad())
             {
+                // Add to the correct score
                 mScore->AddCorrect();
             }
             else
             {
+                // Add to the unfair score
                 mScore->AddUnfair();
             }
             return true;

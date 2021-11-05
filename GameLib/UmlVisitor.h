@@ -11,8 +11,8 @@
 #include "Uml.h"
 
 /**
-  *  Get HitChecker
-  */
+ *  Get HitChecker
+ */
 class UmlVisitor : public ItemVisitor{
 private:
     /// The Uml that is being visited
