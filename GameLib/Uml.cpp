@@ -192,12 +192,12 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
  */
 void Uml::Update(double elapsed)
 {
-    mTime += elapsed;
     if (mHitCheck)
     {
+        mTime += elapsed;
         mSpeedX = 0;
         mSpeedY = 0;
-        if (mTime >= 5)
+        if (mTime >= 1)
         {
             SetLocation(800, 1000);
             mTime = 0;
