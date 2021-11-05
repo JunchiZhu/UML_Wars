@@ -29,7 +29,7 @@ private:
 
     /// hit checker
     bool mHitCheck = false;
-
+    ///wxSound member object
     std::unique_ptr<wxSound> mSound;
 
 public:

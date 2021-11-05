@@ -49,7 +49,7 @@ private:
     /// The angle of hand
     const double HandAngle = 1.078;
 
-
+    ///member sound object
     std::unique_ptr<wxSound> mSound;
 
 
