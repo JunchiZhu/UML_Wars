@@ -184,7 +184,7 @@ void Game::Update(double elapsed)
             item->Accept(&visitor);
 
             // Add to the missed score
-            if (visitor.Bad())
+            if (visitor.Bad() && !visitor.WasHit())
             {
                 mScore->AddMissed();
             }
