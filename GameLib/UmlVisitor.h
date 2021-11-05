@@ -18,14 +18,13 @@ private:
     /// The Uml that is being visited
     Uml* mUml;
 
-    bool mWasHit = false;
 
 public:
     /**
     * Visit a UML object
     * @param uml Uml we are visiting
     */
-    void VisitUml(Uml* uml){ uml->SetHit(true); mUml = uml; mWasHit = uml->GetHit();}
+    void VisitUml(Uml* uml){ uml->SetHit(true); mUml = uml; }
 
     /**
      * Check if the Uml is bad

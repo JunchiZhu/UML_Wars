@@ -39,8 +39,7 @@ private:
     /// Checker used to check hit is happened or not
     bool mHitCheck = false;
 
-    /// Does the Uml need to be deleted?
-    bool mDelete = false;
+    double mTime = 0;
 
 public:
     // Constructors
@@ -116,11 +115,7 @@ public:
 
     bool GetHit() {return mHitCheck; }
 
-    /**
-     * Setter function to see if the uml needs to be deleted
-     * @param x bool to determine if needed to be deleted
-     */
-    void SetDelete(bool x){ mDelete = x; }
+
 };
 
 #endif //UML_WARS_UML_H

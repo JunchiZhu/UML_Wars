@@ -128,15 +128,6 @@ void Game::DeletePen()
 }
 
 /**
- * Delete the old UML in our game
- *
- */
-void Game::DeleteUml()
-{
-
-}
-
-/**
  * Handle movement of the mouse over the playing area
  * @param x X location clicked on
  * @param y Y location clicked on
@@ -197,6 +188,7 @@ void Game::Update(double elapsed)
             {
                 mScore->AddMissed();
             }
+
         }
     }
 
