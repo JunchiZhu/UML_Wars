@@ -39,6 +39,7 @@ private:
     /// Checker used to check hit is happened or not
     bool mHitCheck = false;
 
+    /// Time since uml was hit
     double mTime = 0;
 
 public:
@@ -113,6 +114,10 @@ public:
      */
     void SetHit(bool x){ mHitCheck = x; }
 
+    /**
+     * Getter function for the mHitCheck value
+     * @return true if the uml was hit, false otherwise
+     */
     bool GetHit() {return mHitCheck; }
 
 

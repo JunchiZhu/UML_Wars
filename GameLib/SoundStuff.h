@@ -19,6 +19,8 @@
  * Handle wxMediaCtrl ops for the project
  */
 class SoundStuff : public wxMediaCtrl{
+
+
 public:
     /**
      * constructor
