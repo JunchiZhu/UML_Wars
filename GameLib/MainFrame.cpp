@@ -69,7 +69,7 @@ void MainFrame::Initialize()
     menuBar->Append(helpMenu, L"&Help");
     menuBar->Append(restartMenu, L"&Restart");
 
-    menuBar->Append(soundMenu, L"&Sound");
+    menuBar->Append(soundMenu, L"&Play a Funny Sound");
 
     SetMenuBar( menuBar );
 
@@ -154,7 +154,12 @@ void MainFrame::OnMediaLoaded(wxMediaEvent &event)
 
 void MainFrame::Play(wxCommandEvent& event)
 {
-    mMediaCtrl->Load("audio/172561__djgriffin__video-game-7.wav");
+    int random = rand() % 4;
+    std::vector<std::string> grab {"169628__dinsfire__male-voice-screaming-loudly.wav", "343490__mafon2__comical-screams.wav","48543__flick3r__rezzo-3.wav","173933__johnsonbrandediting__cartoon-laugh.wav"};
+
+
+    std::string get = grab[random];
+    mMediaCtrl->Load("audio/"+get);
 }
 
 
