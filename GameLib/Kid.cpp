@@ -81,7 +81,6 @@ void Kid::DoThrowing()
 
         mSound = std::make_unique<wxSound>("audio/195937__michimuc2__short-wind-noise.wav");
 
-
         auto grab= mSound->Play(wxSOUND_ASYNC);
     }
 }
@@ -100,7 +99,8 @@ void Kid::Update(double elapsed)
         y += 800 * sin(mPen->GetPenAngle()) * elapsed;
         mPen->SetLocation(x,y);
 
-        if(x <= -700 || x >= 700 || y <= -1200 || y >= 500){
+        if (x <= -700 || x >= 700 || y <= -1200 || y >= 500)
+        {
             GetGame()->DeletePen();
             auto newPen = make_shared<Pen>(GetGame());
             newPen = mPen;
@@ -109,7 +109,8 @@ void Kid::Update(double elapsed)
             mChecking = false;
         }
 
-        if(mPen->HitConfirm()){
+        if (mPen->HitConfirm())
+        {
             GetGame()->DeletePen();
             auto newPen = make_shared<Pen>(GetGame());
             newPen = mPen;

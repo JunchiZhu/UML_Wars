@@ -19,7 +19,7 @@
 using namespace std;
 
 /// The interval for umls to generate (in seconds)
-const int UmlGenerateInterval = 3;
+const int UmlGenerateInterval = 4;
 
 /**
  * Constructor
@@ -44,7 +44,6 @@ Game::Game()
     mKid = make_shared<Kid>(this);
     mItems.push_back(mKid);
     mItems.push_back(mKid->GetPen());
-
 }
 
 /**
@@ -184,11 +183,10 @@ void Game::Update(double elapsed)
             item->Accept(&visitor);
 
             // Add to the missed score
-            if (visitor.Bad() && visitor.WasHit() == false)
+            if (visitor.Bad() && !visitor.WasHit())
             {
                 mScore->AddMissed();
             }
-
         }
     }
 
@@ -247,13 +245,14 @@ bool Game::OutOfPlayingArea(std::shared_ptr<Item> item)
  *  @return true if Pen Hit Uml otherwise false
  */
 bool Game::PenHitUml(Item *pen){
-    for(auto item:mItems){
+    for(auto item : mItems)
+    {
         if (item.get() == pen)
         {
             continue;
         }
         // Check if the pen hit a uml
-        if (item->HitTest((double)pen->GetX(), (double)pen->GetY()+900))
+        if (item->HitTest((double)pen->GetX(), (double)pen->GetY() + 900))
         {
             UmlVisitor visitor;
             item->Accept(&visitor);

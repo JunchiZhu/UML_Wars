@@ -154,9 +154,7 @@ void MainFrame::OnMediaLoaded(wxMediaEvent &event)
 
 void MainFrame::Play(wxCommandEvent& event)
 {
-
     mMediaCtrl->Load("audio/172561__djgriffin__video-game-7.wav");
-
 }
 
 

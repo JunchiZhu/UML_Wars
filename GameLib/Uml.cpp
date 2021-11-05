@@ -16,6 +16,9 @@ const int FontSize = 20;
 /// Font weight
 const int FontWeight = 10;
 
+/// The minimum width of uml
+const double MinWidth = 20;
+
 /// Block padding (left & right)
 const double BlockPaddingX = 5.0;
 /// Block padding (top & bottom)
@@ -29,7 +32,7 @@ const double MaxXSpeed = 20.0;
 /// The initial y speed
 const double InitialYSpeed = 60.0;
 /// The vertical acceleration
-const double AccelerationY = 3.1415926;
+const double AccelerationY = 1.618;
 
 /**
  * Basic constructor
@@ -74,6 +77,8 @@ Uml::Uml(Game *game, std::wstring name, std::vector<std::wstring> attributes, st
 
     // Calculate the uml area's width and height
     double rectWidth = maxLength * 1.0 * FontWeight + 2 * BlockPaddingX;
+    if (rectWidth < MinWidth)
+        rectWidth = MinWidth;
 
     int num = mAttributes.size() + mOperations.size(); // the number of attributes and operations
     double rectHeight = FontSize + 2 * BlockPaddingY;
@@ -158,24 +163,24 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         yPos += FontSize + 2 * BlockPaddingY;
     }
 
-    if(mHitCheck){//true, mHitCheck
-        if(!mBadReason.empty()){
-            wxFont font(wxSize(0, 40),
-                    wxFONTFAMILY_SWISS,
-                    wxFONTSTYLE_NORMAL,
-                    wxFONTWEIGHT_NORMAL);
-            wxColour fontColor(0, 50, 0);
-            graphics->SetFont(font, fontColor);
-            graphics->DrawText(mBadReason,GetX(),GetY()+mHeight/3);
+    if (mHitCheck) //true, mHitCheck
+    {
+        wxFont msgFont(wxSize(0, 40),
+                wxFONTFAMILY_SWISS,
+                wxFONTSTYLE_NORMAL,
+                wxFONTWEIGHT_NORMAL);
+
+        if (IsBad())
+        {
+            wxColour msgColor(0, 50, 0);
+            graphics->SetFont(msgFont, msgColor);
+            graphics->DrawText(mBadReason, GetX(), GetY() + GetHeight() / 3); //use graphics ****-mWid/3 +mHit/3
         }
-        else{
-            wxFont font(wxSize(0, 40),
-            wxFONTFAMILY_SWISS,
-            wxFONTSTYLE_NORMAL,
-            wxFONTWEIGHT_NORMAL);
-            wxColour fontColor(50, 0, 0);
-            graphics->SetFont(font, fontColor);
-            graphics->DrawText("Unfair!",GetX()+mWidth/3,GetY()+mHeight/3);
+        else
+        {
+            wxColour msgColor(50, 0, 0);
+            graphics->SetFont(msgFont, msgColor);
+            graphics->DrawText("Unfair!", GetX() + GetWidth() / 3, GetY() + GetHeight() / 3);
         }
 
     }
@@ -188,7 +193,8 @@ void Uml::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 void Uml::Update(double elapsed)
 {
     mTime += elapsed;
-    if(mHitCheck){
+    if (mHitCheck)
+    {
         mSpeedX = 0;
         mSpeedY = 0;
         if (mTime >= 5)
@@ -209,11 +215,7 @@ void Uml::Update(double elapsed)
  * @return true if hit.
  */
 bool Uml::HitTest(double x, double y) {
-    // TODO: use GetWidth() and GetWidth()
-    double wid = GetWidth(); /// current UML's Width
-    double hit = GetWidth();/// current UML's Height
-
-    if (x < GetX() || x > GetX()+wid || y < GetY() || y > GetY()+hit)
+    if (x < GetX() || x > GetX() + GetWidth() || y < GetY() || y > GetY() + GetHeight())
     {
         return false;
     }

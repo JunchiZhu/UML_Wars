@@ -42,5 +42,6 @@ if(APPLE)
     set(RESOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/UML_Wars.app/Contents/Resources)
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/images/ DESTINATION ${RESOURCE_DIR}/images/)
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data/ DESTINATION ${RESOURCE_DIR}/data/)
+    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/audio/ DESTINATION ${RESOURCE_DIR}/audio/)
 endif()
 
