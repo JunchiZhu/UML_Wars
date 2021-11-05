@@ -19,12 +19,10 @@
      /// Variant>Custom menu option
      IDM_VARIANT_CUSTOM,
 
-
-     ///
+     /// Restart menu option
      IDM_RESTART,
 
-
-     ///
+     /// Music menu option
      IDM_MUSIC
  };
 
